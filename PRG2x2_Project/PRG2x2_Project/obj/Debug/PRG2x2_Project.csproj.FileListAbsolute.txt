@@ -1,0 +1,12 @@
+C:\Users\jacqu\Documents\BELGIUM CAMPUS\Year 2\PRG2\PRG2x2_Project\PRG2x2_Project\bin\Debug\PRG2x2_Project.exe.config
+C:\Users\jacqu\Documents\BELGIUM CAMPUS\Year 2\PRG2\PRG2x2_Project\PRG2x2_Project\bin\Debug\PRG2x2_Project.exe
+C:\Users\jacqu\Documents\BELGIUM CAMPUS\Year 2\PRG2\PRG2x2_Project\PRG2x2_Project\bin\Debug\PRG2x2_Project.pdb
+C:\Users\jacqu\Documents\BELGIUM CAMPUS\Year 2\PRG2\PRG2x2_Project\PRG2x2_Project\obj\Debug\PRG2x2_Project.csproj.AssemblyReference.cache
+C:\Users\jacqu\Documents\BELGIUM CAMPUS\Year 2\PRG2\PRG2x2_Project\PRG2x2_Project\obj\Debug\PRG2x2_Project.csproj.SuggestedBindingRedirects.cache
+C:\Users\jacqu\Documents\BELGIUM CAMPUS\Year 2\PRG2\PRG2x2_Project\PRG2x2_Project\obj\Debug\PRG2x2_Project.Details.resources
+C:\Users\jacqu\Documents\BELGIUM CAMPUS\Year 2\PRG2\PRG2x2_Project\PRG2x2_Project\obj\Debug\PRG2x2_Project.Login.resources
+C:\Users\jacqu\Documents\BELGIUM CAMPUS\Year 2\PRG2\PRG2x2_Project\PRG2x2_Project\obj\Debug\PRG2x2_Project.Properties.Resources.resources
+C:\Users\jacqu\Documents\BELGIUM CAMPUS\Year 2\PRG2\PRG2x2_Project\PRG2x2_Project\obj\Debug\PRG2x2_Project.csproj.GenerateResource.cache
+C:\Users\jacqu\Documents\BELGIUM CAMPUS\Year 2\PRG2\PRG2x2_Project\PRG2x2_Project\obj\Debug\PRG2x2_Project.csproj.CoreCompileInputs.cache
+C:\Users\jacqu\Documents\BELGIUM CAMPUS\Year 2\PRG2\PRG2x2_Project\PRG2x2_Project\obj\Debug\PRG2x2_Project.exe
+C:\Users\jacqu\Documents\BELGIUM CAMPUS\Year 2\PRG2\PRG2x2_Project\PRG2x2_Project\obj\Debug\PRG2x2_Project.pdb
