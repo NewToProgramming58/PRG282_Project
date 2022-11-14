@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PRG282_Project
+namespace PRG2x2_Project
 {
     enum Tables
     {

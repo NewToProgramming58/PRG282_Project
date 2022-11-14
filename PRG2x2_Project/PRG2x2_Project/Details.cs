@@ -12,6 +12,7 @@ namespace PRG2x2_Project
 {
     public partial class Details : Form
     {
+        DataHandler handler = new DataHandler();
         private Login frm;
         public Details()
         {
@@ -27,6 +28,11 @@ namespace PRG2x2_Project
         public void StoreLoginForm(Login form)
         {
             frm = form;
+        }
+
+        private void btnStudentRead_Click(object sender, EventArgs e)
+        {
+            handler.GetData(Tables.Student);
         }
     }
 }

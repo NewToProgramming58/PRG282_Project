@@ -30,20 +30,6 @@
         {
             this.tbcDetails = new System.Windows.Forms.TabControl();
             this.tpgStudents = new System.Windows.Forms.TabPage();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.rtbStudentTutorial = new System.Windows.Forms.RichTextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tpgModules = new System.Windows.Forms.TabPage();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.rtbModuleTutorial = new System.Windows.Forms.RichTextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.btnModuleDelete = new System.Windows.Forms.Button();
-            this.btnModuleUpdate = new System.Windows.Forms.Button();
-            this.btnModuleInsert = new System.Windows.Forms.Button();
-            this.btnModuleRead = new System.Windows.Forms.Button();
-            this.dgvModuleOutput = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.btnStudentDelete = new System.Windows.Forms.Button();
@@ -51,17 +37,31 @@
             this.btnStudentInsert = new System.Windows.Forms.Button();
             this.btnStudentRead = new System.Windows.Forms.Button();
             this.dgvStudentOutput = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.rtbStudentTutorial = new System.Windows.Forms.RichTextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tpgModules = new System.Windows.Forms.TabPage();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.btnModuleDelete = new System.Windows.Forms.Button();
+            this.btnModuleUpdate = new System.Windows.Forms.Button();
+            this.btnModuleInsert = new System.Windows.Forms.Button();
+            this.btnModuleRead = new System.Windows.Forms.Button();
+            this.dgvModuleOutput = new System.Windows.Forms.DataGridView();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.rtbModuleTutorial = new System.Windows.Forms.RichTextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.tbcDetails.SuspendLayout();
             this.tpgStudents.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.tpgModules.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvModuleOutput)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudentOutput)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.tpgModules.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvModuleOutput)).BeginInit();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbcDetails
@@ -85,6 +85,76 @@
             this.tpgStudents.TabIndex = 0;
             this.tpgStudents.Text = "Students";
             this.tpgStudents.UseVisualStyleBackColor = true;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.SystemColors.Control;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.panel6);
+            this.panel2.Controls.Add(this.dgvStudentOutput);
+            this.panel2.Location = new System.Drawing.Point(0, 71);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(793, 290);
+            this.panel2.TabIndex = 1;
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.PeachPuff;
+            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel6.Controls.Add(this.btnStudentDelete);
+            this.panel6.Controls.Add(this.btnStudentUpdate);
+            this.panel6.Controls.Add(this.btnStudentInsert);
+            this.panel6.Controls.Add(this.btnStudentRead);
+            this.panel6.Location = new System.Drawing.Point(523, 204);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(270, 86);
+            this.panel6.TabIndex = 14;
+            // 
+            // btnStudentDelete
+            // 
+            this.btnStudentDelete.ForeColor = System.Drawing.Color.Red;
+            this.btnStudentDelete.Location = new System.Drawing.Point(145, 53);
+            this.btnStudentDelete.Name = "btnStudentDelete";
+            this.btnStudentDelete.Size = new System.Drawing.Size(96, 23);
+            this.btnStudentDelete.TabIndex = 13;
+            this.btnStudentDelete.Text = "Delete Record";
+            this.btnStudentDelete.UseVisualStyleBackColor = true;
+            // 
+            // btnStudentUpdate
+            // 
+            this.btnStudentUpdate.Location = new System.Drawing.Point(33, 53);
+            this.btnStudentUpdate.Name = "btnStudentUpdate";
+            this.btnStudentUpdate.Size = new System.Drawing.Size(91, 23);
+            this.btnStudentUpdate.TabIndex = 12;
+            this.btnStudentUpdate.Text = "Update Record";
+            this.btnStudentUpdate.UseVisualStyleBackColor = true;
+            // 
+            // btnStudentInsert
+            // 
+            this.btnStudentInsert.Location = new System.Drawing.Point(145, 14);
+            this.btnStudentInsert.Name = "btnStudentInsert";
+            this.btnStudentInsert.Size = new System.Drawing.Size(96, 23);
+            this.btnStudentInsert.TabIndex = 11;
+            this.btnStudentInsert.Text = "Add Record";
+            this.btnStudentInsert.UseVisualStyleBackColor = true;
+            // 
+            // btnStudentRead
+            // 
+            this.btnStudentRead.Location = new System.Drawing.Point(33, 14);
+            this.btnStudentRead.Name = "btnStudentRead";
+            this.btnStudentRead.Size = new System.Drawing.Size(91, 23);
+            this.btnStudentRead.TabIndex = 10;
+            this.btnStudentRead.Text = "Read";
+            this.btnStudentRead.UseVisualStyleBackColor = true;
+            this.btnStudentRead.Click += new System.EventHandler(this.btnStudentRead_Click);
+            // 
+            // dgvStudentOutput
+            // 
+            this.dgvStudentOutput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvStudentOutput.Location = new System.Drawing.Point(-1, -2);
+            this.dgvStudentOutput.Name = "dgvStudentOutput";
+            this.dgvStudentOutput.Size = new System.Drawing.Size(525, 292);
+            this.dgvStudentOutput.TabIndex = 13;
             // 
             // panel1
             // 
@@ -126,35 +196,6 @@
             this.tpgModules.TabIndex = 1;
             this.tpgModules.Text = "Modules";
             this.tpgModules.UseVisualStyleBackColor = true;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.SystemColors.Control;
-            this.panel4.Controls.Add(this.rtbModuleTutorial);
-            this.panel4.Controls.Add(this.label2);
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(793, 71);
-            this.panel4.TabIndex = 1;
-            // 
-            // rtbModuleTutorial
-            // 
-            this.rtbModuleTutorial.Location = new System.Drawing.Point(324, 6);
-            this.rtbModuleTutorial.Name = "rtbModuleTutorial";
-            this.rtbModuleTutorial.Size = new System.Drawing.Size(460, 54);
-            this.rtbModuleTutorial.TabIndex = 1;
-            this.rtbModuleTutorial.Text = "";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Coral;
-            this.label2.Location = new System.Drawing.Point(4, 21);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(156, 26);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Module Details";
             // 
             // panel3
             // 
@@ -225,74 +266,34 @@
             this.dgvModuleOutput.Size = new System.Drawing.Size(525, 292);
             this.dgvModuleOutput.TabIndex = 18;
             // 
-            // panel2
+            // panel4
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.Control;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.panel6);
-            this.panel2.Controls.Add(this.dgvStudentOutput);
-            this.panel2.Location = new System.Drawing.Point(0, 71);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(793, 290);
-            this.panel2.TabIndex = 1;
+            this.panel4.BackColor = System.Drawing.SystemColors.Control;
+            this.panel4.Controls.Add(this.rtbModuleTutorial);
+            this.panel4.Controls.Add(this.label2);
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(793, 71);
+            this.panel4.TabIndex = 1;
             // 
-            // panel6
+            // rtbModuleTutorial
             // 
-            this.panel6.BackColor = System.Drawing.Color.PeachPuff;
-            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel6.Controls.Add(this.btnStudentDelete);
-            this.panel6.Controls.Add(this.btnStudentUpdate);
-            this.panel6.Controls.Add(this.btnStudentInsert);
-            this.panel6.Controls.Add(this.btnStudentRead);
-            this.panel6.Location = new System.Drawing.Point(523, 204);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(270, 86);
-            this.panel6.TabIndex = 14;
+            this.rtbModuleTutorial.Location = new System.Drawing.Point(324, 6);
+            this.rtbModuleTutorial.Name = "rtbModuleTutorial";
+            this.rtbModuleTutorial.Size = new System.Drawing.Size(460, 54);
+            this.rtbModuleTutorial.TabIndex = 1;
+            this.rtbModuleTutorial.Text = "";
             // 
-            // btnStudentDelete
+            // label2
             // 
-            this.btnStudentDelete.ForeColor = System.Drawing.Color.Red;
-            this.btnStudentDelete.Location = new System.Drawing.Point(145, 53);
-            this.btnStudentDelete.Name = "btnStudentDelete";
-            this.btnStudentDelete.Size = new System.Drawing.Size(96, 23);
-            this.btnStudentDelete.TabIndex = 13;
-            this.btnStudentDelete.Text = "Delete Record";
-            this.btnStudentDelete.UseVisualStyleBackColor = true;
-            // 
-            // btnStudentUpdate
-            // 
-            this.btnStudentUpdate.Location = new System.Drawing.Point(33, 53);
-            this.btnStudentUpdate.Name = "btnStudentUpdate";
-            this.btnStudentUpdate.Size = new System.Drawing.Size(91, 23);
-            this.btnStudentUpdate.TabIndex = 12;
-            this.btnStudentUpdate.Text = "Update Record";
-            this.btnStudentUpdate.UseVisualStyleBackColor = true;
-            // 
-            // btnStudentInsert
-            // 
-            this.btnStudentInsert.Location = new System.Drawing.Point(145, 14);
-            this.btnStudentInsert.Name = "btnStudentInsert";
-            this.btnStudentInsert.Size = new System.Drawing.Size(96, 23);
-            this.btnStudentInsert.TabIndex = 11;
-            this.btnStudentInsert.Text = "Add Record";
-            this.btnStudentInsert.UseVisualStyleBackColor = true;
-            // 
-            // btnStudentRead
-            // 
-            this.btnStudentRead.Location = new System.Drawing.Point(33, 14);
-            this.btnStudentRead.Name = "btnStudentRead";
-            this.btnStudentRead.Size = new System.Drawing.Size(91, 23);
-            this.btnStudentRead.TabIndex = 10;
-            this.btnStudentRead.Text = "Read";
-            this.btnStudentRead.UseVisualStyleBackColor = true;
-            // 
-            // dgvStudentOutput
-            // 
-            this.dgvStudentOutput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvStudentOutput.Location = new System.Drawing.Point(-1, -2);
-            this.dgvStudentOutput.Name = "dgvStudentOutput";
-            this.dgvStudentOutput.Size = new System.Drawing.Size(525, 292);
-            this.dgvStudentOutput.TabIndex = 13;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Coral;
+            this.label2.Location = new System.Drawing.Point(4, 21);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(156, 26);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Module Details";
             // 
             // Details
             // 
@@ -308,17 +309,17 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Details_FormClosed);
             this.tbcDetails.ResumeLayout(false);
             this.tpgStudents.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.tpgModules.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvModuleOutput)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudentOutput)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.tpgModules.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvModuleOutput)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }

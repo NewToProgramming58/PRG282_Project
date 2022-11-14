@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PRG282_Project.Properties
+namespace PRG2x2_Project.Properties
 {
     class Student
     {
