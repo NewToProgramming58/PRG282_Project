@@ -1,0 +1,40 @@
+USE BelgiumCampusStudents
+
+CREATE TABLE Student (
+	[Student Number] NVARCHAR(6),
+	[Name] NVARCHAR(200) NOT NULL,
+	[Surname] NVARCHAR(100) NOT NULL,
+	[DOB] DATE NOT NULL,
+	[Gender] NVARCHAR(20) NOT NULL,
+	[Phone] NVARCHAR(30) NOT NULL,
+	[Address] NVARCHAR(400) NOT NULL,
+	[Student Image] NVARCHAR(MAX),
+	CONSTRAINT [PK_StudentNumber] PRIMARY KEY ([Student Number]),
+)
+CREATE INDEX [IN_StudentNumber] ON [Student]([Student Number])
+
+CREATE TABLE Module (
+	[Module Code] NVARCHAR(6),
+	[Module Name] NVARCHAR(200) NOT NULL,
+	[Module Description] NVARCHAR(255),
+	CONSTRAINT [PK_ModuleCode] PRIMARY KEY ([Module Code]),
+)
+CREATE INDEX [IN_Module] ON [Module]([Module Code])
+
+CREATE TABLE Resource(
+	[Module Code] NVARCHAR(6),
+	[Resource] NVARCHAR(MAX) UNIQUE NOT NULL
+	CONSTRAINT [FK_ModuleCodeResource] FOREIGN KEY ([Module Code]) 
+		REFERENCES [Module] ([Module Code]),
+)
+
+CREATE TABLE StudentModules(
+	[Student Number] NVARCHAR(6),
+	[Module Code] NVARCHAR(6),
+	[Status] NVARCHAR(20),
+	CONSTRAINT [FK_ModuleCodeStudentModule] FOREIGN KEY ([Module Code]) 
+		REFERENCES [Module] ([Module Code]),
+	CONSTRAINT [FK_StudentNumberModule] FOREIGN KEY ([Student Number]) 
+		REFERENCES [Student] ([Student Number]),
+)
+--DBD281,INF281,IOT281,LPR281,MAT281,PMM281,PRG281,PRG282,SAD281,STA281,WPR281,DBD281,INF281,IOT281,LPR281,MAT281,PMM281,PRG281,PRG282,SAD281,STA181,WPR181
