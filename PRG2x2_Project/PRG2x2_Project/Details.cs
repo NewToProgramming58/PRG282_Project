@@ -33,7 +33,7 @@ namespace PRG2x2_Project
 
         private void btnStudentRead_Click(object sender, EventArgs e)
         {
-            ShowStudentModules();///////////////////////////////////////////////////////////////////
+            ShowStudentModules();
         }
 
         private void btnStudentInsert_Click(object sender, EventArgs e)
@@ -67,8 +67,16 @@ namespace PRG2x2_Project
                     cboStudentGender.Text = dgvStudentOutput.SelectedRows[0].Cells[4].Value.ToString();
                     txtStudentPhone.Text = dgvStudentOutput.SelectedRows[0].Cells[5].Value.ToString();
                     rtbStudentAddress.Text = dgvStudentOutput.SelectedRows[0].Cells[6].Value.ToString();
-                    //ptbStudentImage.Image = Image.FromFile(dgvStudentOutput.SelectedRows[0].Cells[7].Value.ToString());
+                    //ptbStudentImage.Image = Image.FromStream(dgvStudentOutput.SelectedRows[0].Cells[7].Value.ToString());
                 }
+            }
+        }
+
+        private void dgvStudentOutput_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (StudentModules == false)
+            {
+                ShowStudentModules();
             }
         }
 
@@ -98,6 +106,18 @@ namespace PRG2x2_Project
             pnlStudentModules.Show();
             pnlStudent.Hide();
             lblSearch.Text = "Module code:";
+        }
+
+        private void btnStudentSearch_Click(object sender, EventArgs e)
+        {
+            if (StudentModules)
+            {
+                /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            }
+            else
+            {
+                dgvStudentOutput.DataSource = handler.GetData(Tables.Student, $"WHERE [Student Number] = {int.Parse(txtStudentSearch.Text)}");
+            }
         }
     }
 }

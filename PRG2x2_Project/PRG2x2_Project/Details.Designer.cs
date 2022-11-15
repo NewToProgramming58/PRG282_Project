@@ -68,7 +68,7 @@
             this.pnlStudentSearch = new System.Windows.Forms.Panel();
             this.lblSearch = new System.Windows.Forms.Label();
             this.btnStudentSearch = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtStudentSearch = new System.Windows.Forms.TextBox();
             this.rtbStudentTutorial = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tpgModules = new System.Windows.Forms.TabPage();
@@ -290,6 +290,7 @@
             this.dtpStudentDate.Name = "dtpStudentDate";
             this.dtpStudentDate.Size = new System.Drawing.Size(97, 20);
             this.dtpStudentDate.TabIndex = 46;
+            this.dtpStudentDate.Value = new System.DateTime(2022, 11, 15, 0, 0, 0, 0);
             // 
             // label10
             // 
@@ -452,6 +453,7 @@
             this.dgvStudentOutput.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvStudentOutput.Size = new System.Drawing.Size(525, 432);
             this.dgvStudentOutput.TabIndex = 13;
+            this.dgvStudentOutput.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStudentOutput_CellDoubleClick);
             this.dgvStudentOutput.SelectionChanged += new System.EventHandler(this.dgvStudentOutput_SelectionChanged);
             // 
             // panel1
@@ -471,7 +473,7 @@
             this.pnlStudentSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlStudentSearch.Controls.Add(this.lblSearch);
             this.pnlStudentSearch.Controls.Add(this.btnStudentSearch);
-            this.pnlStudentSearch.Controls.Add(this.textBox1);
+            this.pnlStudentSearch.Controls.Add(this.txtStudentSearch);
             this.pnlStudentSearch.Location = new System.Drawing.Point(557, 0);
             this.pnlStudentSearch.Name = "pnlStudentSearch";
             this.pnlStudentSearch.Size = new System.Drawing.Size(284, 71);
@@ -488,19 +490,20 @@
             // 
             // btnStudentSearch
             // 
-            this.btnStudentSearch.Location = new System.Drawing.Point(82, 36);
+            this.btnStudentSearch.Location = new System.Drawing.Point(96, 36);
             this.btnStudentSearch.Name = "btnStudentSearch";
             this.btnStudentSearch.Size = new System.Drawing.Size(91, 23);
             this.btnStudentSearch.TabIndex = 14;
             this.btnStudentSearch.Text = "Search";
             this.btnStudentSearch.UseVisualStyleBackColor = true;
+            this.btnStudentSearch.Click += new System.EventHandler(this.btnStudentSearch_Click);
             // 
-            // textBox1
+            // txtStudentSearch
             // 
-            this.textBox1.Location = new System.Drawing.Point(117, 5);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(156, 20);
-            this.textBox1.TabIndex = 34;
+            this.txtStudentSearch.Location = new System.Drawing.Point(117, 5);
+            this.txtStudentSearch.Name = "txtStudentSearch";
+            this.txtStudentSearch.Size = new System.Drawing.Size(156, 20);
+            this.txtStudentSearch.TabIndex = 34;
             // 
             // rtbStudentTutorial
             // 
@@ -800,7 +803,7 @@
         private System.Windows.Forms.DataGridView dgvModuleOutput;
         private System.Windows.Forms.Panel pnlStudentSearch;
         private System.Windows.Forms.Button btnStudentSearch;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtStudentSearch;
         private System.Windows.Forms.Label lblSearch;
         private System.Windows.Forms.Panel pnlStudent;
         private System.Windows.Forms.PictureBox ptbStudentImage;
