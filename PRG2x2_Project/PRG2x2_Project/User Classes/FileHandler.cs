@@ -6,6 +6,7 @@ namespace PRG2x2_Project.User_Classes
 {
     internal class FileHandler
     {
+        
         string fileName = "Users.txt";
         public List<User> GetUsers() 
         {
