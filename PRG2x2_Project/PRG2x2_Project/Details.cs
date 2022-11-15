@@ -74,7 +74,7 @@ namespace PRG2x2_Project
         {
             StudentModules = false;
             tbcDetails.SelectTab(0);
-            // DISPLAY STUDENTS.////////////////////////////////////////////////////////////////////////////////////////////////
+            //dgvStudentOutput.DataSource = handler.GetData(Tables.Student);//////////////////////////////////////////////////
             if (dgvStudentOutput.Rows.Count > 0)
             {
                 dgvStudentOutput.Rows[0].Selected = true;

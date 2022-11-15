@@ -58,7 +58,8 @@ namespace PRG2x2_Project
         public SqlConnection Con { get => con; set => con = value; }
 
         public DataHandler()
-        {            
+        {
+            MessageBox.Show("Ok");
             bool isExist = false;
             string dbName = "BelgiumCampusStudents";
             string existQuery = $"SELECT * FROM master.dbo.sysdatabases WHERE name ='{dbName}'";
