@@ -22,10 +22,13 @@ namespace PRG2x2_Project.User_Classes
 
                     foreach (string data in usersList)
                     {
-                        List<string> userInfo = data.Split(',').ToList();
-                        // 0 = username
-                        // 1 = password
-                        users.Add(new User(userInfo[0], userInfo[1]));
+                        if (data.Contains(','))
+                        {
+                            List<string> userInfo = data.Split(',').ToList();
+                            // 0 = username
+                            // 1 = password                      
+                            users.Add(new User(userInfo[0], userInfo[1]));
+                        }
                     }
                 }
             }
