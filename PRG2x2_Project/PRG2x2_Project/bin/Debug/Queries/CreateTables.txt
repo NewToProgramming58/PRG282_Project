@@ -23,7 +23,7 @@ CREATE INDEX [IN_Module] ON [Module]([Module Code])
 
 CREATE TABLE Resource(
 	[Module Code] NVARCHAR(6),
-	[Resource] NVARCHAR(MAX) UNIQUE NOT NULL
+	[Resource] NVARCHAR(MAX) NOT NULL
 	CONSTRAINT [FK_ModuleCodeResource] FOREIGN KEY ([Module Code]) 
 		REFERENCES [Module] ([Module Code]),
 )
