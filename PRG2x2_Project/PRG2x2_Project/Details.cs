@@ -49,23 +49,26 @@ namespace PRG2x2_Project
 
         private void dgvStudentOutput_SelectionChanged(object sender, EventArgs e)
         {
-            if (StudentModules)
+            if (dgvStudentOutput.SelectedRows.Count > 0)
             {
-                txtStudentModuleCode.Text = dgvStudentOutput.SelectedRows[0].Cells[0].Value.ToString();
-                txtStudentModuleName.Text = dgvStudentOutput.SelectedRows[0].Cells[1].Value.ToString();
-                rtbStudentModuleDescription.Text = dgvStudentOutput.SelectedRows[0].Cells[2].Value.ToString();
-                cboStudentModuleStatus.Text = dgvStudentOutput.SelectedRows[0].Cells[3].Value.ToString();
-            }
-            else
-            {
-                txtStudentNumber.Text = dgvStudentOutput.SelectedRows[0].Cells[0].Value.ToString();
-                txtStudentName.Text = dgvStudentOutput.SelectedRows[0].Cells[1].Value.ToString();
-                txtStudentSurname.Text = dgvStudentOutput.SelectedRows[0].Cells[2].Value.ToString();
-                dtpStudentDate.Value = DateTime.Parse(dgvStudentOutput.SelectedRows[0].Cells[3].Value.ToString());
-                cboStudentGender.Text = dgvStudentOutput.SelectedRows[0].Cells[4].Value.ToString();
-                txtStudentPhone.Text = dgvStudentOutput.SelectedRows[0].Cells[5].Value.ToString();
-                rtbStudentAddress.Text = dgvStudentOutput.SelectedRows[0].Cells[6].Value.ToString();
-                ptbStudentImage.Image = Image.FromFile(dgvStudentOutput.SelectedRows[0].Cells[7].Value.ToString());
+                if (StudentModules)
+                {
+                    txtStudentModuleCode.Text = dgvStudentOutput.SelectedRows[0].Cells[0].Value.ToString();
+                    txtStudentModuleName.Text = dgvStudentOutput.SelectedRows[0].Cells[1].Value.ToString();
+                    rtbStudentModuleDescription.Text = dgvStudentOutput.SelectedRows[0].Cells[2].Value.ToString();
+                    cboStudentModuleStatus.Text = dgvStudentOutput.SelectedRows[0].Cells[3].Value.ToString();
+                }
+                else
+                {
+                    txtStudentNumber.Text = dgvStudentOutput.SelectedRows[0].Cells[0].Value.ToString();
+                    txtStudentName.Text = dgvStudentOutput.SelectedRows[0].Cells[1].Value.ToString();
+                    txtStudentSurname.Text = dgvStudentOutput.SelectedRows[0].Cells[2].Value.ToString();
+                    dtpStudentDate.Value = DateTime.Parse(dgvStudentOutput.SelectedRows[0].Cells[3].Value.ToString());
+                    cboStudentGender.Text = dgvStudentOutput.SelectedRows[0].Cells[4].Value.ToString();
+                    txtStudentPhone.Text = dgvStudentOutput.SelectedRows[0].Cells[5].Value.ToString();
+                    rtbStudentAddress.Text = dgvStudentOutput.SelectedRows[0].Cells[6].Value.ToString();
+                    //ptbStudentImage.Image = Image.FromFile(dgvStudentOutput.SelectedRows[0].Cells[7].Value.ToString());
+                }
             }
         }
 
@@ -74,7 +77,7 @@ namespace PRG2x2_Project
         {
             StudentModules = false;
             tbcDetails.SelectTab(0);
-            //dgvStudentOutput.DataSource = handler.GetData(Tables.Student);//////////////////////////////////////////////////
+            dgvStudentOutput.DataSource = handler.GetData(Tables.Student);
             if (dgvStudentOutput.Rows.Count > 0)
             {
                 dgvStudentOutput.Rows[0].Selected = true;
