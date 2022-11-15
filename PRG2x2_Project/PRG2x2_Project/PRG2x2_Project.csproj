@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataHandler.cs" />
+    <Compile Include="Backend Classes\DataHandler.cs" />
     <Compile Include="Details.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,12 +59,14 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="Module.cs" />
+    <Compile Include="Backend Classes\Module.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resource.cs" />
-    <Compile Include="Student.cs" />
-    <Compile Include="StudentModule.cs" />
+    <Compile Include="Backend Classes\Resource.cs" />
+    <Compile Include="Backend Classes\Student.cs" />
+    <Compile Include="Backend Classes\StudentModule.cs" />
+    <Compile Include="User Classes\FileHandler.cs" />
+    <Compile Include="User Classes\User.cs" />
     <EmbeddedResource Include="Details.resx">
       <DependentUpon>Details.cs</DependentUpon>
     </EmbeddedResource>
@@ -93,5 +95,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
