@@ -23,7 +23,7 @@ namespace PRG2x2_Project.User_Classes
         override
         public string ToString()
         {
-            return $"{Username},{Password}";
+            return $"{Username},{Password}\n";
         }
     }
 }

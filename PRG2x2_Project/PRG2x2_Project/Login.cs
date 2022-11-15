@@ -28,8 +28,7 @@ namespace PRG2x2_Project
             {                
                 User user = users.FirstOrDefault(x => x.Username == username);
                 if (user != null)
-                {
-                    
+                {                    
                     if (password.Equals(user.Password))
                     {
                         MessageBox.Show("Login successfull");
@@ -62,10 +61,19 @@ namespace PRG2x2_Project
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            FileHandler fileHandler = new FileHandler();
-            User user = new User(txbUsername.Text, txbPassword.Text);
-            fileHandler.addUser(user);
-            MessageBox.Show($"Registered {user.Username}, Welcome");
+            User user = users.FirstOrDefault(x => x.Username == txbUsername.Text);
+            if (user == null)
+            {
+                FileHandler fileHandler = new FileHandler();
+                user = new User(txbUsername.Text, txbPassword.Text);
+                users.Add(user);
+                fileHandler.addUser(user);
+                MessageBox.Show($"Registered {user.Username}, Welcome");
+            }
+            else
+            {
+                MessageBox.Show("Username already exists");
+            }
         }
     }
 }
