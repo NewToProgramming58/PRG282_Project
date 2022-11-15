@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -67,7 +68,14 @@ namespace PRG2x2_Project
                     cboStudentGender.Text = dgvStudentOutput.SelectedRows[0].Cells[4].Value.ToString();
                     txtStudentPhone.Text = dgvStudentOutput.SelectedRows[0].Cells[5].Value.ToString();
                     rtbStudentAddress.Text = dgvStudentOutput.SelectedRows[0].Cells[6].Value.ToString();
-                    //ptbStudentImage.Image = Image.FromStream(dgvStudentOutput.SelectedRows[0].Cells[7].Value.ToString());
+
+                    string imageBase = dgvStudentOutput.SelectedRows[0].Cells[7].Value.ToString();
+                    imageBase = imageBase.Substring(imageBase.IndexOf(",") + 1);
+                    byte[] bytes = Convert.FromBase64String(imageBase);
+                    using (MemoryStream ms = new MemoryStream(bytes))
+                    {
+                        ptbStudentImage.Image = Image.FromStream(ms);
+                    }
                 }
             }
         }
