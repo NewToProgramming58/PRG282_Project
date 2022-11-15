@@ -480,7 +480,7 @@
             this.pnlStudentSearch.Controls.Add(this.lblSearch);
             this.pnlStudentSearch.Controls.Add(this.btnStudentSearch);
             this.pnlStudentSearch.Controls.Add(this.txtStudentSearch);
-            this.pnlStudentSearch.Location = new System.Drawing.Point(557, 0);
+            this.pnlStudentSearch.Location = new System.Drawing.Point(557, 1);
             this.pnlStudentSearch.Name = "pnlStudentSearch";
             this.pnlStudentSearch.Size = new System.Drawing.Size(284, 71);
             this.pnlStudentSearch.TabIndex = 15;
