@@ -73,19 +73,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tpgModules = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.btnModuleDelete = new System.Windows.Forms.Button();
-            this.btnModuleUpdate = new System.Windows.Forms.Button();
-            this.btnModuleInsert = new System.Windows.Forms.Button();
-            this.btnModuleRead = new System.Windows.Forms.Button();
-            this.dgvModuleOutput = new System.Windows.Forms.DataGridView();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.rtbModuleTutorial = new System.Windows.Forms.RichTextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.pnlModuleSearch = new System.Windows.Forms.Panel();
-            this.label11 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.pnlModule = new System.Windows.Forms.Panel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.label17 = new System.Windows.Forms.Label();
@@ -93,6 +80,19 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.btnModuleDelete = new System.Windows.Forms.Button();
+            this.btnModuleUpdate = new System.Windows.Forms.Button();
+            this.btnModuleInsert = new System.Windows.Forms.Button();
+            this.btnModuleRead = new System.Windows.Forms.Button();
+            this.dgvModuleOutput = new System.Windows.Forms.DataGridView();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.pnlModuleSearch = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.rtbModuleTutorial = new System.Windows.Forms.RichTextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.tbcDetails.SuspendLayout();
             this.tpgStudents.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -105,11 +105,11 @@
             this.pnlStudentSearch.SuspendLayout();
             this.tpgModules.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.pnlModule.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvModuleOutput)).BeginInit();
             this.panel4.SuspendLayout();
             this.pnlModuleSearch.SuspendLayout();
-            this.pnlModule.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbcDetails
@@ -447,7 +447,9 @@
             // 
             this.dgvStudentOutput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvStudentOutput.Location = new System.Drawing.Point(-1, -2);
+            this.dgvStudentOutput.MultiSelect = false;
             this.dgvStudentOutput.Name = "dgvStudentOutput";
+            this.dgvStudentOutput.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvStudentOutput.Size = new System.Drawing.Size(525, 432);
             this.dgvStudentOutput.TabIndex = 13;
             this.dgvStudentOutput.SelectionChanged += new System.EventHandler(this.dgvStudentOutput_SelectionChanged);
@@ -543,6 +545,68 @@
             this.panel3.Size = new System.Drawing.Size(841, 431);
             this.panel3.TabIndex = 2;
             // 
+            // pnlModule
+            // 
+            this.pnlModule.Controls.Add(this.richTextBox1);
+            this.pnlModule.Controls.Add(this.label17);
+            this.pnlModule.Controls.Add(this.label18);
+            this.pnlModule.Controls.Add(this.textBox3);
+            this.pnlModule.Controls.Add(this.label19);
+            this.pnlModule.Controls.Add(this.textBox4);
+            this.pnlModule.Location = new System.Drawing.Point(526, 3);
+            this.pnlModule.Name = "pnlModule";
+            this.pnlModule.Size = new System.Drawing.Size(311, 335);
+            this.pnlModule.TabIndex = 51;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(127, 91);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(172, 47);
+            this.richTextBox1.TabIndex = 9;
+            this.richTextBox1.Text = "";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(59, 91);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(63, 13);
+            this.label17.TabIndex = 5;
+            this.label17.Text = "Description:";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(83, 62);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(38, 13);
+            this.label18.TabIndex = 3;
+            this.label18.Text = "Name:";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(127, 59);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(172, 20);
+            this.textBox3.TabIndex = 2;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(49, 36);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(73, 13);
+            this.label19.TabIndex = 1;
+            this.label19.Text = "Module Code:";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(127, 33);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(172, 20);
+            this.textBox4.TabIndex = 0;
+            // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.PeachPuff;
@@ -612,25 +676,6 @@
             this.panel4.Size = new System.Drawing.Size(841, 71);
             this.panel4.TabIndex = 1;
             // 
-            // rtbModuleTutorial
-            // 
-            this.rtbModuleTutorial.Location = new System.Drawing.Point(182, 6);
-            this.rtbModuleTutorial.Name = "rtbModuleTutorial";
-            this.rtbModuleTutorial.Size = new System.Drawing.Size(356, 54);
-            this.rtbModuleTutorial.TabIndex = 1;
-            this.rtbModuleTutorial.Text = "";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Coral;
-            this.label2.Location = new System.Drawing.Point(4, 21);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(156, 26);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Module Details";
-            // 
             // pnlModuleSearch
             // 
             this.pnlModuleSearch.BackColor = System.Drawing.Color.PeachPuff;
@@ -668,67 +713,24 @@
             this.textBox2.Size = new System.Drawing.Size(156, 20);
             this.textBox2.TabIndex = 34;
             // 
-            // pnlModule
+            // rtbModuleTutorial
             // 
-            this.pnlModule.Controls.Add(this.richTextBox1);
-            this.pnlModule.Controls.Add(this.label17);
-            this.pnlModule.Controls.Add(this.label18);
-            this.pnlModule.Controls.Add(this.textBox3);
-            this.pnlModule.Controls.Add(this.label19);
-            this.pnlModule.Controls.Add(this.textBox4);
-            this.pnlModule.Location = new System.Drawing.Point(526, 3);
-            this.pnlModule.Name = "pnlModule";
-            this.pnlModule.Size = new System.Drawing.Size(311, 335);
-            this.pnlModule.TabIndex = 51;
+            this.rtbModuleTutorial.Location = new System.Drawing.Point(182, 6);
+            this.rtbModuleTutorial.Name = "rtbModuleTutorial";
+            this.rtbModuleTutorial.Size = new System.Drawing.Size(356, 54);
+            this.rtbModuleTutorial.TabIndex = 1;
+            this.rtbModuleTutorial.Text = "";
             // 
-            // richTextBox1
+            // label2
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(127, 91);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(172, 47);
-            this.richTextBox1.TabIndex = 9;
-            this.richTextBox1.Text = "";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(59, 91);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(63, 13);
-            this.label17.TabIndex = 5;
-            this.label17.Text = "Description:";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(83, 62);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(38, 13);
-            this.label18.TabIndex = 3;
-            this.label18.Text = "Name:";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(127, 59);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(172, 20);
-            this.textBox3.TabIndex = 2;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(49, 36);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(73, 13);
-            this.label19.TabIndex = 1;
-            this.label19.Text = "Module Code:";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(127, 33);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(172, 20);
-            this.textBox4.TabIndex = 0;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Coral;
+            this.label2.Location = new System.Drawing.Point(4, 21);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(156, 26);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Module Details";
             // 
             // Details
             // 
@@ -759,14 +761,14 @@
             this.pnlStudentSearch.PerformLayout();
             this.tpgModules.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            this.pnlModule.ResumeLayout(false);
+            this.pnlModule.PerformLayout();
             this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvModuleOutput)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.pnlModuleSearch.ResumeLayout(false);
             this.pnlModuleSearch.PerformLayout();
-            this.pnlModule.ResumeLayout(false);
-            this.pnlModule.PerformLayout();
             this.ResumeLayout(false);
 
         }
