@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PRG2x2_Project.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -39,7 +40,17 @@ namespace PRG2x2_Project
 
         private void btnStudentInsert_Click(object sender, EventArgs e)
         {
-            ShowStudent();//////////////////////////////////////////////////////////////////////////
+            if (StudentModules)
+            {
+                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            }
+            else
+            {
+                // Date does not work//////////////////////////////////////////////////////////////////////////////////////////////////
+                Student st = new Student(int.Parse(txtStudentNumber.Text), txtStudentName.Text, txtStudentSurname.Text, dtpStudentDate.Value, txtStudentPhone.Text, rtbStudentAddress.Text, "");
+                handler.Insert(st);
+                MessageBox.Show("Inserted");
+            }
         }
 
 

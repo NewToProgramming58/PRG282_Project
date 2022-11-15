@@ -157,7 +157,7 @@
             this.pnlStudentModules.Controls.Add(this.txtStudentModuleName);
             this.pnlStudentModules.Controls.Add(this.label12);
             this.pnlStudentModules.Controls.Add(this.txtStudentModuleCode);
-            this.pnlStudentModules.Location = new System.Drawing.Point(526, 3);
+            this.pnlStudentModules.Location = new System.Drawing.Point(169, 9);
             this.pnlStudentModules.Name = "pnlStudentModules";
             this.pnlStudentModules.Size = new System.Drawing.Size(311, 335);
             this.pnlStudentModules.TabIndex = 50;
@@ -285,6 +285,7 @@
             // 
             // dtpStudentDate
             // 
+            this.dtpStudentDate.CustomFormat = "yyyy/MM/dd";
             this.dtpStudentDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpStudentDate.Location = new System.Drawing.Point(115, 91);
             this.dtpStudentDate.Name = "dtpStudentDate";
