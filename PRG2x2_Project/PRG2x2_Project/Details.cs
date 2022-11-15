@@ -17,6 +17,7 @@ namespace PRG2x2_Project
         bool StudentModules = false;
         bool ModuleStudents = false;
         bool ModuleResources = false;
+
         DataHandler handler = new DataHandler();
         private Login frm;
         public Details()
@@ -33,6 +34,11 @@ namespace PRG2x2_Project
         public void StoreLoginForm(Login form)
         {
             frm = form;
+        }
+
+        private void Details_Shown(object sender, EventArgs e)
+        {
+            ShowStudent();
         }
 
         private void btnStudentRead_Click(object sender, EventArgs e)
@@ -77,17 +83,12 @@ namespace PRG2x2_Project
             }
             else
             { 
-                handler.Delete(Tables.Student, $"WHERE Student Number = {int.Parse(txtStudentNumber.Text)}");
+                // REFERENTIAL INTEGRITY PROBLEMS////////////////////////////////////////////////////////////////////////////////////////////
+                handler.Delete(Tables.Student, $"WHERE [Student Number] = {int.Parse(txtStudentNumber.Text)}");
                 MessageBox.Show("Deleted");
                 // Refreshes the table.
                 ShowStudent();
             }
-        }
-
-
-        private void Details_Shown(object sender, EventArgs e)
-        {
-            ShowStudent();
         }
 
         private void tbcDetails_SelectedIndexChanged(object sender, EventArgs e)
