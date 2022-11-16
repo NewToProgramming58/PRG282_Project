@@ -71,6 +71,8 @@ namespace PRG2x2_Project
                     base64ImageRepresentation);
                 handler.Insert(st);
                 MessageBox.Show("Inserted");
+                ShowStudent();
+                dgvStudentOutput.Rows[dgvStudentOutput.Rows.Count - 2].Selected = true;
             }
         }
 
@@ -85,7 +87,8 @@ namespace PRG2x2_Project
                 Student st = new Student(int.Parse(txtStudentNumber.Text), 
                     txtStudentName.Text, 
                     txtStudentSurname.Text, 
-                    dtpStudentDate.Value, 
+                    dtpStudentDate.Value,
+                    cboStudentGender.Text,
                     txtStudentPhone.Text, 
                     rtbStudentAddress.Text, 
                     "");

@@ -37,11 +37,12 @@ namespace PRG2x2_Project.Properties
             Address = address;
             Image = image;
         }
-        public Student(string name, string surname, DateTime dob, string phone, string address, string image)
+        public Student(string name, string surname, DateTime dob, string gender, string phone, string address, string image)
         {           
             Name = name;
             Surname = surname;
             Dob = dob;
+            Gender = gender;
             Phone = phone;
             Address = address;
             Image = image;
