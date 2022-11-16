@@ -536,7 +536,8 @@
             this.rtbStudentTutorial.Name = "rtbStudentTutorial";
             this.rtbStudentTutorial.Size = new System.Drawing.Size(340, 54);
             this.rtbStudentTutorial.TabIndex = 1;
-            this.rtbStudentTutorial.Text = "";
+            this.rtbStudentTutorial.Text = "Welcome to the student form!\n\n-To select a record, simply click on it and its dat" +
+    "a will be displayed";
             // 
             // label1
             // 

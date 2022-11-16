@@ -50,8 +50,8 @@ namespace PRG2x2_Project.Properties
         public string Update()
         {
             return $"UPDATE Student\n" +
-                $"SET [Name] = '{Name}', [Surname] = '{Surname}', [DOB] = '{dob}', [Gender] = {Gender}, [Phone] = '{Phone}', [Address] = '{Address}', [Student Image] = '{Image}'\n" +
-                $"WHERE [Student Number = {Number}]";
+                $"SET [Name] = '{Name}', [Surname] = '{Surname}', [DOB] = '{dob}', [Gender] = '{Gender}', [Phone] = '{Phone}', [Address] = '{Address}', [Student Image] = '{Image}'\n" +
+                $"WHERE [Student Number] = {Number}";
         }
 
         public string Insert()

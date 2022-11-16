@@ -57,10 +57,12 @@ namespace PRG2x2_Project
             }
             else
             {
+                // Converts our image to a format that can be used in SQL server.
                 ptbStudentImage.Image.Save(@"image.png", ImageFormat.Png);
                 byte[] imageArray = System.IO.File.ReadAllBytes(@"image");
                 string base64ImageRepresentation = Convert.ToBase64String(imageArray);
-                // Date does not work//////////////////////////////////////////////////////////////////////////////////////////////////
+
+                // Reads the values.
                 Student st = new Student( 
                     txtStudentName.Text, 
                     txtStudentSurname.Text, 
@@ -70,14 +72,16 @@ namespace PRG2x2_Project
                     rtbStudentAddress.Text,
                     base64ImageRepresentation);
 
+                // Asks the user if he/she is sure.
                 DialogResult result = MessageBox.Show($"Are you sure you want to insert this record into Students?\n\n" +
-                    $"Name: {txtStudentName.Text}\n" +
-                    $"Surname: {txtStudentSurname.Text}\n" +
-                    $"Date of Birth: {dtpStudentDate.Value.ToString().Substring(0, 10)}\n" +
-                    $"Gender: {cboStudentGender.Text}" +
-                    $"\nPhone: {txtStudentPhone.Text}\n" +
-                    $"Address: {rtbStudentAddress.Text}", "Insert", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    $"Name: \t\t{txtStudentName.Text}\n" +
+                    $"Surname: \t{txtStudentSurname.Text}\n" +
+                    $"Date of Birth: \t{dtpStudentDate.Value.ToString("yyyy/MM/dd")}\n" +
+                    $"Gender: \t\t{cboStudentGender.Text}" +
+                    $"\nPhone: \t\t{txtStudentPhone.Text}\n" +
+                    $"Address: \t\t{rtbStudentAddress.Text}", "Insert", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
+                // If yes, insert the record, refresh the datagridview, and select that newly inserted record.
                 if (result == DialogResult.Yes)
                 {
                     handler.Insert(st);
@@ -101,17 +105,47 @@ namespace PRG2x2_Project
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             }
             else
-            {
+            {////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                // Converts our image to a format that can be used in SQL server.
+                ptbStudentImage.Image.Save(@"image.png", ImageFormat.Png);
+                byte[] imageArray = System.IO.File.ReadAllBytes(@"image");
+                string base64ImageRepresentation = Convert.ToBase64String(imageArray);
+
                 Student st = new Student(int.Parse(txtStudentNumber.Text), 
                     txtStudentName.Text, 
                     txtStudentSurname.Text, 
                     dtpStudentDate.Value,
                     cboStudentGender.Text,
                     txtStudentPhone.Text, 
-                    rtbStudentAddress.Text, 
-                    "");
-                handler.Update(st);
-                MessageBox.Show("Updated");
+                    rtbStudentAddress.Text,
+                    base64ImageRepresentation);
+                
+
+                // Asks the user if he/she is sure.
+                DialogResult result = MessageBox.Show($"Are you sure you want to update this record from Students?\n\n" +
+                    $"Name: \t\t{dgvStudentOutput.SelectedRows[0].Cells[1].Value} TO {txtStudentName.Text}\n" +
+                    $"Surname: \t{dgvStudentOutput.SelectedRows[0].Cells[2].Value} TO {txtStudentSurname.Text}\n" +
+                    $"Date of Birth: \t{DateTime.Parse(dgvStudentOutput.SelectedRows[0].Cells[3].Value.ToString()).ToString("yyyy/MM/dd")} TO {dtpStudentDate.Value.ToString("yyyy/MM/dd")}\n" +
+                    $"Gender: \t\t{dgvStudentOutput.SelectedRows[0].Cells[4].Value} TO {cboStudentGender.Text}" +
+                    $"\nPhone: \t\t{dgvStudentOutput.SelectedRows[0].Cells[5].Value} TO {txtStudentPhone.Text}\n" +
+                    $"Address: \t\t{dgvStudentOutput.SelectedRows[0].Cells[6].Value} TO {rtbStudentAddress.Text}", 
+                    "Update", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                // If yes, insert the record, refresh the datagridview, and select that newly inserted record.
+                if (result == DialogResult.Yes)
+                {
+                    handler.Update(st);
+                    int index = dgvStudentOutput.SelectedRows[0].Index;
+                    ShowStudent();
+                    dgvStudentOutput.Rows[index].Selected = true;
+                    if (dgvStudentOutput.CurrentRow != null)
+                    {
+                        dgvStudentOutput.CurrentCell =
+                            dgvStudentOutput
+                            .Rows[index]
+                            .Cells[dgvStudentOutput.CurrentCell.ColumnIndex];
+                    }
+                }
             }
         }
 
@@ -157,8 +191,12 @@ namespace PRG2x2_Project
 
         private void dgvStudentOutput_SelectionChanged(object sender, EventArgs e)
         {
+            // There is a period when changing selection, when there is no record selected, which would give an error, so we test it.
             if (dgvStudentOutput.SelectedRows.Count > 0)
             {
+                // We make use of different inputs depending on what table is currently displayed on the datagridview.
+                // The Students or their module details.
+                // We make use of StudentModules to determine that.
                 if (StudentModules)
                 {
                     txtStudentModuleCode.Text = dgvStudentOutput.SelectedRows[0].Cells[0].Value.ToString();
@@ -176,6 +214,7 @@ namespace PRG2x2_Project
                     txtStudentPhone.Text = dgvStudentOutput.SelectedRows[0].Cells[5].Value.ToString();
                     rtbStudentAddress.Text = dgvStudentOutput.SelectedRows[0].Cells[6].Value.ToString();
 
+                    // Convert the base 64 string to a stream and the stream to an image that can be displayed on the form.
                     string imageBase = dgvStudentOutput.SelectedRows[0].Cells[7].Value.ToString();
                     imageBase = imageBase.Substring(imageBase.IndexOf(",") + 1);
                     byte[] bytes = Convert.FromBase64String(imageBase);
@@ -189,6 +228,7 @@ namespace PRG2x2_Project
 
         private void dgvStudentOutput_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            // We check if a student's module details are already displayed, so that the user can't double click it again.
             if (StudentModules == false)
             {
                 ShowStudentModules();
@@ -197,8 +237,12 @@ namespace PRG2x2_Project
 
         private void dgvModuleOutput_SelectionChanged(object sender, EventArgs e)
         {
+            // There is a period when changing selection, when there is no record selected, which would give an error, so we test it.
             if (dgvModuleOutput.SelectedRows.Count > 0)
             {
+                // We make use of different inputs depending on what table is currently displayed on the datagridview.
+                // The Modules or their details regarding students or resources.
+                // We make use of ModuleStudents and ModuleResources to determine that.
                 if (ModuleStudents)
                 {//////////////////////////////////////////////////////////////////////////////////////////
                     txtStudentNumber.Text = dgvStudentOutput.SelectedRows[0].Cells[0].Value.ToString();
@@ -209,6 +253,7 @@ namespace PRG2x2_Project
                     txtStudentPhone.Text = dgvStudentOutput.SelectedRows[0].Cells[5].Value.ToString();
                     rtbStudentAddress.Text = dgvStudentOutput.SelectedRows[0].Cells[6].Value.ToString();
 
+                    // Convert the base 64 string to a stream and the stream to an image that can be displayed on the form.
                     string imageBase = dgvStudentOutput.SelectedRows[0].Cells[7].Value.ToString();
                     imageBase = imageBase.Substring(imageBase.IndexOf(",") + 1);
                     byte[] bytes = Convert.FromBase64String(imageBase);
@@ -233,12 +278,14 @@ namespace PRG2x2_Project
 
         private void dgvModuleOutput_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            // When double clicking a module, a form is going to display to ask which details the user wants to see.
             moduleFrm.Show();
             moduleFrm.GetForm(this);
             this.Enabled = false;
         }
 
-        // Methods for changing what is displayed to the user.
+        // Methods for changing what is displayed to the user, depending on what table is shown.
+        // This is because multiple types of tables are shown on a single form.
         public void ShowStudent()
         {
             StudentModules = false;
