@@ -17,14 +17,14 @@ namespace PRG2x2_Project
         public bool StudentModules = false;
         public bool ModuleStudents = false;
         public bool ModuleResources = false;
-        ModuleDetailOption ModuleFrm = new ModuleDetailOption();
+        ModuleDetailOption moduleFrm = new ModuleDetailOption();
 
         DataHandler handler = new DataHandler();
         private Login frm;
         public Details()
         {
             InitializeComponent();
-            ModuleFrm.Hide();
+            moduleFrm.Hide();
         }
 
         private void Details_FormClosed(object sender, FormClosedEventArgs e)
@@ -105,6 +105,18 @@ namespace PRG2x2_Project
             }
         }
 
+        private void btnStudentSearch_Click(object sender, EventArgs e)
+        {
+            if (StudentModules)
+            {
+                //Student Modules///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            }
+            else
+            {
+                dgvStudentOutput.DataSource = handler.GetData(Tables.Student, handler.addCondition("Student Number", Operator.Like, int.Parse(txtStudentSearch.Text)));
+            }
+        }
+
         private void tbcDetails_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tbcDetails.SelectedIndex == 0)
@@ -161,16 +173,42 @@ namespace PRG2x2_Project
         {
             if (dgvModuleOutput.SelectedRows.Count > 0)
             {
-                txtModuleCode.Text = dgvModuleOutput.SelectedRows[0].Cells[0].Value.ToString();
-                txtModuleName.Text = dgvModuleOutput.SelectedRows[0].Cells[1].Value.ToString();
-                rtbModuleDescription.Text = dgvModuleOutput.SelectedRows[0].Cells[2].Value.ToString();
+                if (ModuleStudents)
+                {//////////////////////////////////////////////////////////////////////////////////////////
+                    txtStudentNumber.Text = dgvStudentOutput.SelectedRows[0].Cells[0].Value.ToString();
+                    txtStudentName.Text = dgvStudentOutput.SelectedRows[0].Cells[1].Value.ToString();
+                    txtStudentSurname.Text = dgvStudentOutput.SelectedRows[0].Cells[2].Value.ToString();
+                    dtpStudentDate.Value = DateTime.Parse(dgvStudentOutput.SelectedRows[0].Cells[3].Value.ToString());
+                    cboStudentGender.Text = dgvStudentOutput.SelectedRows[0].Cells[4].Value.ToString();
+                    txtStudentPhone.Text = dgvStudentOutput.SelectedRows[0].Cells[5].Value.ToString();
+                    rtbStudentAddress.Text = dgvStudentOutput.SelectedRows[0].Cells[6].Value.ToString();
+
+                    string imageBase = dgvStudentOutput.SelectedRows[0].Cells[7].Value.ToString();
+                    imageBase = imageBase.Substring(imageBase.IndexOf(",") + 1);
+                    byte[] bytes = Convert.FromBase64String(imageBase);
+                    using (MemoryStream ms = new MemoryStream(bytes))
+                    {
+                        ptbStudentImage.Image = Image.FromStream(ms);
+                    }
+                    lblModuleSearch.Text = "Student Number";
+                }
+                else if (ModuleResources)
+                {
+
+                }
+                else
+                {
+                    txtModuleCode.Text = dgvModuleOutput.SelectedRows[0].Cells[0].Value.ToString();
+                    txtModuleName.Text = dgvModuleOutput.SelectedRows[0].Cells[1].Value.ToString();
+                    rtbModuleDescription.Text = dgvModuleOutput.SelectedRows[0].Cells[2].Value.ToString();
+                }
             }
         }
 
         private void dgvModuleOutput_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            ModuleFrm.Show();
-            ModuleFrm.GetForm(this);
+            moduleFrm.Show();
+            moduleFrm.GetForm(this);
             this.Enabled = false;
         }
 
@@ -186,7 +224,7 @@ namespace PRG2x2_Project
             }
             pnlStudent.Show();
             pnlStudentModules.Hide();
-            lblSearch.Text = "Student Number:";
+            lblStudentSearch.Text = "Student Number:";
         }
 
         public void ShowStudentModules()
@@ -199,7 +237,7 @@ namespace PRG2x2_Project
             }
             pnlStudentModules.Show();
             pnlStudent.Hide();
-            lblSearch.Text = "Module code:";
+            lblStudentSearch.Text = "Module code:";
         }
 
         public void ShowModule()
@@ -213,29 +251,22 @@ namespace PRG2x2_Project
             ModuleResources = false;
             //Panels///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             pnlModule.Show();
+            pnlModuleStudents.Hide();
         }
 
         public void ShowModuleDetails(bool student)
         {
             if (student)
             {////////////////////////////////////////////////////////////////////DETAILS
-                dgvModuleOutput.DataSource = handler.GetData(Tables.StudentModules, handler.addCondition("Module Code", Operator.Equals, txtModuleCode.Text));//////////////////////////////////////
+                dgvModuleOutput.DataSource = handler.GetData(Tables.StudentModules, handler.addCondition("Module Code", Operator.Equals, txtModuleCode.Text));
+                pnlModuleStudents.Show();
+                pnlModule.Hide();
             }
             else
             {/////////////////////////////////////////////////////////////////////DETAILS
                 dgvModuleOutput.DataSource = handler.GetData(Tables.Resource, handler.addCondition("Module Code", Operator.Equals, txtModuleCode.Text));
-            }
-        }
-
-        private void btnStudentSearch_Click(object sender, EventArgs e)
-        {
-            if (StudentModules)
-            {
-                //Student Modules///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            }
-            else
-            {
-                dgvStudentOutput.DataSource = handler.GetData(Tables.Student, handler.addCondition("Student Number", Operator.Like, int.Parse(txtStudentSearch.Text)));
+                pnlModuleStudents.Show();//////////////////////////////////////////////
+                pnlModule.Hide();
             }
         }
     }
