@@ -156,9 +156,9 @@ namespace PRG2x2_Project
                 qry = $"SELECT * FROM {tableName}\n{condition}";
             }
             SqlDataAdapter dataAdapter = new SqlDataAdapter(qry, this.Con);
-            DataSet ds = new DataSet();
-            dataAdapter.Fill(ds);
-            return ds.Tables[0];
+            DataTable dt = new DataTable();
+            dataAdapter.Fill(dt);
+            return dt; 
         }
 
         public void Update(dynamic tableObject, dynamic id = null) 
@@ -208,6 +208,16 @@ namespace PRG2x2_Project
             Con.Open();
             cmd.ExecuteNonQuery();
             Con.Close();
+        }
+
+        internal DataTable getModules()
+        {
+            string qry = $"SELECT [Module Code] FROM Module";
+            
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(qry, this.Con);
+            DataTable dt = new DataTable();
+            dataAdapter.Fill(dt);
+            return dt;
         }
     }
 }
