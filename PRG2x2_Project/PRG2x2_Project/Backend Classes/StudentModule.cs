@@ -32,7 +32,7 @@ namespace PRG2x2_Project
         public string Insert()
         {
             return $"INSERT INTO StudentModules\n" +
-                $"VALUES ({StudentNumber}, '{ModuleCode}', '{Status}')'";
+                $"VALUES ({StudentNumber}, '{ModuleCode}', '{Status}')";
         }
     }
 }

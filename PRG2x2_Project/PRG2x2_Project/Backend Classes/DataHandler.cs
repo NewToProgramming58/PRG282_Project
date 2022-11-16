@@ -203,7 +203,6 @@ namespace PRG2x2_Project
         public void Insert(dynamic tableObject)
         {
             string qry = tableObject.Insert();
-            MessageBox.Show(qry);
             SqlCommand cmd = new SqlCommand(qry, Con);
             Con.Open();
             cmd.ExecuteNonQuery();

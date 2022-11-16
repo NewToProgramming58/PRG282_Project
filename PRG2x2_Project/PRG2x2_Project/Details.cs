@@ -54,7 +54,39 @@ namespace PRG2x2_Project
         {           
             if (StudentModules)
             {
-                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                // We have to make sure no duplicate modules are entered so we create a list and see if our newly added trecord is already in the list.
+                List<string> modules = new List<string>();
+                for (int i = 0; i < dgvStudentOutput.Rows.Count; i++)
+                {
+                    modules.Add(dgvStudentOutput.Rows[i].Cells[0].Value.ToString());
+                }
+
+                if (true)
+                {
+
+                }
+                StudentModule sm = new StudentModule(currentStudent, cboStudentModuleCode.Text, cboStudentModuleStatus.Text);
+
+                // Asks the user if he/she is sure.
+                DialogResult result = MessageBox.Show($"Are you sure you want to insert this record into StudentModules?\n\n" +
+                     $"Module Code: \t{cboStudentModuleCode.Text}\n" +
+                     $"Status: \t\t{cboStudentModuleStatus.Text}\n",
+                     "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                // If yes, insert the record, refresh the datagridview, and select that newly inserted record.
+                if (result == DialogResult.Yes)
+                {
+                    handler.Insert(sm);
+                    ShowStudentModules();
+                    dgvStudentOutput.Rows[dgvStudentOutput.Rows.Count - 2].Selected = true;
+                    if (dgvStudentOutput.CurrentRow != null)
+                    {
+                        dgvStudentOutput.CurrentCell =
+                            dgvStudentOutput
+                            .Rows[dgvStudentOutput.Rows.Count - 2]
+                            .Cells[dgvStudentOutput.CurrentCell.ColumnIndex];
+                    }
+                }
             }
             else
             {
@@ -80,7 +112,8 @@ namespace PRG2x2_Project
                     $"Date of Birth: \t{dtpStudentDate.Value.ToString("yyyy/MM/dd")}\n" +
                     $"Gender: \t\t{cboStudentGender.Text}\n" +
                     $"Phone: \t\t{txtStudentPhone.Text}\n" +
-                    $"Address: \t\t{rtbStudentAddress.Text}", "Insert", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    $"Address: \t\t{rtbStudentAddress.Text}", 
+                    "Insert", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
                 // If yes, insert the record, refresh the datagridview, and select that newly inserted record.
                 if (result == DialogResult.Yes)
