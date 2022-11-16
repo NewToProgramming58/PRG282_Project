@@ -157,12 +157,24 @@ namespace PRG2x2_Project
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             }
             else
-            { 
-                // REFERENTIAL INTEGRITY PROBLEMS////////////////////////////////////////////////////////////////////////////////////////////
-                handler.Delete(Tables.Student, $"WHERE [Student Number] = {int.Parse(txtStudentNumber.Text)}");
-                MessageBox.Show("Deleted");
-                // Refreshes the table.
-                ShowStudent();
+            {
+                // Asks the user if he/she is sure.
+                DialogResult result = MessageBox.Show($"Are you sure you want to delete this record from Students?\n\n" +
+                   $"Name: \t\t{dgvStudentOutput.SelectedRows[0].Cells[1].Value}\n" +
+                   $"Surname: \t{dgvStudentOutput.SelectedRows[0].Cells[2].Value}\n" +
+                   $"Date of Birth: \t{DateTime.Parse(dgvStudentOutput.SelectedRows[0].Cells[3].Value.ToString()).ToString("yyyy/MM/dd")}\n" +
+                   $"Gender: \t\t{dgvStudentOutput.SelectedRows[0].Cells[4].Value}\n" +
+                   $"Phone: \t\t{dgvStudentOutput.SelectedRows[0].Cells[5].Value}\n" +
+                   $"Address: \t\t{dgvStudentOutput.SelectedRows[0].Cells[6].Value}\n\n" +
+                   $"NOTE: Deleting this record will delete all modules linked to this student as well.",
+                   "Update", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                // If yes, insert the record, refresh the datagridview, and select that newly inserted record.
+                if (result == DialogResult.Yes)
+                {
+                    handler.Delete(Tables.Student, $"WHERE [Student Number] = {int.Parse(txtStudentNumber.Text)}");
+                    ShowStudent();
+                }
             }
         }
 
