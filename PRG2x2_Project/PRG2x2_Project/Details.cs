@@ -15,9 +15,7 @@ namespace PRG2x2_Project
 {
     public partial class Details : Form
     {
-        public bool Students = false;
         public bool StudentModules = false;
-        public bool Modules = false;
         public bool ModuleStudents = false;
         public bool ModuleResources = false;
         ModuleDetailOption moduleFrm = new ModuleDetailOption();
@@ -53,12 +51,7 @@ namespace PRG2x2_Project
         }
 
         private void btnStudentInsert_Click(object sender, EventArgs e)
-        {   
-            if (ValidateInput())
-            {
-                return;
-            }
-
+        {           
             if (StudentModules)
             {
                 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -108,11 +101,6 @@ namespace PRG2x2_Project
 
         private void btnStudentUpdate_Click(object sender, EventArgs e)
         {
-            if (ValidateInput())
-            {
-                return;
-            }
-
             if (StudentModules)
             {
                 StudentModule sm = new StudentModule(currentStudent, dgvStudentOutput.SelectedRows[0].Cells[0].Value.ToString(), cboStudentModuleStatus.Text);
@@ -333,15 +321,12 @@ namespace PRG2x2_Project
         // This is because multiple types of tables are shown on a single form.
         public void ShowStudent()
         {
-            // Resets all values that indicate what we should view.
             currentStudent = 0;
-            Students = true;
             StudentModules = false;
-            Modules = false;
-            ModuleStudents = false;
             ModuleResources = false;
+            ModuleStudents = false;
 
-        tbcDetails.SelectTab(0);
+            tbcDetails.SelectTab(0);
             dgvStudentOutput.DataSource = handler.GetData(Tables.Student);
             if (dgvStudentOutput.Rows.Count > 0)
             {
@@ -354,14 +339,7 @@ namespace PRG2x2_Project
 
         public void ShowStudentModules()
         {
-            // Resets all values that indicate what we should view.
-            Students = false;
             StudentModules = true;
-            Modules = false;
-            ModuleStudents = false;
-            ModuleResources = false;
-
-            // Checks if there is already a selected student for if we refresh the datagrid.
             if (currentStudent == 0)
             {
                 currentStudent = int.Parse(dgvStudentOutput.SelectedRows[0].Cells[0].Value.ToString());
@@ -379,13 +357,9 @@ namespace PRG2x2_Project
 
         public void ShowModule()
         {
-            // Resets all values that indicate what we should view.
-            currentStudent = 0;
-            Students = false;
-            StudentModules = false;
-            Modules = true;
             ModuleStudents = false;
             ModuleResources = false;
+            StudentModules = false;
 
             dgvModuleOutput.DataSource = handler.GetData(Tables.Module);
             if (dgvModuleOutput.Rows.Count > 0)
@@ -399,26 +373,16 @@ namespace PRG2x2_Project
 
         public void ShowModuleDetails(bool student)
         {
-            // Resets all values that indicate what we should view.
-            currentStudent = 0;
-            Students = false;
-            StudentModules = false;
-            Modules = false;
-            ModuleStudents = false;
-            ModuleResources = false;
-
             // When Details are shown it has to determine which details to show, Students or Resources.
             // For this we make use of student.
             if (student)
             {////////////////////////////////////////////////////////////////////DETAILS
-                ModuleStudents = true;
                 dgvModuleOutput.DataSource = handler.GetData(Tables.StudentModules, handler.addCondition("Module Code", Operator.Equals, txtModuleCode.Text));
                 pnlModuleStudents.Show();
                 pnlModule.Hide();
             }
             else
             {/////////////////////////////////////////////////////////////////////DETAILS
-                ModuleResources = true;
                 dgvModuleOutput.DataSource = handler.GetData(Tables.Resource, handler.addCondition("Module Code", Operator.Equals, txtModuleCode.Text));
                 pnlModuleStudents.Show();//////////////////////////////////////////////
                 pnlModule.Hide();
@@ -470,49 +434,21 @@ namespace PRG2x2_Project
             }
         }
 
-        // Validation method.
-        private bool ValidateInput()
+        private void Details_Activated(object sender, EventArgs e)
         {
-            bool problems = false;
 
-            if (Students)
-            {
-                if ((txtStudentNumber.Text == "") || (txtStudentName.Text == "") || (txtStudentSurname.Text == "") || (dtpStudentDate.Value > DateTime.UtcNow.Date) || (cboStudentGender.Text == "") || (txtStudentPhone.Text == "") || (rtbStudentAddress.Text == ""))
-                {
-                    problems = true;
-                }
-            }
+            cboModules.DataSource = handler.GetData(Tables.Module);
+            cboModules.DisplayMember = "Module Code";
+            cboModules.ValueMember = "Module Code";
+        }
 
-            if (StudentModules)
+        private void cboModules_TextChanged(object sender, EventArgs e)
+        {
+            DataTable dt = handler.GetData(Tables.Module, handler.addCondition("Module Code", Operator.Equals, cboModules.Text));
+            if (dt.Rows.Count > 0) 
             {
-                //////////////////////////////////////
-            }
-
-            if (Modules)
-            {
-                if ((txtModuleCode.Text == "") || (txtModuleName.Text == "") || (rtbModuleDescription.Text == ""))
-                {
-                    problems = true;
-                }
-            }
-
-            if (ModuleResources)
-            {
-                //////////////////////////////////////
-            }
-
-            if (ModuleStudents)
-            {
-                /////////////////////////////////////
-            }
-
-            if (problems == true)
-            {
-                MessageBox.Show("Some values were not filled in correctly.\n" +
-                    "Please make sure all values are filled in and have correct values.\n" +
-                    "For example: Make sure the date is not more that the current date", "Input format", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            return problems;
+                rtbModuleDetailStudent.Text = $"{dt.Rows[0][1]}\n\n{dt.Rows[0][2]}";
+            }            
         }
     }
 }
