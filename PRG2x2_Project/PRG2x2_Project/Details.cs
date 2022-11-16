@@ -69,16 +69,20 @@ namespace PRG2x2_Project
                     txtStudentPhone.Text, 
                     rtbStudentAddress.Text,
                     base64ImageRepresentation);
-                handler.Insert(st);
-                MessageBox.Show("Inserted");
-                ShowStudent();
-                dgvStudentOutput.Rows[dgvStudentOutput.Rows.Count - 2].Selected = true;
-                if (dgvStudentOutput.CurrentRow != null)
+
+                DialogResult result = MessageBox.Show($"Are you sure you want to insert this record into Students?\n\n" +
+                    $"Name: {txtStudentName.Text}\n" +
+                    $"Surname: {txtStudentSurname.Text}\n" +
+                    $"Date of Birth: {dtpStudentDate.Value.ToString().Substring(0, 10)}\n" +
+                    $"Gender: {cboStudentGender.Text}" +
+                    $"\nPhone: {txtStudentPhone.Text}\n" +
+                    $"Address: {rtbStudentAddress.Text}", "Insert", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                if (result == DialogResult.Yes)
                 {
-                    dgvStudentOutput.CurrentCell =
-                        dgvStudentOutput
-                        .Rows[dgvStudentOutput.Rows.Count - 2]
-                        .Cells[dgvStudentOutput.CurrentCell.ColumnIndex];
+                    handler.Insert(st);
+                    ShowStudent();
+                    dgvStudentOutput.Rows[dgvStudentOutput.Rows.Count - 2].Selected = true;
                 }
             }
         }
