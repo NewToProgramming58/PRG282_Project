@@ -182,7 +182,19 @@ namespace PRG2x2_Project
         public void Delete(Tables table, string condition)
         {
             string tableName = ((Tables)table).ToString();
-            SqlCommand cmd = new SqlCommand($"DELETE FROM {tableName}\n{condition}", this.Con);
+            string qry;
+            switch (table) 
+            { 
+                case Tables.Student:
+                    qry = $"DELETE FROM StudentModules {condition}\n";
+                    SqlCommand command = new SqlCommand(qry, this.Con);
+                    Con.Open();
+                    command.ExecuteNonQuery();
+                    Con.Close();
+                    break;
+            }
+            qry = $"DELETE FROM {tableName}\n{condition}";
+            SqlCommand cmd = new SqlCommand(qry, this.Con);
             Con.Open();
             cmd.ExecuteNonQuery();
             Con.Close();
