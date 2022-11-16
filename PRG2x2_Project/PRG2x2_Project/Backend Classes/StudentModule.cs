@@ -27,7 +27,7 @@ namespace PRG2x2_Project
         {
             return $"UPDATE StudentModules\n" +
                 $"SET [Status] = '{Status}'\n" +
-                $"WHERE [Student Number = {StudentNumber} AND [Module Code] = '{ModuleCode}]";
+                $"WHERE [Student Number] = {StudentNumber} AND [Module Code] = '{ModuleCode}'";
         }
         public string Insert()
         {

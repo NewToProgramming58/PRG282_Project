@@ -37,13 +37,6 @@
             this.btnStudentNext = new System.Windows.Forms.Button();
             this.btnStudentFirst = new System.Windows.Forms.Button();
             this.pnlStudentModules = new System.Windows.Forms.Panel();
-            this.rtbStudentModuleDescription = new System.Windows.Forms.RichTextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txtStudentModuleName = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.txtStudentModuleCode = new System.Windows.Forms.TextBox();
             this.pnlStudent = new System.Windows.Forms.Panel();
             this.ptbStudentImage = new System.Windows.Forms.PictureBox();
             this.rtbStudentAddress = new System.Windows.Forms.RichTextBox();
@@ -113,7 +106,22 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.rtbModuleTutorial = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.cboStudentModuleStatus = new System.Windows.Forms.ComboBox();
+            this.rtbStudentModuleDescription = new System.Windows.Forms.RichTextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtStudentModuleName = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtStudentModuleCode = new System.Windows.Forms.TextBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.label27 = new System.Windows.Forms.Label();
             this.tbcDetails.SuspendLayout();
             this.tpgStudents.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -133,6 +141,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvModuleOutput)).BeginInit();
             this.panel4.SuspendLayout();
             this.pnlModuleSearch.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbcDetails
@@ -217,78 +228,11 @@
             // 
             // pnlStudentModules
             // 
-            this.pnlStudentModules.Controls.Add(this.cboStudentModuleStatus);
-            this.pnlStudentModules.Controls.Add(this.rtbStudentModuleDescription);
-            this.pnlStudentModules.Controls.Add(this.label15);
-            this.pnlStudentModules.Controls.Add(this.label14);
-            this.pnlStudentModules.Controls.Add(this.label13);
-            this.pnlStudentModules.Controls.Add(this.txtStudentModuleName);
-            this.pnlStudentModules.Controls.Add(this.label12);
-            this.pnlStudentModules.Controls.Add(this.txtStudentModuleCode);
+            this.pnlStudentModules.Controls.Add(this.tabControl1);
             this.pnlStudentModules.Location = new System.Drawing.Point(526, 3);
             this.pnlStudentModules.Name = "pnlStudentModules";
             this.pnlStudentModules.Size = new System.Drawing.Size(311, 335);
             this.pnlStudentModules.TabIndex = 50;
-            // 
-            // rtbStudentModuleDescription
-            // 
-            this.rtbStudentModuleDescription.Location = new System.Drawing.Point(127, 91);
-            this.rtbStudentModuleDescription.Name = "rtbStudentModuleDescription";
-            this.rtbStudentModuleDescription.ReadOnly = true;
-            this.rtbStudentModuleDescription.Size = new System.Drawing.Size(172, 47);
-            this.rtbStudentModuleDescription.TabIndex = 9;
-            this.rtbStudentModuleDescription.Text = "";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(81, 153);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(40, 13);
-            this.label15.TabIndex = 7;
-            this.label15.Text = "Status:";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(59, 91);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(63, 13);
-            this.label14.TabIndex = 5;
-            this.label14.Text = "Description:";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(83, 62);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(38, 13);
-            this.label13.TabIndex = 3;
-            this.label13.Text = "Name:";
-            // 
-            // txtStudentModuleName
-            // 
-            this.txtStudentModuleName.Location = new System.Drawing.Point(127, 59);
-            this.txtStudentModuleName.Name = "txtStudentModuleName";
-            this.txtStudentModuleName.ReadOnly = true;
-            this.txtStudentModuleName.Size = new System.Drawing.Size(172, 20);
-            this.txtStudentModuleName.TabIndex = 2;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(49, 36);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(73, 13);
-            this.label12.TabIndex = 1;
-            this.label12.Text = "Module Code:";
-            // 
-            // txtStudentModuleCode
-            // 
-            this.txtStudentModuleCode.Location = new System.Drawing.Point(127, 33);
-            this.txtStudentModuleCode.Name = "txtStudentModuleCode";
-            this.txtStudentModuleCode.Size = new System.Drawing.Size(172, 20);
-            this.txtStudentModuleCode.TabIndex = 0;
             // 
             // pnlStudent
             // 
@@ -974,6 +918,35 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Module Details";
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(311, 335);
+            this.tabControl1.TabIndex = 2;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.cboStudentModuleStatus);
+            this.tabPage1.Controls.Add(this.rtbStudentModuleDescription);
+            this.tabPage1.Controls.Add(this.label15);
+            this.tabPage1.Controls.Add(this.label14);
+            this.tabPage1.Controls.Add(this.label13);
+            this.tabPage1.Controls.Add(this.txtStudentModuleName);
+            this.tabPage1.Controls.Add(this.label12);
+            this.tabPage1.Controls.Add(this.txtStudentModuleCode);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(303, 309);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
             // cboStudentModuleStatus
             // 
             this.cboStudentModuleStatus.FormattingEnabled = true;
@@ -981,10 +954,131 @@
             "Pass",
             "Ongoing",
             "Fail"});
-            this.cboStudentModuleStatus.Location = new System.Drawing.Point(127, 149);
+            this.cboStudentModuleStatus.Location = new System.Drawing.Point(83, 153);
             this.cboStudentModuleStatus.Name = "cboStudentModuleStatus";
             this.cboStudentModuleStatus.Size = new System.Drawing.Size(91, 21);
-            this.cboStudentModuleStatus.TabIndex = 10;
+            this.cboStudentModuleStatus.TabIndex = 18;
+            // 
+            // rtbStudentModuleDescription
+            // 
+            this.rtbStudentModuleDescription.Location = new System.Drawing.Point(83, 95);
+            this.rtbStudentModuleDescription.Name = "rtbStudentModuleDescription";
+            this.rtbStudentModuleDescription.ReadOnly = true;
+            this.rtbStudentModuleDescription.Size = new System.Drawing.Size(172, 47);
+            this.rtbStudentModuleDescription.TabIndex = 17;
+            this.rtbStudentModuleDescription.Text = "";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(37, 157);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(40, 13);
+            this.label15.TabIndex = 16;
+            this.label15.Text = "Status:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(15, 95);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(63, 13);
+            this.label14.TabIndex = 15;
+            this.label14.Text = "Description:";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(39, 66);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(38, 13);
+            this.label13.TabIndex = 14;
+            this.label13.Text = "Name:";
+            // 
+            // txtStudentModuleName
+            // 
+            this.txtStudentModuleName.Location = new System.Drawing.Point(83, 63);
+            this.txtStudentModuleName.Name = "txtStudentModuleName";
+            this.txtStudentModuleName.ReadOnly = true;
+            this.txtStudentModuleName.Size = new System.Drawing.Size(172, 20);
+            this.txtStudentModuleName.TabIndex = 13;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(5, 40);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(73, 13);
+            this.label12.TabIndex = 12;
+            this.label12.Text = "Module Code:";
+            // 
+            // txtStudentModuleCode
+            // 
+            this.txtStudentModuleCode.Location = new System.Drawing.Point(83, 37);
+            this.txtStudentModuleCode.Name = "txtStudentModuleCode";
+            this.txtStudentModuleCode.Size = new System.Drawing.Size(172, 20);
+            this.txtStudentModuleCode.TabIndex = 11;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.comboBox3);
+            this.tabPage2.Controls.Add(this.label27);
+            this.tabPage2.Controls.Add(this.richTextBox2);
+            this.tabPage2.Controls.Add(this.label11);
+            this.tabPage2.Controls.Add(this.comboBox2);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(303, 309);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(134, 23);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 21);
+            this.comboBox2.TabIndex = 0;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(67, 26);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(41, 13);
+            this.label11.TabIndex = 1;
+            this.label11.Text = "label11";
+            // 
+            // richTextBox2
+            // 
+            this.richTextBox2.Location = new System.Drawing.Point(12, 62);
+            this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.Size = new System.Drawing.Size(279, 139);
+            this.richTextBox2.TabIndex = 2;
+            this.richTextBox2.Text = "";
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Items.AddRange(new object[] {
+            "Pass",
+            "Ongoing",
+            "Fail"});
+            this.comboBox3.Location = new System.Drawing.Point(134, 216);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(91, 21);
+            this.comboBox3.TabIndex = 20;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(88, 220);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(40, 13);
+            this.label27.TabIndex = 19;
+            this.label27.Text = "Status:";
             // 
             // Details
             // 
@@ -1003,7 +1097,6 @@
             this.tpgStudents.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.pnlStudentModules.ResumeLayout(false);
-            this.pnlStudentModules.PerformLayout();
             this.pnlStudent.ResumeLayout(false);
             this.pnlStudent.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptbStudentImage)).EndInit();
@@ -1026,6 +1119,11 @@
             this.panel4.PerformLayout();
             this.pnlModuleSearch.ResumeLayout(false);
             this.pnlModuleSearch.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1077,13 +1175,6 @@
         private System.Windows.Forms.TextBox txtStudentSurname;
         private System.Windows.Forms.TextBox txtStudentPhone;
         private System.Windows.Forms.Panel pnlStudentModules;
-        private System.Windows.Forms.RichTextBox rtbStudentModuleDescription;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox txtStudentModuleName;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txtStudentModuleCode;
         private System.Windows.Forms.Panel pnlModule;
         private System.Windows.Forms.RichTextBox rtbModuleDescription;
         private System.Windows.Forms.Label label17;
@@ -1116,6 +1207,21 @@
         private System.Windows.Forms.Button btnStudentPrevious;
         private System.Windows.Forms.Button btnStudentNext;
         private System.Windows.Forms.Button btnStudentFirst;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.ComboBox cboStudentModuleStatus;
+        private System.Windows.Forms.RichTextBox rtbStudentModuleDescription;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txtStudentModuleName;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox txtStudentModuleCode;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ComboBox comboBox2;
     }
 }

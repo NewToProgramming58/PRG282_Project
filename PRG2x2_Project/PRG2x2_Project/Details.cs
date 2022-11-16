@@ -19,6 +19,7 @@ namespace PRG2x2_Project
         public bool ModuleStudents = false;
         public bool ModuleResources = false;
         ModuleDetailOption moduleFrm = new ModuleDetailOption();
+        int currentStudent = 0;
 
         DataHandler handler = new DataHandler();
         private Login frm;
@@ -102,7 +103,10 @@ namespace PRG2x2_Project
         {
             if (StudentModules)
             {
-                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                StudentModule sm = new StudentModule(currentStudent, dgvStudentOutput.SelectedRows[0].Cells[0].Value.ToString(), cboStudentModuleStatus.Text);
+                handler.Update(sm);
+                ShowStudentModules();
+                MessageBox.Show("Updated");
             }
             else
             {////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -317,6 +321,7 @@ namespace PRG2x2_Project
         // This is because multiple types of tables are shown on a single form.
         public void ShowStudent()
         {
+            currentStudent = 0;
             StudentModules = false;
             ModuleResources = false;
             ModuleStudents = false;
@@ -335,7 +340,11 @@ namespace PRG2x2_Project
         public void ShowStudentModules()
         {
             StudentModules = true;
-            Student student = new Student(int.Parse(dgvStudentOutput.SelectedRows[0].Cells[0].Value.ToString()));
+            if (currentStudent == 0)
+            {
+                currentStudent = int.Parse(dgvStudentOutput.SelectedRows[0].Cells[0].Value.ToString());
+            }
+            Student student = new Student(currentStudent);
             dgvStudentOutput.DataSource = handler.GetData(Tables.StudentModuleDetails, "", student);
             if (dgvStudentOutput.Rows.Count > 0)
             {
