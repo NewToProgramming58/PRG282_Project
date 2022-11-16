@@ -61,7 +61,7 @@ namespace PRG2x2_Project
                 byte[] imageArray = System.IO.File.ReadAllBytes(@"image");
                 string base64ImageRepresentation = Convert.ToBase64String(imageArray);
                 // Date does not work//////////////////////////////////////////////////////////////////////////////////////////////////
-                Student st = new Student(int.Parse(txtStudentNumber.Text), 
+                Student st = new Student( 
                     txtStudentName.Text, 
                     txtStudentSurname.Text, 
                     dtpStudentDate.Value, 
