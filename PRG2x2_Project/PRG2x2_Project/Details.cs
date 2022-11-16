@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -47,21 +48,24 @@ namespace PRG2x2_Project
         }
 
         private void btnStudentInsert_Click(object sender, EventArgs e)
-        {
+        {           
             if (StudentModules)
             {
                 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             }
             else
             {
+                ptbStudentImage.Image.Save(@"image.png", ImageFormat.Png);
+                byte[] imageArray = System.IO.File.ReadAllBytes(@"image");
+                string base64ImageRepresentation = Convert.ToBase64String(imageArray);
                 // Date does not work//////////////////////////////////////////////////////////////////////////////////////////////////
                 Student st = new Student(int.Parse(txtStudentNumber.Text), 
                     txtStudentName.Text, 
                     txtStudentSurname.Text, 
                     dtpStudentDate.Value, 
                     txtStudentPhone.Text, 
-                    rtbStudentAddress.Text, 
-                    "");
+                    rtbStudentAddress.Text,
+                    base64ImageRepresentation);
                 handler.Insert(st);
                 MessageBox.Show("Inserted");
             }

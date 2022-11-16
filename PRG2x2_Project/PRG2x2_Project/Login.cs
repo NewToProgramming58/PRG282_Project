@@ -1,4 +1,5 @@
-﻿using PRG2x2_Project.User_Classes;
+﻿using PRG2x2_Project.Properties;
+using PRG2x2_Project.User_Classes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -61,19 +62,30 @@ namespace PRG2x2_Project
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            User user = users.FirstOrDefault(x => x.Username == txbUsername.Text);
-            if (user == null)
-            {
-                FileHandler fileHandler = new FileHandler();
-                user = new User(txbUsername.Text, txbPassword.Text);
-                users.Add(user);
-                fileHandler.addUser(user);
-                MessageBox.Show($"Registered {user.Username}, Welcome");
-            }
-            else
-            {
-                MessageBox.Show("Username already exists");
-            }
+            // Date does not work//////////////////////////////////////////////////////////////////////////////////////////////////
+            DataHandler handler = new DataHandler();
+            Student st = new Student(0,
+                "",
+                "",
+                DateTime.Now,
+                "",
+                "",
+                "");
+            handler.Insert(st);
+            MessageBox.Show("Inserted");
+            //User user = users.FirstOrDefault(x => x.Username == txbUsername.Text);
+            //if (user == null)
+            //{
+            //    FileHandler fileHandler = new FileHandler();
+            //    user = new User(txbUsername.Text, txbPassword.Text);
+            //    users.Add(user);
+            //    fileHandler.addUser(user);
+            //    MessageBox.Show($"Registered {user.Username}, Welcome");
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Username already exists");
+            //}
         }
     }
 }

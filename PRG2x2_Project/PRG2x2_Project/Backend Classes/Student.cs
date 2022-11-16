@@ -36,7 +36,15 @@ namespace PRG2x2_Project.Properties
             Address = address;
             Image = image;
         }
-
+        public Student(string name, string surname, DateTime dob, string phone, string address, string image)
+        {           
+            Name = name;
+            Surname = surname;
+            Dob = dob;
+            Phone = phone;
+            Address = address;
+            Image = image;
+        }
         public string Update()
         {
             return $"UPDATE Student\n" +
@@ -47,7 +55,7 @@ namespace PRG2x2_Project.Properties
         public string Insert()
         {
             return $"INSERT INTO Student\n" +
-                $"VALUES ({Number}, '{Name}', '{Surname}', '{dob.ToString("yyyy/MM/dd")}', '{Gender}', '{Phone}', '{Address}', '{Image}')";               
+                $"VALUES ('{Name}', '{Surname}', '{dob.ToString("yyyy/MM/dd")}', '{Gender}', '{Phone}', '{Address}', '{Image}')";               
         }
 
         public string Join()

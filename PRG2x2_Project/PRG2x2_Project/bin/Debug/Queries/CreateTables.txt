@@ -1,7 +1,7 @@
 USE BelgiumCampusStudents
 
 CREATE TABLE Student (
-	[Student Number] NVARCHAR(6),
+	[Student Number] INT IDENTITY(5000,1),
 	[Name] NVARCHAR(200) NOT NULL,
 	[Surname] NVARCHAR(100) NOT NULL,
 	[DOB] DATE NOT NULL,
@@ -29,7 +29,7 @@ CREATE TABLE Resource(
 )
 
 CREATE TABLE StudentModules(
-	[Student Number] NVARCHAR(6),
+	[Student Number] INT,
 	[Module Code] NVARCHAR(6),
 	[Status] NVARCHAR(20),
 	CONSTRAINT [FK_ModuleCodeStudentModule] FOREIGN KEY ([Module Code]) 

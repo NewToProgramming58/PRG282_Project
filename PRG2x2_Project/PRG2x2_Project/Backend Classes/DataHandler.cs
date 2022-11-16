@@ -60,7 +60,6 @@ namespace PRG2x2_Project
 
         public DataHandler()
         {
-            MessageBox.Show("Ok");
             bool isExist = false;
             string dbName = "BelgiumCampusStudents";
             string existQuery = $"SELECT * FROM master.dbo.sysdatabases WHERE name ='{dbName}'";
@@ -128,10 +127,11 @@ namespace PRG2x2_Project
                     {
                         _.ExecuteNonQuery();
                     }
+                    this.Con.Close();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(creationQuery+"\n\n"+ex.ToString());
+                    MessageBox.Show(ex.Message);
                 }
             }        
         }
