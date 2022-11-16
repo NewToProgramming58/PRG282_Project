@@ -77,8 +77,8 @@ namespace PRG2x2_Project
                     $"Name: \t\t{txtStudentName.Text}\n" +
                     $"Surname: \t{txtStudentSurname.Text}\n" +
                     $"Date of Birth: \t{dtpStudentDate.Value.ToString("yyyy/MM/dd")}\n" +
-                    $"Gender: \t\t{cboStudentGender.Text}" +
-                    $"\nPhone: \t\t{txtStudentPhone.Text}\n" +
+                    $"Gender: \t\t{cboStudentGender.Text}\n" +
+                    $"Phone: \t\t{txtStudentPhone.Text}\n" +
                     $"Address: \t\t{rtbStudentAddress.Text}", "Insert", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
                 // If yes, insert the record, refresh the datagridview, and select that newly inserted record.
@@ -111,6 +111,7 @@ namespace PRG2x2_Project
                 byte[] imageArray = System.IO.File.ReadAllBytes(@"image");
                 string base64ImageRepresentation = Convert.ToBase64String(imageArray);
 
+                // Reads the values.
                 Student st = new Student(int.Parse(txtStudentNumber.Text), 
                     txtStudentName.Text, 
                     txtStudentSurname.Text, 
@@ -126,8 +127,8 @@ namespace PRG2x2_Project
                     $"Name: \t\t{dgvStudentOutput.SelectedRows[0].Cells[1].Value} TO {txtStudentName.Text}\n" +
                     $"Surname: \t{dgvStudentOutput.SelectedRows[0].Cells[2].Value} TO {txtStudentSurname.Text}\n" +
                     $"Date of Birth: \t{DateTime.Parse(dgvStudentOutput.SelectedRows[0].Cells[3].Value.ToString()).ToString("yyyy/MM/dd")} TO {dtpStudentDate.Value.ToString("yyyy/MM/dd")}\n" +
-                    $"Gender: \t\t{dgvStudentOutput.SelectedRows[0].Cells[4].Value} TO {cboStudentGender.Text}" +
-                    $"\nPhone: \t\t{dgvStudentOutput.SelectedRows[0].Cells[5].Value} TO {txtStudentPhone.Text}\n" +
+                    $"Gender: \t\t{dgvStudentOutput.SelectedRows[0].Cells[4].Value} TO {cboStudentGender.Text}\n" +
+                    $"Phone: \t\t{dgvStudentOutput.SelectedRows[0].Cells[5].Value} TO {txtStudentPhone.Text}\n" +
                     $"Address: \t\t{dgvStudentOutput.SelectedRows[0].Cells[6].Value} TO {rtbStudentAddress.Text}", 
                     "Update", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
@@ -329,6 +330,8 @@ namespace PRG2x2_Project
 
         public void ShowModuleDetails(bool student)
         {
+            // When Details are shown it has to determine which details to show, Students or Resources.
+            // For this we make use of student.
             if (student)
             {////////////////////////////////////////////////////////////////////DETAILS
                 dgvModuleOutput.DataSource = handler.GetData(Tables.StudentModules, handler.addCondition("Module Code", Operator.Equals, txtModuleCode.Text));
