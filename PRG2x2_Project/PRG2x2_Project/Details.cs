@@ -53,7 +53,12 @@ namespace PRG2x2_Project
         }
 
         private void btnStudentInsert_Click(object sender, EventArgs e)
-        {           
+        {   
+            if (Validate())
+            {
+                return;
+            }
+
             if (StudentModules)
             {
                 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -103,6 +108,11 @@ namespace PRG2x2_Project
 
         private void btnStudentUpdate_Click(object sender, EventArgs e)
         {
+            if (Validate())
+            {
+                return;
+            }
+
             if (StudentModules)
             {
                 StudentModule sm = new StudentModule(currentStudent, dgvStudentOutput.SelectedRows[0].Cells[0].Value.ToString(), cboStudentModuleStatus.Text);
@@ -463,37 +473,46 @@ namespace PRG2x2_Project
         // Validation method.
         private bool Validate()
         {
-            bool noProblems = false;
+            bool problems = false;
 
             if (Students)
             {
                 if ((txtStudentNumber.Text == "") || (txtStudentName.Text == "") || (txtStudentSurname.Text == "") || (dtpStudentDate.Value > DateTime.UtcNow.Date) || (cboStudentGender.Text == "") || (txtStudentPhone.Text == "") || (rtbStudentAddress.Text == ""))
                 {
-                    
+                    problems = true;
                 }
             }
 
             if (StudentModules)
             {
-
+                //////////////////////////////////////
             }
 
             if (Modules)
             {
-
+                if ((txtModuleCode.Text == "") || (txtModuleName.Text == "") || (rtbModuleDescription.Text == ""))
+                {
+                    problems = true;
+                }
             }
 
             if (ModuleResources)
             {
-
+                //////////////////////////////////////
             }
 
             if (ModuleStudents)
             {
-
+                /////////////////////////////////////
             }
 
-            return noProblems;
+            if (problems == true)
+            {
+                MessageBox.Show("Some values were not filled in correctly.\n" +
+                    "Please make sure all values are filled in and have correct values.\n" +
+                    "For example: Make sure the date is not more that the current date", "Input format", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            return problems;
         }
     }
 }
