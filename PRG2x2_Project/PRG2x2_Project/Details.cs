@@ -54,7 +54,7 @@ namespace PRG2x2_Project
 
         private void btnStudentInsert_Click(object sender, EventArgs e)
         {   
-            if (Validate())
+            if (ValidateInput())
             {
                 return;
             }
@@ -108,7 +108,7 @@ namespace PRG2x2_Project
 
         private void btnStudentUpdate_Click(object sender, EventArgs e)
         {
-            if (Validate())
+            if (ValidateInput())
             {
                 return;
             }
@@ -471,7 +471,7 @@ namespace PRG2x2_Project
         }
 
         // Validation method.
-        private bool Validate()
+        private bool ValidateInput()
         {
             bool problems = false;
 
