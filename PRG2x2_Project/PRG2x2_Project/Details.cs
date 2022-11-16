@@ -65,6 +65,7 @@ namespace PRG2x2_Project
                     txtStudentName.Text, 
                     txtStudentSurname.Text, 
                     dtpStudentDate.Value, 
+                    cboStudentGender.Text,
                     txtStudentPhone.Text, 
                     rtbStudentAddress.Text,
                     base64ImageRepresentation);
