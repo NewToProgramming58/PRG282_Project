@@ -32,8 +32,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnStudents = new System.Windows.Forms.Button();
+            this.btnResources = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -72,37 +72,41 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "- Resources";
             // 
-            // button1
+            // btnStudents
             // 
-            this.button1.Location = new System.Drawing.Point(53, 91);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Students";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnStudents.Location = new System.Drawing.Point(53, 91);
+            this.btnStudents.Name = "btnStudents";
+            this.btnStudents.Size = new System.Drawing.Size(75, 23);
+            this.btnStudents.TabIndex = 4;
+            this.btnStudents.Text = "Students";
+            this.btnStudents.UseVisualStyleBackColor = true;
+            this.btnStudents.Click += new System.EventHandler(this.btnStudents_Click);
             // 
-            // button2
+            // btnResources
             // 
-            this.button2.Location = new System.Drawing.Point(152, 91);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Resources";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnResources.Location = new System.Drawing.Point(152, 91);
+            this.btnResources.Name = "btnResources";
+            this.btnResources.Size = new System.Drawing.Size(75, 23);
+            this.btnResources.TabIndex = 5;
+            this.btnResources.Text = "Resources";
+            this.btnResources.UseVisualStyleBackColor = true;
+            this.btnResources.Click += new System.EventHandler(this.btnResources_Click);
             // 
             // ModuleDetailOption
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(290, 126);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnResources);
+            this.Controls.Add(this.btnStudents);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "ModuleDetailOption";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ModuleDetailOption";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ModuleDetailOption_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -114,7 +118,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnStudents;
+        private System.Windows.Forms.Button btnResources;
     }
 }

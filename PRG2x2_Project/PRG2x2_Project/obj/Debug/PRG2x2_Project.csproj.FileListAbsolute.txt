@@ -34,3 +34,4 @@ C:\Users\navy2\OneDrive\Documents\GitHub\PRG282_Project\PRG2x2_Project\PRG2x2_Pr
 C:\Users\navy2\OneDrive\Documents\GitHub\PRG282_Project\PRG2x2_Project\PRG2x2_Project\bin\Debug\PRG2x2_Project.exe.config
 C:\Users\navy2\OneDrive\Documents\GitHub\PRG282_Project\PRG2x2_Project\PRG2x2_Project\bin\Debug\PRG2x2_Project.exe
 C:\Users\navy2\OneDrive\Documents\GitHub\PRG282_Project\PRG2x2_Project\PRG2x2_Project\bin\Debug\PRG2x2_Project.pdb
+C:\Users\jacqu\Documents\BELGIUM CAMPUS\Year 2\PRG2\Assignments_Projects\Project\PRG282_Project\PRG2x2_Project\PRG2x2_Project\obj\Debug\PRG2x2_Project.ModuleDetailOption.resources
