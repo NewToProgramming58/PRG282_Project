@@ -32,6 +32,10 @@
             this.tbcDetails = new System.Windows.Forms.TabControl();
             this.tpgStudents = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnStudentLast = new System.Windows.Forms.Button();
+            this.btnStudentPrevious = new System.Windows.Forms.Button();
+            this.btnStudentNext = new System.Windows.Forms.Button();
+            this.btnStudentFirst = new System.Windows.Forms.Button();
             this.pnlStudentModules = new System.Windows.Forms.Panel();
             this.rtbStudentModuleDescription = new System.Windows.Forms.RichTextBox();
             this.cboStudentModuleStatus = new System.Windows.Forms.ComboBox();
@@ -158,6 +162,10 @@
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.Control;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.btnStudentLast);
+            this.panel2.Controls.Add(this.btnStudentPrevious);
+            this.panel2.Controls.Add(this.btnStudentNext);
+            this.panel2.Controls.Add(this.btnStudentFirst);
             this.panel2.Controls.Add(this.pnlStudentModules);
             this.panel2.Controls.Add(this.pnlStudent);
             this.panel2.Controls.Add(this.panel6);
@@ -166,6 +174,46 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(841, 431);
             this.panel2.TabIndex = 1;
+            // 
+            // btnStudentLast
+            // 
+            this.btnStudentLast.Location = new System.Drawing.Point(2, 404);
+            this.btnStudentLast.Name = "btnStudentLast";
+            this.btnStudentLast.Size = new System.Drawing.Size(75, 23);
+            this.btnStudentLast.TabIndex = 54;
+            this.btnStudentLast.Text = "Last";
+            this.btnStudentLast.UseVisualStyleBackColor = true;
+            this.btnStudentLast.Click += new System.EventHandler(this.btnStudentLast_Click);
+            // 
+            // btnStudentPrevious
+            // 
+            this.btnStudentPrevious.Location = new System.Drawing.Point(80, 404);
+            this.btnStudentPrevious.Name = "btnStudentPrevious";
+            this.btnStudentPrevious.Size = new System.Drawing.Size(75, 23);
+            this.btnStudentPrevious.TabIndex = 53;
+            this.btnStudentPrevious.Text = "Previous";
+            this.btnStudentPrevious.UseVisualStyleBackColor = true;
+            this.btnStudentPrevious.Click += new System.EventHandler(this.btnStudentPrevious_Click);
+            // 
+            // btnStudentNext
+            // 
+            this.btnStudentNext.Location = new System.Drawing.Point(360, 404);
+            this.btnStudentNext.Name = "btnStudentNext";
+            this.btnStudentNext.Size = new System.Drawing.Size(75, 23);
+            this.btnStudentNext.TabIndex = 52;
+            this.btnStudentNext.Text = "Next";
+            this.btnStudentNext.UseVisualStyleBackColor = true;
+            this.btnStudentNext.Click += new System.EventHandler(this.btnStudentNext_Click);
+            // 
+            // btnStudentFirst
+            // 
+            this.btnStudentFirst.Location = new System.Drawing.Point(441, 404);
+            this.btnStudentFirst.Name = "btnStudentFirst";
+            this.btnStudentFirst.Size = new System.Drawing.Size(75, 23);
+            this.btnStudentFirst.TabIndex = 51;
+            this.btnStudentFirst.Text = "First";
+            this.btnStudentFirst.UseVisualStyleBackColor = true;
+            this.btnStudentFirst.Click += new System.EventHandler(this.btnStudentFirst_Click);
             // 
             // pnlStudentModules
             // 
@@ -476,7 +524,7 @@
             this.dgvStudentOutput.Name = "dgvStudentOutput";
             this.dgvStudentOutput.ReadOnly = true;
             this.dgvStudentOutput.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvStudentOutput.Size = new System.Drawing.Size(525, 432);
+            this.dgvStudentOutput.Size = new System.Drawing.Size(525, 403);
             this.dgvStudentOutput.TabIndex = 13;
             this.dgvStudentOutput.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStudentOutput_CellDoubleClick);
             this.dgvStudentOutput.SelectionChanged += new System.EventHandler(this.dgvStudentOutput_SelectionChanged);
@@ -1059,5 +1107,9 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Button btnStudentLast;
+        private System.Windows.Forms.Button btnStudentPrevious;
+        private System.Windows.Forms.Button btnStudentNext;
+        private System.Windows.Forms.Button btnStudentFirst;
     }
 }

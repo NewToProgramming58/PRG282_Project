@@ -345,5 +345,50 @@ namespace PRG2x2_Project
                 pnlModule.Hide();
             }
         }
+        private void btnStudentLast_Click(object sender, EventArgs e)
+        {
+            if (dgvStudentOutput.CurrentRow != null)
+            {
+                dgvStudentOutput.CurrentCell =
+                    dgvStudentOutput
+                    .Rows[dgvStudentOutput.Rows.Count - 2]
+                    .Cells[dgvStudentOutput.CurrentCell.ColumnIndex];
+            }
+        }
+
+        private void btnStudentFirst_Click(object sender, EventArgs e)
+        {
+            if (dgvStudentOutput.CurrentRow != null)
+            {
+                dgvStudentOutput.CurrentCell =
+                    dgvStudentOutput
+                    .Rows[0]
+                    .Cells[dgvStudentOutput.CurrentCell.ColumnIndex];
+            }
+        }
+
+        private void btnStudentPrevious_Click(object sender, EventArgs e)
+        {
+            if (dgvStudentOutput.SelectedRows[0].Index > 0)
+            {
+                dgvStudentOutput.CurrentCell = dgvStudentOutput.Rows[dgvStudentOutput.SelectedRows[0].Index - 1].Cells[0];
+            }
+            else
+            {
+                btnStudentLast_Click(sender, e);
+            }
+        }
+
+        private void btnStudentNext_Click(object sender, EventArgs e)
+        {
+            if (dgvStudentOutput.SelectedRows[0].Index < dgvStudentOutput.Rows.Count - 2)
+            {
+                dgvStudentOutput.CurrentCell = dgvStudentOutput.Rows[dgvStudentOutput.SelectedRows[0].Index + 1].Cells[0];
+            }
+            else
+            {
+                btnStudentFirst_Click(sender, e);
+            }
+        }
     }
 }
