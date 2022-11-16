@@ -83,6 +83,13 @@ namespace PRG2x2_Project
                     handler.Insert(st);
                     ShowStudent();
                     dgvStudentOutput.Rows[dgvStudentOutput.Rows.Count - 2].Selected = true;
+                    if (dgvStudentOutput.CurrentRow != null)
+                    {
+                        dgvStudentOutput.CurrentCell =
+                            dgvStudentOutput
+                            .Rows[dgvStudentOutput.Rows.Count - 2]
+                            .Cells[dgvStudentOutput.CurrentCell.ColumnIndex];
+                    }
                 }
             }
         }
