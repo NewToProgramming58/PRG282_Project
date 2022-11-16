@@ -103,10 +103,43 @@ namespace PRG2x2_Project
         {
             if (StudentModules)
             {
+                int index = dgvStudentOutput.SelectedRows[0].Index;
                 StudentModule sm = new StudentModule(currentStudent, dgvStudentOutput.SelectedRows[0].Cells[0].Value.ToString(), cboStudentModuleStatus.Text);
-                handler.Update(sm);
-                ShowStudentModules();
-                MessageBox.Show("Updated");
+                DialogResult changeResult = DialogResult.No;
+                if (cboStudentModuleCode.Text != dgvStudentOutput.SelectedRows[0].Cells[0].Value.ToString())
+                {
+                    changeResult = MessageBox.Show($"You changed the Module code when wanting to update.\n" +
+                        $"Instead of updating the Module Code try to insert a new field.\n" +
+                        $"Would you still like to change the status from {dgvStudentOutput.SelectedRows[0].Cells[3].Value} To {cboStudentModuleStatus.Text}?",
+                        "Update problem", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                }
+
+                if (changeResult == DialogResult.Yes)
+                {
+                    handler.Update(sm);
+                    ShowStudentModules();
+                }
+                else
+                {
+                    DialogResult result = MessageBox.Show($"Are you sure you want to update this record from StudentModules?\n\n" +
+                        $"Status: {dgvStudentOutput.SelectedRows[0].Cells[3].Value} To {cboStudentModuleStatus.Text}",
+                        "Update problem", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        handler.Update(sm);
+                        ShowStudentModules();
+                    }
+                }
+
+                dgvStudentOutput.Rows[index].Selected = true;
+                if (dgvStudentOutput.CurrentRow != null)
+                {
+                    dgvStudentOutput.CurrentCell =
+                        dgvStudentOutput
+                        .Rows[index]
+                        .Cells[dgvStudentOutput.CurrentCell.ColumnIndex];
+                }
             }
             else
             {////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -157,8 +190,19 @@ namespace PRG2x2_Project
         private void btnStudentDelete_Click(object sender, EventArgs e)
         {
             if (StudentModules)
-            {
-                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            { 
+                DialogResult result = MessageBox.Show($"Are you sure you want to delete this record from StudentModules?\n\n" +
+                  $"Module Code: \t{dgvStudentOutput.SelectedRows[0].Cells[0].Value}\n" +
+                  $"Name: \t\t{dgvStudentOutput.SelectedRows[0].Cells[1].Value}\n" +
+                  $"Description: \n{dgvStudentOutput.SelectedRows[0].Cells[2].Value}\n" +
+                  $"Status: \t\t{dgvStudentOutput.SelectedRows[0].Cells[3].Value}\n",
+                  "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                if (result == DialogResult.Yes)
+                {
+                    handler.Delete(Tables.StudentModules, handler.addCondition("Module Code", Operator.Equals, dgvStudentOutput.SelectedRows[0].Cells[0].Value.ToString()));
+                    ShowStudentModules();
+                }
             }
             else
             {
@@ -171,12 +215,12 @@ namespace PRG2x2_Project
                    $"Phone: \t\t{dgvStudentOutput.SelectedRows[0].Cells[5].Value}\n" +
                    $"Address: \t\t{dgvStudentOutput.SelectedRows[0].Cells[6].Value}\n\n" +
                    $"NOTE: Deleting this record will delete all modules linked to this student as well.",
-                   "Update", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                   "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
                 // If yes, insert the record, refresh the datagridview, and select that newly inserted record.
                 if (result == DialogResult.Yes)
                 {
-                    handler.Delete(Tables.Student, $"WHERE [Student Number] = {int.Parse(txtStudentNumber.Text)}");
+                    handler.Delete(Tables.Student, $"WHERE [Student Number] = {int.Parse(txtStudentNumber.Text)}");///////////////////////////////////////////////
                     ShowStudent();
                 }
             }
@@ -232,9 +276,8 @@ namespace PRG2x2_Project
                 // We make use of StudentModules to determine that.
                 if (StudentModules)
                 {
-                    txtStudentModuleCode.Text = dgvStudentOutput.SelectedRows[0].Cells[0].Value.ToString();
-                    txtStudentModuleName.Text = dgvStudentOutput.SelectedRows[0].Cells[1].Value.ToString();
-                    rtbStudentModuleDescription.Text = dgvStudentOutput.SelectedRows[0].Cells[2].Value.ToString();
+                    cboStudentModuleCode.Text = dgvStudentOutput.SelectedRows[0].Cells[0].Value.ToString();
+                    rtbModuleDetailStudent.Text = dgvStudentOutput.SelectedRows[0].Cells[1].Value.ToString() + "\n\n" + dgvStudentOutput.SelectedRows[0].Cells[2].Value.ToString();
                     cboStudentModuleStatus.Text = dgvStudentOutput.SelectedRows[0].Cells[3].Value.ToString();
                 }
                 else
@@ -437,18 +480,17 @@ namespace PRG2x2_Project
         private void Details_Activated(object sender, EventArgs e)
         {
 
-            cboModules.DataSource = handler.GetData(Tables.Module);
-            cboModules.DisplayMember = "Module Code";
-            cboModules.ValueMember = "Module Code";
+            cboStudentModuleCode.DataSource = handler.GetData(Tables.Module);
+            cboStudentModuleCode.DisplayMember = "Module Code";
+            cboStudentModuleCode.ValueMember = "Module Code";
         }
-
-        private void cboModules_TextChanged(object sender, EventArgs e)
+        private void cboStudentModuleCode_TextChanged(object sender, EventArgs e)
         {
-            DataTable dt = handler.GetData(Tables.Module, handler.addCondition("Module Code", Operator.Equals, cboModules.Text));
-            if (dt.Rows.Count > 0) 
+            DataTable dt = handler.GetData(Tables.Module, handler.addCondition("Module Code", Operator.Equals, cboStudentModuleCode.Text));
+            if (dt.Rows.Count > 0)
             {
                 rtbModuleDetailStudent.Text = $"{dt.Rows[0][1]}\n\n{dt.Rows[0][2]}";
-            }            
+            }
         }
     }
 }
