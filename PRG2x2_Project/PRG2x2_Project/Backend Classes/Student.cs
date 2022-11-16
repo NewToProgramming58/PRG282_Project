@@ -49,5 +49,16 @@ namespace PRG2x2_Project.Properties
             return $"INSERT INTO Student\n" +
                 $"VALUES ({Number}, '{Name}', '{Surname}', '{dob}', '{Gender}', '{Phone}', '{Address}', '{Image}')";               
         }
+
+        public string Join()
+        {
+            return
+                "SELECT M.[Module Code], M.[Module Name], M.[Module Description], SM.[Status]\n" +
+                "FROM Module M\n" +
+                "INNER JOIN StudentModules SM\n" +
+                "ON M.[Module Code] = SM.[Module Code]\n" +
+                $"WHERE [Student Number] = {Number}";
+
+        }
     }
 }

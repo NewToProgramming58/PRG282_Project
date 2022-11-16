@@ -15,7 +15,8 @@ namespace PRG2x2_Project
         Student,
         Module,
         StudentModule,
-        Resource
+        Resource,
+        StudentModuleDetails
     }
     enum Operator 
     {
@@ -134,10 +135,19 @@ namespace PRG2x2_Project
                 }
             }        
         }
-        public DataTable GetData(Tables table, string condition = "")
+        public DataTable GetData(Tables table, string condition = "", dynamic tableObject = null)
         {
             string tableName = ((Tables)table).ToString();
-            SqlDataAdapter dataAdapter = new SqlDataAdapter($"SELECT * FROM {tableName}\n{condition}", this.Con);
+            string qry;
+            if (table == Tables.StudentModuleDetails && tableObject != null) 
+            {
+                qry = tableObject.Join();
+            }
+            else
+            {
+                qry = $"SELECT * FROM {tableName}\n{condition}";
+            }
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(qry, this.Con);
             DataSet ds = new DataSet();
             dataAdapter.Fill(ds);
             return ds.Tables[0];
