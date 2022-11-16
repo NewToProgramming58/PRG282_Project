@@ -68,18 +68,18 @@
             this.pnlStudentSearch = new System.Windows.Forms.Panel();
             this.lblSearch = new System.Windows.Forms.Label();
             this.btnStudentSearch = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtStudentSearch = new System.Windows.Forms.TextBox();
             this.rtbStudentTutorial = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tpgModules = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
             this.pnlModule = new System.Windows.Forms.Panel();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.rtbModuleDescription = new System.Windows.Forms.RichTextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtModuleName = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtModuleCode = new System.Windows.Forms.TextBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.btnModuleDelete = new System.Windows.Forms.Button();
             this.btnModuleUpdate = new System.Windows.Forms.Button();
@@ -121,6 +121,7 @@
             this.tbcDetails.SelectedIndex = 0;
             this.tbcDetails.Size = new System.Drawing.Size(849, 528);
             this.tbcDetails.TabIndex = 0;
+            this.tbcDetails.SelectedIndexChanged += new System.EventHandler(this.tbcDetails_SelectedIndexChanged);
             // 
             // tpgStudents
             // 
@@ -285,11 +286,13 @@
             // 
             // dtpStudentDate
             // 
+            this.dtpStudentDate.CustomFormat = "yyyy/MM/dd";
             this.dtpStudentDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpStudentDate.Location = new System.Drawing.Point(115, 91);
             this.dtpStudentDate.Name = "dtpStudentDate";
             this.dtpStudentDate.Size = new System.Drawing.Size(97, 20);
             this.dtpStudentDate.TabIndex = 46;
+            this.dtpStudentDate.Value = new System.DateTime(2022, 11, 15, 0, 0, 0, 0);
             // 
             // label10
             // 
@@ -367,6 +370,7 @@
             // 
             this.txtStudentNumber.Location = new System.Drawing.Point(115, 3);
             this.txtStudentNumber.Name = "txtStudentNumber";
+            this.txtStudentNumber.ReadOnly = true;
             this.txtStudentNumber.Size = new System.Drawing.Size(184, 20);
             this.txtStudentNumber.TabIndex = 37;
             // 
@@ -413,6 +417,7 @@
             this.btnStudentDelete.TabIndex = 13;
             this.btnStudentDelete.Text = "Delete Record";
             this.btnStudentDelete.UseVisualStyleBackColor = true;
+            this.btnStudentDelete.Click += new System.EventHandler(this.btnStudentDelete_Click);
             // 
             // btnStudentUpdate
             // 
@@ -422,6 +427,7 @@
             this.btnStudentUpdate.TabIndex = 12;
             this.btnStudentUpdate.Text = "Update Record";
             this.btnStudentUpdate.UseVisualStyleBackColor = true;
+            this.btnStudentUpdate.Click += new System.EventHandler(this.btnStudentUpdate_Click);
             // 
             // btnStudentInsert
             // 
@@ -439,7 +445,7 @@
             this.btnStudentRead.Name = "btnStudentRead";
             this.btnStudentRead.Size = new System.Drawing.Size(91, 23);
             this.btnStudentRead.TabIndex = 10;
-            this.btnStudentRead.Text = "Read";
+            this.btnStudentRead.Text = "Reload";
             this.btnStudentRead.UseVisualStyleBackColor = true;
             this.btnStudentRead.Click += new System.EventHandler(this.btnStudentRead_Click);
             // 
@@ -449,9 +455,11 @@
             this.dgvStudentOutput.Location = new System.Drawing.Point(-1, -2);
             this.dgvStudentOutput.MultiSelect = false;
             this.dgvStudentOutput.Name = "dgvStudentOutput";
+            this.dgvStudentOutput.ReadOnly = true;
             this.dgvStudentOutput.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvStudentOutput.Size = new System.Drawing.Size(525, 432);
             this.dgvStudentOutput.TabIndex = 13;
+            this.dgvStudentOutput.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStudentOutput_CellDoubleClick);
             this.dgvStudentOutput.SelectionChanged += new System.EventHandler(this.dgvStudentOutput_SelectionChanged);
             // 
             // panel1
@@ -471,8 +479,8 @@
             this.pnlStudentSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlStudentSearch.Controls.Add(this.lblSearch);
             this.pnlStudentSearch.Controls.Add(this.btnStudentSearch);
-            this.pnlStudentSearch.Controls.Add(this.textBox1);
-            this.pnlStudentSearch.Location = new System.Drawing.Point(557, 0);
+            this.pnlStudentSearch.Controls.Add(this.txtStudentSearch);
+            this.pnlStudentSearch.Location = new System.Drawing.Point(557, 1);
             this.pnlStudentSearch.Name = "pnlStudentSearch";
             this.pnlStudentSearch.Size = new System.Drawing.Size(284, 71);
             this.pnlStudentSearch.TabIndex = 15;
@@ -488,19 +496,20 @@
             // 
             // btnStudentSearch
             // 
-            this.btnStudentSearch.Location = new System.Drawing.Point(82, 36);
+            this.btnStudentSearch.Location = new System.Drawing.Point(96, 36);
             this.btnStudentSearch.Name = "btnStudentSearch";
             this.btnStudentSearch.Size = new System.Drawing.Size(91, 23);
             this.btnStudentSearch.TabIndex = 14;
             this.btnStudentSearch.Text = "Search";
             this.btnStudentSearch.UseVisualStyleBackColor = true;
+            this.btnStudentSearch.Click += new System.EventHandler(this.btnStudentSearch_Click);
             // 
-            // textBox1
+            // txtStudentSearch
             // 
-            this.textBox1.Location = new System.Drawing.Point(117, 5);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(156, 20);
-            this.textBox1.TabIndex = 34;
+            this.txtStudentSearch.Location = new System.Drawing.Point(117, 5);
+            this.txtStudentSearch.Name = "txtStudentSearch";
+            this.txtStudentSearch.Size = new System.Drawing.Size(156, 20);
+            this.txtStudentSearch.TabIndex = 34;
             // 
             // rtbStudentTutorial
             // 
@@ -547,24 +556,24 @@
             // 
             // pnlModule
             // 
-            this.pnlModule.Controls.Add(this.richTextBox1);
+            this.pnlModule.Controls.Add(this.rtbModuleDescription);
             this.pnlModule.Controls.Add(this.label17);
             this.pnlModule.Controls.Add(this.label18);
-            this.pnlModule.Controls.Add(this.textBox3);
+            this.pnlModule.Controls.Add(this.txtModuleName);
             this.pnlModule.Controls.Add(this.label19);
-            this.pnlModule.Controls.Add(this.textBox4);
+            this.pnlModule.Controls.Add(this.txtModuleCode);
             this.pnlModule.Location = new System.Drawing.Point(526, 3);
             this.pnlModule.Name = "pnlModule";
             this.pnlModule.Size = new System.Drawing.Size(311, 335);
             this.pnlModule.TabIndex = 51;
             // 
-            // richTextBox1
+            // rtbModuleDescription
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(127, 91);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(172, 47);
-            this.richTextBox1.TabIndex = 9;
-            this.richTextBox1.Text = "";
+            this.rtbModuleDescription.Location = new System.Drawing.Point(127, 91);
+            this.rtbModuleDescription.Name = "rtbModuleDescription";
+            this.rtbModuleDescription.Size = new System.Drawing.Size(172, 47);
+            this.rtbModuleDescription.TabIndex = 9;
+            this.rtbModuleDescription.Text = "";
             // 
             // label17
             // 
@@ -584,12 +593,12 @@
             this.label18.TabIndex = 3;
             this.label18.Text = "Name:";
             // 
-            // textBox3
+            // txtModuleName
             // 
-            this.textBox3.Location = new System.Drawing.Point(127, 59);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(172, 20);
-            this.textBox3.TabIndex = 2;
+            this.txtModuleName.Location = new System.Drawing.Point(127, 59);
+            this.txtModuleName.Name = "txtModuleName";
+            this.txtModuleName.Size = new System.Drawing.Size(172, 20);
+            this.txtModuleName.TabIndex = 2;
             // 
             // label19
             // 
@@ -600,12 +609,12 @@
             this.label19.TabIndex = 1;
             this.label19.Text = "Module Code:";
             // 
-            // textBox4
+            // txtModuleCode
             // 
-            this.textBox4.Location = new System.Drawing.Point(127, 33);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(172, 20);
-            this.textBox4.TabIndex = 0;
+            this.txtModuleCode.Location = new System.Drawing.Point(127, 33);
+            this.txtModuleCode.Name = "txtModuleCode";
+            this.txtModuleCode.Size = new System.Drawing.Size(172, 20);
+            this.txtModuleCode.TabIndex = 0;
             // 
             // panel5
             // 
@@ -661,9 +670,14 @@
             // 
             this.dgvModuleOutput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvModuleOutput.Location = new System.Drawing.Point(-1, -2);
+            this.dgvModuleOutput.MultiSelect = false;
             this.dgvModuleOutput.Name = "dgvModuleOutput";
+            this.dgvModuleOutput.ReadOnly = true;
+            this.dgvModuleOutput.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvModuleOutput.Size = new System.Drawing.Size(525, 432);
             this.dgvModuleOutput.TabIndex = 18;
+            this.dgvModuleOutput.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvModuleOutput_CellDoubleClick);
+            this.dgvModuleOutput.SelectionChanged += new System.EventHandler(this.dgvModuleOutput_SelectionChanged);
             // 
             // panel4
             // 
@@ -699,7 +713,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(82, 36);
+            this.button1.Location = new System.Drawing.Point(96, 36);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(91, 23);
             this.button1.TabIndex = 14;
@@ -715,9 +729,9 @@
             // 
             // rtbModuleTutorial
             // 
-            this.rtbModuleTutorial.Location = new System.Drawing.Point(182, 6);
+            this.rtbModuleTutorial.Location = new System.Drawing.Point(200, 6);
             this.rtbModuleTutorial.Name = "rtbModuleTutorial";
-            this.rtbModuleTutorial.Size = new System.Drawing.Size(356, 54);
+            this.rtbModuleTutorial.Size = new System.Drawing.Size(338, 54);
             this.rtbModuleTutorial.TabIndex = 1;
             this.rtbModuleTutorial.Text = "";
             // 
@@ -800,7 +814,7 @@
         private System.Windows.Forms.DataGridView dgvModuleOutput;
         private System.Windows.Forms.Panel pnlStudentSearch;
         private System.Windows.Forms.Button btnStudentSearch;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtStudentSearch;
         private System.Windows.Forms.Label lblSearch;
         private System.Windows.Forms.Panel pnlStudent;
         private System.Windows.Forms.PictureBox ptbStudentImage;
@@ -829,12 +843,12 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtStudentModuleCode;
         private System.Windows.Forms.Panel pnlModule;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox rtbModuleDescription;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtModuleName;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtModuleCode;
         private System.Windows.Forms.Panel pnlModuleSearch;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button button1;

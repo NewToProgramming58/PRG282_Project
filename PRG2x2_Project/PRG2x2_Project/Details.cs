@@ -1,8 +1,10 @@
-﻿using System;
+﻿using PRG2x2_Project.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +15,9 @@ namespace PRG2x2_Project
     public partial class Details : Form
     {
         bool StudentModules = false;
+        bool ModuleStudents = false;
+        bool ModuleResources = false;
+
         DataHandler handler = new DataHandler();
         private Login frm;
         public Details()
@@ -31,20 +36,71 @@ namespace PRG2x2_Project
             frm = form;
         }
 
+        private void Details_Shown(object sender, EventArgs e)
+        {
+            ShowStudent();
+        }
+
         private void btnStudentRead_Click(object sender, EventArgs e)
         {
-            ShowStudentModules();///////////////////////////////////////////////////////////////////
+            ShowStudent();
         }
 
         private void btnStudentInsert_Click(object sender, EventArgs e)
         {
-            ShowStudent();//////////////////////////////////////////////////////////////////////////
+            if (StudentModules)
+            {
+                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            }
+            else
+            {
+                // Date does not work//////////////////////////////////////////////////////////////////////////////////////////////////
+                Student st = new Student(int.Parse(txtStudentNumber.Text), txtStudentName.Text, txtStudentSurname.Text, dtpStudentDate.Value, txtStudentPhone.Text, rtbStudentAddress.Text, "");
+                handler.Insert(st);
+                MessageBox.Show("Inserted");
+            }
         }
 
-
-        private void Details_Shown(object sender, EventArgs e)
+        private void btnStudentUpdate_Click(object sender, EventArgs e)
         {
-            ShowStudent();
+            if (StudentModules)
+            {
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            }
+            else
+            {
+                Student st = new Student(int.Parse(txtStudentNumber.Text), txtStudentName.Text, txtStudentSurname.Text, dtpStudentDate.Value, txtStudentPhone.Text, rtbStudentAddress.Text, "");
+                handler.Update(st);
+                MessageBox.Show("Updated");
+            }
+        }
+
+        private void btnStudentDelete_Click(object sender, EventArgs e)
+        {
+            if (StudentModules)
+            {
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            }
+            else
+            { 
+                // REFERENTIAL INTEGRITY PROBLEMS////////////////////////////////////////////////////////////////////////////////////////////
+                handler.Delete(Tables.Student, $"WHERE [Student Number] = {int.Parse(txtStudentNumber.Text)}");
+                MessageBox.Show("Deleted");
+                // Refreshes the table.
+                ShowStudent();
+            }
+        }
+
+        private void tbcDetails_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tbcDetails.SelectedIndex == 0)
+            {
+                ShowStudent();
+            }
+            else
+            {
+                ShowModule();
+            }
         }
 
         private void dgvStudentOutput_SelectionChanged(object sender, EventArgs e)
@@ -67,9 +123,39 @@ namespace PRG2x2_Project
                     cboStudentGender.Text = dgvStudentOutput.SelectedRows[0].Cells[4].Value.ToString();
                     txtStudentPhone.Text = dgvStudentOutput.SelectedRows[0].Cells[5].Value.ToString();
                     rtbStudentAddress.Text = dgvStudentOutput.SelectedRows[0].Cells[6].Value.ToString();
-                    //ptbStudentImage.Image = Image.FromFile(dgvStudentOutput.SelectedRows[0].Cells[7].Value.ToString());
+
+                    string imageBase = dgvStudentOutput.SelectedRows[0].Cells[7].Value.ToString();
+                    imageBase = imageBase.Substring(imageBase.IndexOf(",") + 1);
+                    byte[] bytes = Convert.FromBase64String(imageBase);
+                    using (MemoryStream ms = new MemoryStream(bytes))
+                    {
+                        ptbStudentImage.Image = Image.FromStream(ms);
+                    }
                 }
             }
+        }
+
+        private void dgvStudentOutput_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (StudentModules == false)
+            {
+                ShowStudentModules();
+            }
+        }
+
+        private void dgvModuleOutput_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvModuleOutput.SelectedRows.Count > 0)
+            {
+                txtModuleCode.Text = dgvModuleOutput.SelectedRows[0].Cells[0].Value.ToString();
+                txtModuleName.Text = dgvModuleOutput.SelectedRows[0].Cells[1].Value.ToString();
+                rtbModuleDescription.Text = dgvModuleOutput.SelectedRows[0].Cells[2].Value.ToString();
+            }
+        }
+
+        private void dgvModuleOutput_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////
         }
 
         // Methods for changing what is displayed to the user.
@@ -98,6 +184,31 @@ namespace PRG2x2_Project
             pnlStudentModules.Show();
             pnlStudent.Hide();
             lblSearch.Text = "Module code:";
+        }
+
+        public void ShowModule()
+        {
+            dgvModuleOutput.DataSource = handler.GetData(Tables.Module);
+            if (dgvModuleOutput.Rows.Count > 0)
+            {
+                dgvModuleOutput.Rows[0].Selected = true;
+            }
+            ModuleStudents = false;
+            ModuleResources = false;
+            //Panels///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            pnlModule.Show();
+        }
+
+        private void btnStudentSearch_Click(object sender, EventArgs e)
+        {
+            if (StudentModules)
+            {
+                /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            }
+            else
+            {
+                dgvStudentOutput.DataSource = handler.GetData(Tables.Student, $"WHERE [Student Number] = {int.Parse(txtStudentSearch.Text)}");
+            }
         }
     }
 }

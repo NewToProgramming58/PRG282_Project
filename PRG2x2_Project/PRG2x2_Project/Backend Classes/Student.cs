@@ -47,7 +47,7 @@ namespace PRG2x2_Project.Properties
         public string Insert()
         {
             return $"INSERT INTO Student\n" +
-                $"VALUES ({Number}, '{Name}', '{Surname}', '{dob}', {Gender}, '{Phone}', '{Address}', '{Image})'";               
+                $"VALUES ({Number}, '{Name}', '{Surname}', '{dob}', '{Gender}', '{Phone}', '{Address}', '{Image}')";               
         }
 
         public string Join()
