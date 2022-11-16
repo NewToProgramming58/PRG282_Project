@@ -55,7 +55,13 @@ namespace PRG2x2_Project
             else
             {
                 // Date does not work//////////////////////////////////////////////////////////////////////////////////////////////////
-                Student st = new Student(int.Parse(txtStudentNumber.Text), txtStudentName.Text, txtStudentSurname.Text, dtpStudentDate.Value, txtStudentPhone.Text, rtbStudentAddress.Text, "");
+                Student st = new Student(int.Parse(txtStudentNumber.Text), 
+                    txtStudentName.Text, 
+                    txtStudentSurname.Text, 
+                    dtpStudentDate.Value, 
+                    txtStudentPhone.Text, 
+                    rtbStudentAddress.Text, 
+                    "");
                 handler.Insert(st);
                 MessageBox.Show("Inserted");
             }
