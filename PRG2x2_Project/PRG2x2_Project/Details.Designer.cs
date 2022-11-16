@@ -66,7 +66,7 @@
             this.dgvStudentOutput = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnlStudentSearch = new System.Windows.Forms.Panel();
-            this.lblSearch = new System.Windows.Forms.Label();
+            this.lblStudentSearch = new System.Windows.Forms.Label();
             this.btnStudentSearch = new System.Windows.Forms.Button();
             this.txtStudentSearch = new System.Windows.Forms.TextBox();
             this.rtbStudentTutorial = new System.Windows.Forms.RichTextBox();
@@ -88,11 +88,28 @@
             this.dgvModuleOutput = new System.Windows.Forms.DataGridView();
             this.panel4 = new System.Windows.Forms.Panel();
             this.pnlModuleSearch = new System.Windows.Forms.Panel();
-            this.label11 = new System.Windows.Forms.Label();
+            this.lblModuleSearch = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.rtbModuleTutorial = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.pnlModuleStudents = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
             this.tbcDetails.SuspendLayout();
             this.tpgStudents.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -110,6 +127,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvModuleOutput)).BeginInit();
             this.panel4.SuspendLayout();
             this.pnlModuleSearch.SuspendLayout();
+            this.pnlModuleStudents.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tbcDetails
@@ -477,7 +496,7 @@
             // 
             this.pnlStudentSearch.BackColor = System.Drawing.Color.PeachPuff;
             this.pnlStudentSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlStudentSearch.Controls.Add(this.lblSearch);
+            this.pnlStudentSearch.Controls.Add(this.lblStudentSearch);
             this.pnlStudentSearch.Controls.Add(this.btnStudentSearch);
             this.pnlStudentSearch.Controls.Add(this.txtStudentSearch);
             this.pnlStudentSearch.Location = new System.Drawing.Point(557, 1);
@@ -485,14 +504,14 @@
             this.pnlStudentSearch.Size = new System.Drawing.Size(284, 71);
             this.pnlStudentSearch.TabIndex = 15;
             // 
-            // lblSearch
+            // lblStudentSearch
             // 
-            this.lblSearch.AutoSize = true;
-            this.lblSearch.Location = new System.Drawing.Point(24, 8);
-            this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(87, 13);
-            this.lblSearch.TabIndex = 34;
-            this.lblSearch.Text = "Student Number:";
+            this.lblStudentSearch.AutoSize = true;
+            this.lblStudentSearch.Location = new System.Drawing.Point(24, 8);
+            this.lblStudentSearch.Name = "lblStudentSearch";
+            this.lblStudentSearch.Size = new System.Drawing.Size(87, 13);
+            this.lblStudentSearch.TabIndex = 34;
+            this.lblStudentSearch.Text = "Student Number:";
             // 
             // btnStudentSearch
             // 
@@ -546,6 +565,7 @@
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.Control;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.pnlModuleStudents);
             this.panel3.Controls.Add(this.pnlModule);
             this.panel3.Controls.Add(this.panel5);
             this.panel3.Controls.Add(this.dgvModuleOutput);
@@ -694,7 +714,7 @@
             // 
             this.pnlModuleSearch.BackColor = System.Drawing.Color.PeachPuff;
             this.pnlModuleSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlModuleSearch.Controls.Add(this.label11);
+            this.pnlModuleSearch.Controls.Add(this.lblModuleSearch);
             this.pnlModuleSearch.Controls.Add(this.button1);
             this.pnlModuleSearch.Controls.Add(this.textBox2);
             this.pnlModuleSearch.Location = new System.Drawing.Point(557, 0);
@@ -702,14 +722,14 @@
             this.pnlModuleSearch.Size = new System.Drawing.Size(284, 71);
             this.pnlModuleSearch.TabIndex = 16;
             // 
-            // label11
+            // lblModuleSearch
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(24, 8);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(87, 13);
-            this.label11.TabIndex = 34;
-            this.label11.Text = "Student Number:";
+            this.lblModuleSearch.AutoSize = true;
+            this.lblModuleSearch.Location = new System.Drawing.Point(24, 8);
+            this.lblModuleSearch.Name = "lblModuleSearch";
+            this.lblModuleSearch.Size = new System.Drawing.Size(73, 13);
+            this.lblModuleSearch.TabIndex = 34;
+            this.lblModuleSearch.Text = "Module Code:";
             // 
             // button1
             // 
@@ -745,6 +765,172 @@
             this.label2.Size = new System.Drawing.Size(156, 26);
             this.label2.TabIndex = 0;
             this.label2.Text = "Module Details";
+            // 
+            // pnlModuleStudents
+            // 
+            this.pnlModuleStudents.Controls.Add(this.pictureBox1);
+            this.pnlModuleStudents.Controls.Add(this.richTextBox1);
+            this.pnlModuleStudents.Controls.Add(this.comboBox1);
+            this.pnlModuleStudents.Controls.Add(this.dateTimePicker1);
+            this.pnlModuleStudents.Controls.Add(this.label16);
+            this.pnlModuleStudents.Controls.Add(this.label20);
+            this.pnlModuleStudents.Controls.Add(this.label21);
+            this.pnlModuleStudents.Controls.Add(this.label22);
+            this.pnlModuleStudents.Controls.Add(this.label23);
+            this.pnlModuleStudents.Controls.Add(this.label24);
+            this.pnlModuleStudents.Controls.Add(this.label25);
+            this.pnlModuleStudents.Controls.Add(this.label26);
+            this.pnlModuleStudents.Controls.Add(this.textBox1);
+            this.pnlModuleStudents.Controls.Add(this.textBox3);
+            this.pnlModuleStudents.Controls.Add(this.textBox4);
+            this.pnlModuleStudents.Controls.Add(this.textBox5);
+            this.pnlModuleStudents.Location = new System.Drawing.Point(526, 3);
+            this.pnlModuleStudents.Name = "pnlModuleStudents";
+            this.pnlModuleStudents.Size = new System.Drawing.Size(311, 335);
+            this.pnlModuleStudents.TabIndex = 16;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(114, 244);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(85, 85);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 49;
+            this.pictureBox1.TabStop = false;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(115, 178);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
+            this.richTextBox1.Size = new System.Drawing.Size(184, 56);
+            this.richTextBox1.TabIndex = 48;
+            this.richTextBox1.Text = "";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Male",
+            "Female",
+            "Other"});
+            this.comboBox1.Location = new System.Drawing.Point(115, 120);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(68, 21);
+            this.comboBox1.TabIndex = 47;
+            this.comboBox1.Text = "Male";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CustomFormat = "yyyy/MM/dd";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(115, 91);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(97, 20);
+            this.dateTimePicker1.TabIndex = 46;
+            this.dateTimePicker1.Value = new System.DateTime(2022, 11, 15, 0, 0, 0, 0);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(70, 246);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(39, 13);
+            this.label16.TabIndex = 45;
+            this.label16.Text = "Image:";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(61, 180);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(48, 13);
+            this.label20.TabIndex = 44;
+            this.label20.Text = "Address:";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(68, 152);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(41, 13);
+            this.label21.TabIndex = 43;
+            this.label21.Text = "Phone:";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(64, 123);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(45, 13);
+            this.label22.TabIndex = 42;
+            this.label22.Text = "Gender:";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(40, 93);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(69, 13);
+            this.label23.TabIndex = 41;
+            this.label23.Text = "Date of Birth:";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(57, 64);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(52, 13);
+            this.label24.TabIndex = 40;
+            this.label24.Text = "Surname:";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(71, 35);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(38, 13);
+            this.label25.TabIndex = 39;
+            this.label25.Text = "Name:";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(22, 6);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(87, 13);
+            this.label26.TabIndex = 38;
+            this.label26.Text = "Student Number:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(115, 3);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(184, 20);
+            this.textBox1.TabIndex = 37;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(115, 32);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(184, 20);
+            this.textBox3.TabIndex = 36;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(115, 61);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(184, 20);
+            this.textBox4.TabIndex = 35;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(115, 149);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(184, 20);
+            this.textBox5.TabIndex = 34;
             // 
             // Details
             // 
@@ -783,6 +969,9 @@
             this.panel4.PerformLayout();
             this.pnlModuleSearch.ResumeLayout(false);
             this.pnlModuleSearch.PerformLayout();
+            this.pnlModuleStudents.ResumeLayout(false);
+            this.pnlModuleStudents.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -815,7 +1004,7 @@
         private System.Windows.Forms.Panel pnlStudentSearch;
         private System.Windows.Forms.Button btnStudentSearch;
         private System.Windows.Forms.TextBox txtStudentSearch;
-        private System.Windows.Forms.Label lblSearch;
+        private System.Windows.Forms.Label lblStudentSearch;
         private System.Windows.Forms.Panel pnlStudent;
         private System.Windows.Forms.PictureBox ptbStudentImage;
         private System.Windows.Forms.RichTextBox rtbStudentAddress;
@@ -850,8 +1039,25 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox txtModuleCode;
         private System.Windows.Forms.Panel pnlModuleSearch;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lblModuleSearch;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Panel pnlModuleStudents;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBox5;
     }
 }

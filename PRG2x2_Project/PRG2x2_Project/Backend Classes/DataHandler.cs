@@ -14,7 +14,7 @@ namespace PRG2x2_Project
     {
         Student,
         Module,
-        StudentModule,
+        StudentModules,
         Resource,
         StudentModuleDetails
     }
@@ -48,10 +48,18 @@ namespace PRG2x2_Project
         {       
             if (rhs.GetType() == typeof(string) || rhs.GetType() == typeof(DateTime)) 
             {
+                if (GetOperator(op) == "LIKE")
+                {
+                    return $"WHERE [{field}] {GetOperator(op)} '%{rhs}%'";
+                }
                 return $"WHERE [{field}] {GetOperator(op)} '{rhs}'";
             } 
             else
             {
+                if (GetOperator(op) == "LIKE")
+                {
+                    return $"WHERE [{field}] {GetOperator(op)} '%{rhs}%'";
+                }
                 return $"WHERE [{field}] {GetOperator(op)} {rhs}";
             }
         }
