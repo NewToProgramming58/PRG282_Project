@@ -32,8 +32,6 @@ CREATE TABLE StudentModules(
 	[Student Number] INT,
 	[Module Code] NVARCHAR(6),
 	[Status] NVARCHAR(20),
-	CONSTRAINT [FK_ModuleCodeStudentModule] FOREIGN KEY ([Module Code]) 
-		REFERENCES [Module] ([Module Code]),
 	CONSTRAINT [FK_StudentNumberModule] FOREIGN KEY ([Student Number]) 
 		REFERENCES [Student] ([Student Number]),
 )

@@ -525,5 +525,118 @@ namespace PRG2x2_Project
                 rtbModuleDetailStudent.Text = $"{dt.Rows[0][1]}\n\n{dt.Rows[0][2]}";
             }
         }
+
+        private void btnModuleInsert_Click(object sender, EventArgs e)
+        {
+            if (ModuleResources)
+            {
+                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            }
+            else
+            {
+                // Reads the values.
+                Module module = new Module(txtModuleCode.Text, txtModuleName.Text, rtbModuleDescription.Text);
+
+                // Asks the user if he/she is sure.
+                DialogResult result = MessageBox.Show($"Are you sure you want to insert this record into Modules?\n\n" +
+                    $"Module Code: \t{module.Code}\n\n" +
+                    $"Name: \t\t{module.Name}\n\n" +
+                    $"Description: \n{module.Description}"
+                    , "Insert", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                // If yes, insert the record, refresh the datagridview, and select that newly inserted record.
+                if (result == DialogResult.Yes)
+                {
+                    handler.Insert(module);
+                    ShowModule();
+                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    //dgvModuleOutput.Rows[dgvModuleOutput.Rows.Count - 2].Selected = true;
+                    //if (dgvModuleOutput.CurrentRow != null)
+                    //{
+                    //    dgvModuleOutput.CurrentCell =
+                    //        dgvModuleOutput
+                    //        .Rows[dgvModuleOutput.Rows.Count - 2]
+                    //        .Cells[dgvModuleOutput.CurrentCell.ColumnIndex];
+                    //}
+                }
+            }
+        }
+
+        private void btnModuleUpdate_Click(object sender, EventArgs e)
+        {
+            if (ModuleResources)
+            {
+                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            }
+            else
+            {
+                // Reads the values.
+                Module module = new Module(dgvModuleOutput.SelectedRows[0].Cells[0].Value.ToString(), txtModuleName.Text, rtbModuleDescription.Text);
+
+                // Asks the user if he/she is sure.
+                DialogResult result = MessageBox.Show($"Are you sure you want to insert this record into Students?\n\n" +
+                    $"Module Code: \t{dgvModuleOutput.SelectedRows[0].Cells[0].Value}\n\n" +
+                    $"Name: \t\t{module.Name}\n\n" +
+                    $"Description: \n{module.Description}"
+                    , "Insert", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                // If yes, insert the record, refresh the datagridview, and select that newly inserted record.
+                if (result == DialogResult.Yes)
+                {
+                    handler.Update(module);
+                    ShowModule();
+                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    //dgvModuleOutput.Rows[dgvModuleOutput.Rows.Count - 2].Selected = true;
+                    //if (dgvModuleOutput.CurrentRow != null)
+                    //{
+                    //    dgvModuleOutput.CurrentCell =
+                    //        dgvModuleOutput
+                    //        .Rows[dgvModuleOutput.Rows.Count - 2]
+                    //        .Cells[dgvModuleOutput.CurrentCell.ColumnIndex];
+                    //}
+                }
+            }
+        }
+
+        private void btnModuleRead_Click(object sender, EventArgs e)
+        {
+            ShowModule();
+        }
+
+        private void btnModuleDelete_Click(object sender, EventArgs e)
+        {
+            if (ModuleResources)
+            {
+                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            }
+            else
+            {
+                // Reads the values.
+                Module module = new Module(dgvModuleOutput.SelectedRows[0].Cells[0].Value.ToString(), txtModuleName.Text, rtbModuleDescription.Text);
+
+                // Asks the user if he/she is sure.
+                DialogResult result = MessageBox.Show($"Are you sure you want to insert this record into Students?\n\n" +
+                    $"Module Code: \t{module.Code}\n\n" +
+                    $"Name: \t\t{module.Name}\n\n" +
+                    $"Description: \n{module.Description}"
+                    , "Insert", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                // If yes, insert the record, refresh the datagridview, and select that newly inserted record.
+                if (result == DialogResult.Yes)
+                {
+                    handler.Delete(Tables.Module, handler.addCondition("Module Code", Operator.Equals, module.Code));
+                    ShowModule();
+                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    //dgvModuleOutput.Rows[dgvModuleOutput.Rows.Count - 2].Selected = true;
+                    //if (dgvModuleOutput.CurrentRow != null)
+                    //{
+                    //    dgvModuleOutput.CurrentCell =
+                    //        dgvModuleOutput
+                    //        .Rows[dgvModuleOutput.Rows.Count - 2]
+                    //        .Cells[dgvModuleOutput.CurrentCell.ColumnIndex];
+                    //}
+                }
+            }
+        }
     }
 }

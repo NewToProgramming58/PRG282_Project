@@ -617,7 +617,7 @@
             this.pnlModuleStudents.Controls.Add(this.textBox3);
             this.pnlModuleStudents.Controls.Add(this.textBox4);
             this.pnlModuleStudents.Controls.Add(this.textBox5);
-            this.pnlModuleStudents.Location = new System.Drawing.Point(526, 3);
+            this.pnlModuleStudents.Location = new System.Drawing.Point(526, 0);
             this.pnlModuleStudents.Name = "pnlModuleStudents";
             this.pnlModuleStudents.Size = new System.Drawing.Size(311, 335);
             this.pnlModuleStudents.TabIndex = 16;
@@ -823,6 +823,7 @@
             // 
             this.txtModuleCode.Location = new System.Drawing.Point(127, 33);
             this.txtModuleCode.Name = "txtModuleCode";
+            this.txtModuleCode.ReadOnly = true;
             this.txtModuleCode.Size = new System.Drawing.Size(172, 20);
             this.txtModuleCode.TabIndex = 0;
             // 
@@ -848,6 +849,7 @@
             this.btnModuleDelete.TabIndex = 13;
             this.btnModuleDelete.Text = "Delete Record";
             this.btnModuleDelete.UseVisualStyleBackColor = true;
+            this.btnModuleDelete.Click += new System.EventHandler(this.btnModuleDelete_Click);
             // 
             // btnModuleUpdate
             // 
@@ -857,6 +859,7 @@
             this.btnModuleUpdate.TabIndex = 12;
             this.btnModuleUpdate.Text = "Update Record";
             this.btnModuleUpdate.UseVisualStyleBackColor = true;
+            this.btnModuleUpdate.Click += new System.EventHandler(this.btnModuleUpdate_Click);
             // 
             // btnModuleInsert
             // 
@@ -866,6 +869,7 @@
             this.btnModuleInsert.TabIndex = 11;
             this.btnModuleInsert.Text = "Add Record";
             this.btnModuleInsert.UseVisualStyleBackColor = true;
+            this.btnModuleInsert.Click += new System.EventHandler(this.btnModuleInsert_Click);
             // 
             // btnModuleRead
             // 
@@ -875,6 +879,7 @@
             this.btnModuleRead.TabIndex = 10;
             this.btnModuleRead.Text = "Reload";
             this.btnModuleRead.UseVisualStyleBackColor = true;
+            this.btnModuleRead.Click += new System.EventHandler(this.btnModuleRead_Click);
             // 
             // dgvModuleOutput
             // 

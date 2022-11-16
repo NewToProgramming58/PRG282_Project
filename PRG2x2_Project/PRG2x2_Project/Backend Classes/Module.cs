@@ -25,13 +25,13 @@ namespace PRG2x2_Project
         public string Update()
         {
             return $"UPDATE Module\n" +
-                $"SET [Module Name] = '{name}', [Module Description] = '{Description}'\n" +
-                $"WHERE [Module Code] = '{Code}]";
+                $"SET [Module Name] = '{Name}', [Module Description] = '{Description}'\n" +
+                $"WHERE [Module Code] = '{Code}'";
         }
         public string Insert()
         {
             return $"INSERT INTO Module\n" +
-                $"VALUES ('{Code}', '{Name}', '{Description}')'";
+                $"VALUES ('{Code}', '{Name}', '{Description}')";
         }
     }
 }

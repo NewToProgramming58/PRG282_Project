@@ -172,7 +172,7 @@ namespace PRG2x2_Project
             {
                 qry = tableObject.Update();
             }
-
+            MessageBox.Show(qry);
             SqlCommand cmd = new SqlCommand(qry, Con);
             Con.Open();
             cmd.ExecuteNonQuery();
@@ -183,11 +183,20 @@ namespace PRG2x2_Project
         {
             string tableName = ((Tables)table).ToString();
             string qry;
+            SqlCommand command;
             switch (table) 
             { 
                 case Tables.Student:
                     qry = $"DELETE FROM StudentModules {condition}\n";
-                    SqlCommand command = new SqlCommand(qry, this.Con);
+                    command = new SqlCommand(qry, this.Con);
+                    Con.Open();
+                    command.ExecuteNonQuery();
+                    Con.Close();
+                    break;
+
+                case Tables.Module:
+                    qry = $"DELETE FROM [Resource] {condition}\n";
+                    command = new SqlCommand(qry, this.Con);
                     Con.Open();
                     command.ExecuteNonQuery();
                     Con.Close();
