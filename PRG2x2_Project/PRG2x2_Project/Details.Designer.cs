@@ -848,7 +848,7 @@
             this.btnModuleRead.Name = "btnModuleRead";
             this.btnModuleRead.Size = new System.Drawing.Size(91, 23);
             this.btnModuleRead.TabIndex = 10;
-            this.btnModuleRead.Text = "Read";
+            this.btnModuleRead.Text = "Reload";
             this.btnModuleRead.UseVisualStyleBackColor = true;
             // 
             // dgvModuleOutput
