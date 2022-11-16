@@ -186,7 +186,15 @@ namespace PRG2x2_Project
             }
             else
             {
-                dgvStudentOutput.DataSource = handler.GetData(Tables.Student, handler.addCondition("Student Number", Operator.Like, int.Parse(txtStudentSearch.Text)));
+                DataTable dt = handler.GetData(Tables.Student, handler.addCondition("Student Number", Operator.Like, int.Parse(txtStudentSearch.Text)));
+                if (dt.Rows.Count > 0)
+                {
+                    dgvStudentOutput.DataSource = dt;
+                }
+                else
+                {
+                    MessageBox.Show("No students found", "Search Results", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 
