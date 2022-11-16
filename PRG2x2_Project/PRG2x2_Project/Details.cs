@@ -181,8 +181,16 @@ namespace PRG2x2_Project
         private void btnStudentSearch_Click(object sender, EventArgs e)
         {
             if (StudentModules)
-            {
-                //Student Modules///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            {////////////////////////////////////////////////////////////////////////////////////////////////
+                DataTable dt = handler.GetData(Tables.StudentModuleDetails, handler.addCondition("Module Code", Operator.Like, txtStudentSearch.Text));
+                if (dt.Rows.Count > 0)
+                {
+                    dgvStudentOutput.DataSource = dt;
+                }
+                else
+                {
+                    MessageBox.Show("No modules found", "Search Results", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             else
             {
@@ -310,6 +318,9 @@ namespace PRG2x2_Project
         public void ShowStudent()
         {
             StudentModules = false;
+            ModuleResources = false;
+            ModuleStudents = false;
+
             tbcDetails.SelectTab(0);
             dgvStudentOutput.DataSource = handler.GetData(Tables.Student);
             if (dgvStudentOutput.Rows.Count > 0)
@@ -324,7 +335,8 @@ namespace PRG2x2_Project
         public void ShowStudentModules()
         {
             StudentModules = true;
-            // DISPLAY Module code, module name, module description, status////////////////////////////////////////////////////
+            Student student = new Student(int.Parse(dgvStudentOutput.SelectedRows[0].Cells[0].Value.ToString()));
+            dgvStudentOutput.DataSource = handler.GetData(Tables.StudentModuleDetails, "", student);
             if (dgvStudentOutput.Rows.Count > 0)
             {
                 dgvStudentOutput.Rows[0].Selected = true;
@@ -336,13 +348,15 @@ namespace PRG2x2_Project
 
         public void ShowModule()
         {
+            ModuleStudents = false;
+            ModuleResources = false;
+            StudentModules = false;
+
             dgvModuleOutput.DataSource = handler.GetData(Tables.Module);
             if (dgvModuleOutput.Rows.Count > 0)
             {
                 dgvModuleOutput.Rows[0].Selected = true;
             }
-            ModuleStudents = false;
-            ModuleResources = false;
             //Panels///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             pnlModule.Show();
             pnlModuleStudents.Hide();

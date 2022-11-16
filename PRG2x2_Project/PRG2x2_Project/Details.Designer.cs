@@ -38,7 +38,6 @@
             this.btnStudentFirst = new System.Windows.Forms.Button();
             this.pnlStudentModules = new System.Windows.Forms.Panel();
             this.rtbStudentModuleDescription = new System.Windows.Forms.RichTextBox();
-            this.cboStudentModuleStatus = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -114,6 +113,7 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.rtbModuleTutorial = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.cboStudentModuleStatus = new System.Windows.Forms.ComboBox();
             this.tbcDetails.SuspendLayout();
             this.tpgStudents.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -177,48 +177,48 @@
             // 
             // btnStudentLast
             // 
-            this.btnStudentLast.Location = new System.Drawing.Point(2, 404);
+            this.btnStudentLast.Location = new System.Drawing.Point(334, 404);
             this.btnStudentLast.Name = "btnStudentLast";
             this.btnStudentLast.Size = new System.Drawing.Size(75, 23);
             this.btnStudentLast.TabIndex = 54;
-            this.btnStudentLast.Text = "Last";
+            this.btnStudentLast.Text = ">>";
             this.btnStudentLast.UseVisualStyleBackColor = true;
             this.btnStudentLast.Click += new System.EventHandler(this.btnStudentLast_Click);
             // 
             // btnStudentPrevious
             // 
-            this.btnStudentPrevious.Location = new System.Drawing.Point(80, 404);
+            this.btnStudentPrevious.Location = new System.Drawing.Point(172, 404);
             this.btnStudentPrevious.Name = "btnStudentPrevious";
             this.btnStudentPrevious.Size = new System.Drawing.Size(75, 23);
             this.btnStudentPrevious.TabIndex = 53;
-            this.btnStudentPrevious.Text = "Previous";
+            this.btnStudentPrevious.Text = "<";
             this.btnStudentPrevious.UseVisualStyleBackColor = true;
             this.btnStudentPrevious.Click += new System.EventHandler(this.btnStudentPrevious_Click);
             // 
             // btnStudentNext
             // 
-            this.btnStudentNext.Location = new System.Drawing.Point(360, 404);
+            this.btnStudentNext.Location = new System.Drawing.Point(253, 404);
             this.btnStudentNext.Name = "btnStudentNext";
             this.btnStudentNext.Size = new System.Drawing.Size(75, 23);
             this.btnStudentNext.TabIndex = 52;
-            this.btnStudentNext.Text = "Next";
+            this.btnStudentNext.Text = ">";
             this.btnStudentNext.UseVisualStyleBackColor = true;
             this.btnStudentNext.Click += new System.EventHandler(this.btnStudentNext_Click);
             // 
             // btnStudentFirst
             // 
-            this.btnStudentFirst.Location = new System.Drawing.Point(441, 404);
+            this.btnStudentFirst.Location = new System.Drawing.Point(91, 404);
             this.btnStudentFirst.Name = "btnStudentFirst";
             this.btnStudentFirst.Size = new System.Drawing.Size(75, 23);
             this.btnStudentFirst.TabIndex = 51;
-            this.btnStudentFirst.Text = "First";
+            this.btnStudentFirst.Text = "<<";
             this.btnStudentFirst.UseVisualStyleBackColor = true;
             this.btnStudentFirst.Click += new System.EventHandler(this.btnStudentFirst_Click);
             // 
             // pnlStudentModules
             // 
-            this.pnlStudentModules.Controls.Add(this.rtbStudentModuleDescription);
             this.pnlStudentModules.Controls.Add(this.cboStudentModuleStatus);
+            this.pnlStudentModules.Controls.Add(this.rtbStudentModuleDescription);
             this.pnlStudentModules.Controls.Add(this.label15);
             this.pnlStudentModules.Controls.Add(this.label14);
             this.pnlStudentModules.Controls.Add(this.label13);
@@ -234,17 +234,10 @@
             // 
             this.rtbStudentModuleDescription.Location = new System.Drawing.Point(127, 91);
             this.rtbStudentModuleDescription.Name = "rtbStudentModuleDescription";
+            this.rtbStudentModuleDescription.ReadOnly = true;
             this.rtbStudentModuleDescription.Size = new System.Drawing.Size(172, 47);
             this.rtbStudentModuleDescription.TabIndex = 9;
             this.rtbStudentModuleDescription.Text = "";
-            // 
-            // cboStudentModuleStatus
-            // 
-            this.cboStudentModuleStatus.FormattingEnabled = true;
-            this.cboStudentModuleStatus.Location = new System.Drawing.Point(127, 150);
-            this.cboStudentModuleStatus.Name = "cboStudentModuleStatus";
-            this.cboStudentModuleStatus.Size = new System.Drawing.Size(77, 21);
-            this.cboStudentModuleStatus.TabIndex = 8;
             // 
             // label15
             // 
@@ -277,6 +270,7 @@
             // 
             this.txtStudentModuleName.Location = new System.Drawing.Point(127, 59);
             this.txtStudentModuleName.Name = "txtStudentModuleName";
+            this.txtStudentModuleName.ReadOnly = true;
             this.txtStudentModuleName.Size = new System.Drawing.Size(172, 20);
             this.txtStudentModuleName.TabIndex = 2;
             // 
@@ -980,6 +974,18 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Module Details";
             // 
+            // cboStudentModuleStatus
+            // 
+            this.cboStudentModuleStatus.FormattingEnabled = true;
+            this.cboStudentModuleStatus.Items.AddRange(new object[] {
+            "Pass",
+            "Ongoing",
+            "Fail"});
+            this.cboStudentModuleStatus.Location = new System.Drawing.Point(127, 149);
+            this.cboStudentModuleStatus.Name = "cboStudentModuleStatus";
+            this.cboStudentModuleStatus.Size = new System.Drawing.Size(91, 21);
+            this.cboStudentModuleStatus.TabIndex = 10;
+            // 
             // Details
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1072,7 +1078,6 @@
         private System.Windows.Forms.TextBox txtStudentPhone;
         private System.Windows.Forms.Panel pnlStudentModules;
         private System.Windows.Forms.RichTextBox rtbStudentModuleDescription;
-        private System.Windows.Forms.ComboBox cboStudentModuleStatus;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
@@ -1111,5 +1116,6 @@
         private System.Windows.Forms.Button btnStudentPrevious;
         private System.Windows.Forms.Button btnStudentNext;
         private System.Windows.Forms.Button btnStudentFirst;
+        private System.Windows.Forms.ComboBox cboStudentModuleStatus;
     }
 }

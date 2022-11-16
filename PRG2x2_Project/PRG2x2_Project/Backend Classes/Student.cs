@@ -26,6 +26,11 @@ namespace PRG2x2_Project.Properties
         public string Image { get => image; set => image = value; }
         public string Gender { get => gender; set => gender = value; }
 
+        public Student(int number)
+        {
+            Number = number;
+        }
+
         public Student(int number, string name, string surname, DateTime dob, string gender, string phone, string address, string image)
         {
             Number = number;
