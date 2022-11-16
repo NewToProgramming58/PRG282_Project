@@ -172,7 +172,6 @@ namespace PRG2x2_Project
             {
                 qry = tableObject.Update();
             }
-            MessageBox.Show(qry);
             SqlCommand cmd = new SqlCommand(qry, Con);
             Con.Open();
             cmd.ExecuteNonQuery();

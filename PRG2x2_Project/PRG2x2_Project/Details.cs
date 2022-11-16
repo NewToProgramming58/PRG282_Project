@@ -51,40 +51,43 @@ namespace PRG2x2_Project
         }
 
         private void btnStudentInsert_Click(object sender, EventArgs e)
-        {           
+        {
             if (StudentModules)
             {
                 // We have to make sure no duplicate modules are entered so we create a list and see if our newly added trecord is already in the list.
                 List<string> modules = new List<string>();
-                for (int i = 0; i < dgvStudentOutput.Rows.Count; i++)
+                for (int i = 0; i < dgvStudentOutput.Rows.Count - 1; i++)
                 {
                     modules.Add(dgvStudentOutput.Rows[i].Cells[0].Value.ToString());
                 }
 
-                if (true)
+                if (modules.Contains(cboStudentModuleCode.Text))
                 {
-
+                    MessageBox.Show("The Module already exists under this user, please try another one.", "Module", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-                StudentModule sm = new StudentModule(currentStudent, cboStudentModuleCode.Text, cboStudentModuleStatus.Text);
-
-                // Asks the user if he/she is sure.
-                DialogResult result = MessageBox.Show($"Are you sure you want to insert this record into StudentModules?\n\n" +
-                     $"Module Code: \t{cboStudentModuleCode.Text}\n" +
-                     $"Status: \t\t{cboStudentModuleStatus.Text}\n",
-                     "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-
-                // If yes, insert the record, refresh the datagridview, and select that newly inserted record.
-                if (result == DialogResult.Yes)
+                else
                 {
-                    handler.Insert(sm);
-                    ShowStudentModules();
-                    dgvStudentOutput.Rows[dgvStudentOutput.Rows.Count - 2].Selected = true;
-                    if (dgvStudentOutput.CurrentRow != null)
+                    StudentModule sm = new StudentModule(currentStudent, cboStudentModuleCode.Text, cboStudentModuleStatus.Text);
+
+                    // Asks the user if he/she is sure.
+                    DialogResult result = MessageBox.Show($"Are you sure you want to insert this record into StudentModules?\n\n" +
+                         $"Module Code: \t{cboStudentModuleCode.Text}\n" +
+                         $"Status: \t\t{cboStudentModuleStatus.Text}\n",
+                         "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                    // If yes, insert the record, refresh the datagridview, and select that newly inserted record.
+                    if (result == DialogResult.Yes)
                     {
-                        dgvStudentOutput.CurrentCell =
+                        handler.Insert(sm);
+                        ShowStudentModules();
+                        dgvStudentOutput.Rows[dgvStudentOutput.Rows.Count - 2].Selected = true;
+                        if (dgvStudentOutput.CurrentRow != null)
+                        {
+                            dgvStudentOutput.CurrentCell =
                             dgvStudentOutput
                             .Rows[dgvStudentOutput.Rows.Count - 2]
                             .Cells[dgvStudentOutput.CurrentCell.ColumnIndex];
+                        }
                     }
                 }
             }
@@ -96,12 +99,12 @@ namespace PRG2x2_Project
                 string base64ImageRepresentation = Convert.ToBase64String(imageArray);
 
                 // Reads the values.
-                Student st = new Student( 
-                    txtStudentName.Text, 
-                    txtStudentSurname.Text, 
-                    dtpStudentDate.Value, 
+                Student st = new Student(
+                    txtStudentName.Text,
+                    txtStudentSurname.Text,
+                    dtpStudentDate.Value,
                     cboStudentGender.Text,
-                    txtStudentPhone.Text, 
+                    txtStudentPhone.Text,
                     rtbStudentAddress.Text,
                     base64ImageRepresentation);
 
@@ -112,7 +115,7 @@ namespace PRG2x2_Project
                     $"Date of Birth: \t{dtpStudentDate.Value.ToString("yyyy/MM/dd")}\n" +
                     $"Gender: \t\t{cboStudentGender.Text}\n" +
                     $"Phone: \t\t{txtStudentPhone.Text}\n" +
-                    $"Address: \t\t{rtbStudentAddress.Text}", 
+                    $"Address: \t\t{rtbStudentAddress.Text}",
                     "Insert", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
                 // If yes, insert the record, refresh the datagridview, and select that newly inserted record.
@@ -175,22 +178,22 @@ namespace PRG2x2_Project
                 }
             }
             else
-            {////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            {
                 // Converts our image to a format that can be used in SQL server.
                 ptbStudentImage.Image.Save(@"image.png", ImageFormat.Png);
                 byte[] imageArray = System.IO.File.ReadAllBytes(@"image");
                 string base64ImageRepresentation = Convert.ToBase64String(imageArray);
 
                 // Reads the values.
-                Student st = new Student(int.Parse(txtStudentNumber.Text), 
-                    txtStudentName.Text, 
-                    txtStudentSurname.Text, 
+                Student st = new Student(int.Parse(txtStudentNumber.Text),
+                    txtStudentName.Text,
+                    txtStudentSurname.Text,
                     dtpStudentDate.Value,
                     cboStudentGender.Text,
-                    txtStudentPhone.Text, 
+                    txtStudentPhone.Text,
                     rtbStudentAddress.Text,
                     base64ImageRepresentation);
-                
+
 
                 // Asks the user if he/she is sure.
                 DialogResult result = MessageBox.Show($"Are you sure you want to update this record from Students?\n\n" +
@@ -199,7 +202,7 @@ namespace PRG2x2_Project
                     $"Date of Birth: \t{DateTime.Parse(dgvStudentOutput.SelectedRows[0].Cells[3].Value.ToString()).ToString("yyyy/MM/dd")} TO {dtpStudentDate.Value.ToString("yyyy/MM/dd")}\n" +
                     $"Gender: \t\t{dgvStudentOutput.SelectedRows[0].Cells[4].Value} TO {cboStudentGender.Text}\n" +
                     $"Phone: \t\t{dgvStudentOutput.SelectedRows[0].Cells[5].Value} TO {txtStudentPhone.Text}\n" +
-                    $"Address: \t\t{dgvStudentOutput.SelectedRows[0].Cells[6].Value} TO {rtbStudentAddress.Text}", 
+                    $"Address: \t\t{dgvStudentOutput.SelectedRows[0].Cells[6].Value} TO {rtbStudentAddress.Text}",
                     "Update", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
                 // If yes, insert the record, refresh the datagridview, and select that newly inserted record.
@@ -223,7 +226,7 @@ namespace PRG2x2_Project
         private void btnStudentDelete_Click(object sender, EventArgs e)
         {
             if (StudentModules)
-            { 
+            {
                 DialogResult result = MessageBox.Show($"Are you sure you want to delete this record from StudentModules?\n\n" +
                   $"Module Code: \t{dgvStudentOutput.SelectedRows[0].Cells[0].Value}\n" +
                   $"Name: \t\t{dgvStudentOutput.SelectedRows[0].Cells[1].Value}\n" +
@@ -410,7 +413,7 @@ namespace PRG2x2_Project
             }
             pnlStudent.Show();
             pnlStudentModules.Hide();
-            lblStudentSearch.Text = "Student Number:";
+            pnlStudentSearch.Show();
         }
 
         public void ShowStudentModules()
@@ -428,7 +431,7 @@ namespace PRG2x2_Project
             }
             pnlStudentModules.Show();
             pnlStudent.Hide();
-            lblStudentSearch.Text = "Module code:";
+            pnlStudentSearch.Hide();
         }
 
         public void ShowModule()

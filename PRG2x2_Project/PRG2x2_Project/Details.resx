@@ -161,4 +161,26 @@
         SUVORK5CYII=
 </value>
   </data>
+  <data name="rtbStudentTutorial.Text" xml:space="preserve">
+    <value>Welcome to the student form! Scroll here if you need any help.
+
+-The tabs on the top left each have a page that allows users to 
+  either edit Students and their details or Modules and their details. 
+  This is the Student form. To change the Modules and their details 
+  go to the Modules tab.
+
+-To select a record, simply click on it and its data will be displayed 
+  or use the navigation buttons on the bottom left.
+
+-To make changes to a selected record, change the values on the
+  right-hand side as needed and select one of the buttons on the
+  bottom right to apply changes.
+
+-To View and Edit the Modules that a Student has, double-click 
+  the student record. Then you can apply changes just like you can
+  with Students to his/her modules.
+
+-To go back to the Student records or refresh the page, select the
+  reload button.</value>
+  </data>
 </root>

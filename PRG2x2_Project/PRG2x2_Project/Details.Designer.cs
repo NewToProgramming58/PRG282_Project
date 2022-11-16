@@ -556,12 +556,11 @@
             // 
             // rtbStudentTutorial
             // 
-            this.rtbStudentTutorial.Location = new System.Drawing.Point(201, 6);
+            this.rtbStudentTutorial.Location = new System.Drawing.Point(201, 0);
             this.rtbStudentTutorial.Name = "rtbStudentTutorial";
-            this.rtbStudentTutorial.Size = new System.Drawing.Size(340, 54);
+            this.rtbStudentTutorial.Size = new System.Drawing.Size(340, 71);
             this.rtbStudentTutorial.TabIndex = 1;
-            this.rtbStudentTutorial.Text = "Welcome to the student form!\n\n-To select a record, simply click on it and its dat" +
-    "a will be displayed";
+            this.rtbStudentTutorial.Text = resources.GetString("rtbStudentTutorial.Text");
             // 
             // label1
             // 
