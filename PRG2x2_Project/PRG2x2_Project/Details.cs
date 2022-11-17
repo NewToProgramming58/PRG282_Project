@@ -484,15 +484,6 @@ namespace PRG2x2_Project
                 {
                     handler.Insert(resource);
                     ShowModuleDetails(false);
-                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    //dgvModuleOutput.Rows[dgvModuleOutput.Rows.Count - 2].Selected = true;
-                    //if (dgvModuleOutput.CurrentRow != null)
-                    //{
-                    //    dgvModuleOutput.CurrentCell =
-                    //        dgvModuleOutput
-                    //        .Rows[dgvModuleOutput.Rows.Count - 2]
-                    //        .Cells[dgvModuleOutput.CurrentCell.ColumnIndex];
-                    //}
                 }
             }
             else if (ModuleStudents)
@@ -510,15 +501,6 @@ namespace PRG2x2_Project
                 {
                     handler.Insert(sm);
                     ShowModuleDetails(true);
-                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    //dgvModuleOutput.Rows[dgvModuleOutput.Rows.Count - 2].Selected = true;
-                    //if (dgvModuleOutput.CurrentRow != null)
-                    //{
-                    //    dgvModuleOutput.CurrentCell =
-                    //        dgvModuleOutput
-                    //        .Rows[dgvModuleOutput.Rows.Count - 2]
-                    //        .Cells[dgvModuleOutput.CurrentCell.ColumnIndex];
-                    //}
                 }
             }
             else
@@ -538,15 +520,6 @@ namespace PRG2x2_Project
                 {
                     handler.Insert(module);
                     ShowModule();
-                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    //dgvModuleOutput.Rows[dgvModuleOutput.Rows.Count - 2].Selected = true;
-                    //if (dgvModuleOutput.CurrentRow != null)
-                    //{
-                    //    dgvModuleOutput.CurrentCell =
-                    //        dgvModuleOutput
-                    //        .Rows[dgvModuleOutput.Rows.Count - 2]
-                    //        .Cells[dgvModuleOutput.CurrentCell.ColumnIndex];
-                    //}
                 }
             }
         }
@@ -578,6 +551,35 @@ namespace PRG2x2_Project
                     int index = dgvModuleOutput.SelectedRows[0].Index;
 
                     ShowModuleDetails(false);
+                    dgvModuleOutput.Rows[index].Selected = true;
+                    if (dgvModuleOutput.CurrentRow != null)
+                    {
+                        dgvModuleOutput.CurrentCell =
+                            dgvModuleOutput
+                            .Rows[index]
+                            .Cells[dgvModuleOutput.CurrentCell.ColumnIndex];
+                    }
+                }
+            }
+            else if (ModuleStudents) 
+            {
+                // Reads the values.
+                StudentModule studentModule = new StudentModule(int.Parse(dgvModuleOutput.SelectedRows[0].Cells[0].Value.ToString()), currentModule, cboModuleStudentStatus.Text);
+                // Asks the user if he/she is sure.
+                DialogResult result = MessageBox.Show($"Are you sure you want to update this record drom Student Modules?\n\n" +
+                $"Student Number: \t{studentModule.StudentNumber}\n" +
+                $"Module Code: \t{currentModule}\n" +
+                $"Status: \t\t{dgvModuleOutput.SelectedRows[0].Cells[3].Value} TO {studentModule.Status}",
+                "Update", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                // If yes, insert the record, refresh the datagridview, and select that newly inserted record.
+                if (result == DialogResult.Yes)
+                {
+                    handler.Update(studentModule);
+
+                    int index = dgvModuleOutput.SelectedRows[0].Index;
+
+                    ShowModuleDetails(true);
                     dgvModuleOutput.Rows[index].Selected = true;
                     if (dgvModuleOutput.CurrentRow != null)
                     {
