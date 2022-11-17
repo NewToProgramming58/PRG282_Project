@@ -308,14 +308,21 @@ namespace PRG2x2_Project
         //SEARCH
         private void btnStudentSearch_Click(object sender, EventArgs e)
         {
-            DataTable dt = handler.GetData(Tables.Student, handler.addCondition("Student Number", Operator.Like, int.Parse(txtStudentSearch.Text)));
-            if (dt.Rows.Count > 0)
+            try
             {
-                dgvStudentOutput.DataSource = dt;
+                DataTable dt = handler.GetData(Tables.Student, handler.addCondition("Student Number", Operator.Like, int.Parse(txtStudentSearch.Text)));
+                if (dt.Rows.Count > 0)
+                {
+                    dgvStudentOutput.DataSource = dt;
+                }
+                else
+                {
+                    MessageBox.Show("No students found", "Search Results", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            else
+            catch (Exception)
             {
-                MessageBox.Show("No students found", "Search Results", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("The searched value must be a number", "Search Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
