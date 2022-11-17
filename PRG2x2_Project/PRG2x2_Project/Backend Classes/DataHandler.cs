@@ -221,5 +221,14 @@ namespace PRG2x2_Project
          
             Con.Close();
         }
-    }
+        private void HandleExeption(SqlException e) 
+        {
+            switch (e.Number) 
+            {
+                case 2627:
+                    MessageBox.Show($"This record already exits, try updating it", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    break;
+            }
+        }
+    }   
 }
