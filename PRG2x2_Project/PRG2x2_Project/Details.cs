@@ -915,6 +915,11 @@ namespace PRG2x2_Project
                     currentModule = dgvModuleOutput.SelectedRows[0].Cells[0].Value.ToString();
                 }
                 dgvModuleOutput.DataSource = handler.GetData(table: Tables.StudentModules, code: currentModule, tableObject: new StudentModule(currentModule));
+
+                pnlModuleSearch.Hide();
+                pnlModuleResources.Hide();
+                pnlModule.Hide();
+                pnlModuleStudents.Show();
             }
             else
             {
@@ -923,13 +928,12 @@ namespace PRG2x2_Project
                     currentModule = dgvModuleOutput.SelectedRows[0].Cells[0].Value.ToString();
                 }
                 dgvModuleOutput.DataSource = handler.GetData(Tables.Resource, handler.addCondition("Module Code", Operator.Equals, txtModuleCode.Text));
-                DataTable dt = handler.GetData(Tables.Module);                
-            }
 
-            pnlModuleSearch.Hide();
-            pnlModuleResources.Show();
-            pnlModule.Hide();
-            pnlModuleStudents.Hide();
+                pnlModuleSearch.Hide();
+                pnlModuleResources.Show();
+                pnlModule.Hide();
+                pnlModuleStudents.Hide();
+            }
 
             lblModuleFor.Visible = true;
             lblStudentFor.Text = "";

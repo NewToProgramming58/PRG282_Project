@@ -117,6 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="rtbModuleTutorial.Text" xml:space="preserve">
+    <value>Welcome to the Module form! Scroll here if you need any help.
+
+-The tabs on the top left each have a page that allows users to 
+  either edit Students and their details or Modules and their details. 
+  This is the Module form. To change the Students and their details 
+  go to the Students tab.
+
+-To select a record, simply click on it and its data will be displayed 
+  or use the navigation buttons on the bottom left.
+
+-To make changes to a selected record, change the values on the
+  right-hand side as needed and select one of the buttons on the
+  bottom right to apply changes.
+
+-To View and Edit the Students or Resources that a Module has, 
+  double-click the Module record. It will ask you wether you want 
+  to view and edit the Resources or Students of the Module. Select
+  the appropriate one and edit or view as needed.
+
+-To go back to the Module records or refresh the page, select the
+  reload button.</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="ptbStudentImage.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -181,29 +204,6 @@
   with Students to his/her modules.
 
 -To go back to the Student records or refresh the page, select the
-  reload button.</value>
-  </data>
-  <data name="rtbModuleTutorial.Text" xml:space="preserve">
-    <value>Welcome to the Module form! Scroll here if you need any help.
-
--The tabs on the top left each have a page that allows users to 
-  either edit Students and their details or Modules and their details. 
-  This is the Module form. To change the Students and their details 
-  go to the Students tab.
-
--To select a record, simply click on it and its data will be displayed 
-  or use the navigation buttons on the bottom left.
-
--To make changes to a selected record, change the values on the
-  right-hand side as needed and select one of the buttons on the
-  bottom right to apply changes.
-
--To View and Edit the Students or Resources that a Module has, 
-  double-click the Module record. It will ask you wether you want 
-  to view and edit the Resources or Students of the Module. Select
-  the appropriate one and edit or view as needed.
-
--To go back to the Module records or refresh the page, select the
   reload button.</value>
   </data>
 </root>
