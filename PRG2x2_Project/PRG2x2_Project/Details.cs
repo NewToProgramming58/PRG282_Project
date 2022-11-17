@@ -842,7 +842,11 @@ namespace PRG2x2_Project
             if (student)
             {////////////////////////////////////////////////////////////////////DETAILS
                 ModuleStudents = true;
-                dgvModuleOutput.DataSource = handler.GetData(Tables.StudentModules, handler.addCondition("Module Code", Operator.Equals, txtModuleCode.Text));
+                if (currentModule == "")
+                {
+                    currentModule = dgvModuleOutput.SelectedRows[0].Cells[0].Value.ToString();
+                }
+                dgvModuleOutput.DataSource = handler.GetData(table: Tables.StudentModules, code: currentModule);
                 pnlModuleStudents.Show();
                 pnlModule.Hide();
             }
