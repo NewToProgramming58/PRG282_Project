@@ -18,6 +18,8 @@ namespace PRG2x2_Project
         public bool StudentModules = false;
         public bool ModuleStudents = false;
         public bool ModuleResources = false;
+        public bool students = false;
+        public bool modules = false;
         int currentStudent = 0;
         string currentModule = "";
 
@@ -69,6 +71,11 @@ namespace PRG2x2_Project
         //INSERT
         private void btnStudentInsert_Click(object sender, EventArgs e)
         {
+            if (ValidateInput())
+            {
+                return;
+            }
+
             if (StudentModules)
             {
                 // We have to make sure no duplicate modules are entered so we create a list and see if our newly added trecord is already in the list.
@@ -161,6 +168,11 @@ namespace PRG2x2_Project
         //UPDATE
         private void btnStudentUpdate_Click(object sender, EventArgs e)
         {
+            if (ValidateInput())
+            {
+                return;
+            }
+
             if (StudentModules)
             {
                 int index = dgvStudentOutput.SelectedRows[0].Index;
@@ -307,8 +319,38 @@ namespace PRG2x2_Project
             }
         }
 
+        // This button allows us to upload an image to our picturebox.
+        private void btnStudentUploadFile_Click(object sender, EventArgs e)
+        {
+            // Create a OpenFileDialog so the user can browse their files.
+            OpenFileDialog fdl = new OpenFileDialog();
+            // Sets the initial place the openfiledialog starts searching for files.
+            fdl.InitialDirectory = @"C:\Users\jacqu\Pictures\";
+            fdl.Title = "Image Select";
+            // This filters it so only images of type jpeg, jpg, or png can be selected and seen.
+            fdl.Filter = "Image Files|*.jpg;*.jpeg;*.png;";
+            // If user enters a custom filename or path, it first checks if it exists.
+            fdl.CheckFileExists = true;
+            fdl.CheckPathExists = true;
+
+            if (fdl.ShowDialog() == DialogResult.OK)
+            {
+                ptbStudentImage.Image = Image.FromFile(fdl.FileName);
+            }
+        }
+
+        // Updates the richtextbox values when module code changes on StudentModules.
+        private void cboStudentModuleCode_TextChanged(object sender, EventArgs e)
+        {
+            DataTable dt = handler.GetData(Tables.Module, handler.addCondition("Module Code", Operator.Equals, cboStudentModuleCode.Text));
+            if (dt.Rows.Count > 0)
+            {
+                rtbModuleDetailStudent.Text = $"{dt.Rows[0][1]}\n\n{dt.Rows[0][2]}";
+            }
+        }
+
         //------------------------------------------------------------------------------------------------------------------------------------------
-        
+
         // Dynamically Updates the input values when selection changes.
         private void dgvStudentOutput_SelectionChanged(object sender, EventArgs e)
         {
@@ -365,7 +407,7 @@ namespace PRG2x2_Project
             {
                 dgvStudentOutput.CurrentCell =
                     dgvStudentOutput
-                    .Rows[dgvStudentOutput.Rows.Count - 2]
+                    .Rows[dgvStudentOutput.Rows.Count - 1]
                     .Cells[dgvStudentOutput.CurrentCell.ColumnIndex];
             }
         }
@@ -395,7 +437,7 @@ namespace PRG2x2_Project
 
         private void btnStudentNext_Click(object sender, EventArgs e)
         {
-            if (dgvStudentOutput.SelectedRows[0].Index < dgvStudentOutput.Rows.Count - 2)
+            if (dgvStudentOutput.SelectedRows[0].Index < dgvStudentOutput.Rows.Count - 1)
             {
                 dgvStudentOutput.CurrentCell = dgvStudentOutput.Rows[dgvStudentOutput.SelectedRows[0].Index + 1].Cells[0];
             }
@@ -407,164 +449,29 @@ namespace PRG2x2_Project
 
 //==================================================================================================================================================
 
-        // Dynamically Updates the input values when selection changes.
-        private void dgvModuleOutput_SelectionChanged(object sender, EventArgs e)
-        {
-            // There is a period when changing selection, when there is no record selected, which would give an error, so we test it.
-            if (dgvModuleOutput.SelectedRows.Count > 0)
-            {
-                // We make use of different inputs depending on what table is currently displayed on the datagridview.
-                // The Modules or their details regarding students or resources.
-                // We make use of ModuleStudents and ModuleResources to determine that.
-                if (ModuleStudents)
-                {//////////////////////////////////////////////////////////////////////////////////////////
-                    txtStudentNumber.Text = dgvStudentOutput.SelectedRows[0].Cells[0].Value.ToString();
-                    txtStudentName.Text = dgvStudentOutput.SelectedRows[0].Cells[1].Value.ToString();
-                    txtStudentSurname.Text = dgvStudentOutput.SelectedRows[0].Cells[2].Value.ToString();
-                    dtpStudentDate.Value = DateTime.Parse(dgvStudentOutput.SelectedRows[0].Cells[3].Value.ToString());
-                    cboStudentGender.Text = dgvStudentOutput.SelectedRows[0].Cells[4].Value.ToString();
-                    txtStudentPhone.Text = dgvStudentOutput.SelectedRows[0].Cells[5].Value.ToString();
-                    rtbStudentAddress.Text = dgvStudentOutput.SelectedRows[0].Cells[6].Value.ToString();
 
-                    // Convert the base 64 string to a stream and the stream to an image that can be displayed on the form.
-                    string imageBase = dgvStudentOutput.SelectedRows[0].Cells[7].Value.ToString();
-                    imageBase = imageBase.Substring(imageBase.IndexOf(",") + 1);
-                    byte[] bytes = Convert.FromBase64String(imageBase);
-                    using (MemoryStream ms = new MemoryStream(bytes))
-                    {
-                        ptbStudentImage.Image = Image.FromStream(ms);
-                    }
-                    lblModuleSearch.Text = "Student Number";
-                }
-                else if (ModuleResources)
-                {
-                    rtbModuleDescription.Text = dgvModuleOutput.SelectedRows[0].Cells[1].Value.ToString();
-                }
-                else
-                {
-                    txtModuleCode.Text = dgvModuleOutput.SelectedRows[0].Cells[0].Value.ToString();
-                    txtModuleName.Text = dgvModuleOutput.SelectedRows[0].Cells[1].Value.ToString();
-                    rtbModuleDescription.Text = dgvModuleOutput.SelectedRows[0].Cells[2].Value.ToString();
-                }
-            }
+// Operations on Module page
+//==================================================================================================================================================
+
+        //REFRESH
+        private void btnModuleRead_Click(object sender, EventArgs e)
+        {
+            ShowModule();
+            txtModuleSearch.Text = "";
         }
 
-        // Views Relationships when double clicking a field.
-        private void dgvModuleOutput_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            // When double clicking a module, a form is going to display to ask which details the user wants to see.
-            ModuleDetailOption moduleFrm = new ModuleDetailOption();
-            moduleFrm.Show();
-            moduleFrm.GetForm(this);
-            this.Enabled = false;
-        }
-
-        // Methods for changing what is displayed to the user, depending on what table is shown.
-        // This is because multiple types of tables are shown on a single form.
-        //===========================================================================================================================================
-        public void ShowStudent()
-        {
-            currentStudent = 0;
-            StudentModules = false;
-            ModuleResources = false;
-            ModuleStudents = false;
-
-            tbcDetails.SelectTab(0);
-            dgvStudentOutput.DataSource = handler.GetData(Tables.Student);
-            if (dgvStudentOutput.Rows.Count > 0)
-            {
-                dgvStudentOutput.Rows[0].Selected = true;
-            }
-            pnlStudent.Show();
-            pnlStudentModules.Hide();
-            pnlStudentSearch.Show();
-
-            dgvStudentOutput.Columns[dgvStudentOutput.Columns.Count - 1].Visible = false;
-        }
-
-        public void ShowStudentModules()
-        {
-            StudentModules = true;
-            if (currentStudent == 0)
-            {
-                currentStudent = int.Parse(dgvStudentOutput.SelectedRows[0].Cells[0].Value.ToString());
-            }
-            Student student = new Student(currentStudent);
-            dgvStudentOutput.DataSource = handler.GetData(Tables.StudentModuleDetails, "", student);
-            if (dgvStudentOutput.Rows.Count > 0)
-            {
-                dgvStudentOutput.Rows[0].Selected = true;
-            }
-            DataTable dt = handler.GetData(Tables.Module);           
-
-            cboStudentModuleCode.DataSource = dt;
-            cboStudentModuleCode.DisplayMember = "Module Code";
-            cboStudentModuleCode.ValueMember = "Module Code";           
-            pnlStudentModules.Show();
-            pnlStudent.Hide();
-            pnlStudentSearch.Hide();
-        }
-
-        public void ShowModule()
-        {
-            currentModule = "";
-            ModuleStudents = false;
-            ModuleResources = false;
-            StudentModules = false;
-
-            dgvModuleOutput.DataSource = handler.GetData(Tables.Module);
-            if (dgvModuleOutput.Rows.Count > 0)
-            {
-                dgvModuleOutput.Rows[0].Selected = true;
-            }
-            pnlModule.Show();
-            pnlModuleStudents.Hide();
-            pnlModuleResources.Hide();
-        }
-
-        public void ShowModuleDetails(bool student)
-        {
-            // When Details are shown it has to determine which details to show, Students or Resources.
-            // For this we make use of student.
-            ModuleStudents = false;
-            ModuleResources = false;
-            StudentModules = false;
-
-            if (student)
-            {////////////////////////////////////////////////////////////////////DETAILS
-                ModuleStudents = true;
-                dgvModuleOutput.DataSource = handler.GetData(Tables.StudentModules, handler.addCondition("Module Code", Operator.Equals, txtModuleCode.Text));
-                pnlModuleStudents.Show();
-                pnlModule.Hide();
-            }
-            else
-            {/////////////////////////////////////////////////////////////////////DETAILS
-                ModuleResources = true;
-                if (currentModule == "") {
-                    currentModule = dgvModuleOutput.SelectedRows[0].Cells[0].Value.ToString();
-                }
-                dgvModuleOutput.DataSource = handler.GetData(Tables.Resource, handler.addCondition("Module Code", Operator.Equals, txtModuleCode.Text));
-                DataTable dt = handler.GetData(Tables.Module);                
-                pnlModuleResources.Show();
-                pnlModule.Hide();
-            }
-        }
-//===========================================================================================================================================
-        private void cboStudentModuleCode_TextChanged(object sender, EventArgs e)
-        {
-            DataTable dt = handler.GetData(Tables.Module, handler.addCondition("Module Code", Operator.Equals, cboStudentModuleCode.Text));
-            if (dt.Rows.Count > 0)
-            {
-                rtbModuleDetailStudent.Text = $"{dt.Rows[0][1]}\n\n{dt.Rows[0][2]}";
-            }
-        }
-
+        //INSERT
         private void btnModuleInsert_Click(object sender, EventArgs e)
         {
+            if (ValidateInput())
+            {
+                return;
+            }
+
             if (ModuleResources)
             {
                 // Reads the values.
-                Resource resource = new Resource(rtbModuleResource.Text,currentModule);
+                Resource resource = new Resource(rtbModuleResource.Text, currentModule);
 
                 // Asks the user if he/she is sure.
                 DialogResult result = MessageBox.Show($"Are you sure you want to insert this record into Resources?\n\n" +
@@ -618,8 +525,14 @@ namespace PRG2x2_Project
             }
         }
 
+        //UPDATE
         private void btnModuleUpdate_Click(object sender, EventArgs e)
         {
+            if (ValidateInput())
+            {
+                return;
+            }
+
             if (ModuleResources)
             {
                 // Reads the values.
@@ -628,7 +541,7 @@ namespace PRG2x2_Project
                 // Asks the user if he/she is sure.
                 DialogResult result = MessageBox.Show($"Are you sure you want to update this record from Modules?\n\n" +
                 $"Module Code: \t{resource.Code}\n" +
-                $"Resource: \n\n{dgvModuleOutput.SelectedRows[0].Cells[1].Value}\n\nTO\n\n{resource.Coderesource}",             
+                $"Resource: \n\n{dgvModuleOutput.SelectedRows[0].Cells[1].Value}\n\nTO\n\n{resource.Coderesource}",
                 "Update", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
                 // If yes, insert the record, refresh the datagridview, and select that newly inserted record.
@@ -658,7 +571,7 @@ namespace PRG2x2_Project
                 DialogResult result = MessageBox.Show($"Are you sure you want to update this record from Modules?\n\n" +
                 $"Module Code: \t{dgvModuleOutput.SelectedRows[0].Cells[0].Value} TO {module.Code}\n" +
                 $"Name: \t{dgvModuleOutput.SelectedRows[0].Cells[1].Value} TO {module.Name}\n\n" +
-                $"Description: \n{dgvModuleOutput.SelectedRows[0].Cells[2].Value}\n\nTO\n\n{module.Description}",            
+                $"Description: \n{dgvModuleOutput.SelectedRows[0].Cells[2].Value}\n\nTO\n\n{module.Description}",
                 "Update", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
                 // If yes, insert the record, refresh the datagridview, and select that newly inserted record.
@@ -667,8 +580,8 @@ namespace PRG2x2_Project
                     handler.Update(module);
 
                     int index = dgvModuleOutput.SelectedRows[0].Index;
-                    
-                    ShowModule();                   
+
+                    ShowModule();
                     dgvModuleOutput.Rows[index].Selected = true;
                     if (dgvModuleOutput.CurrentRow != null)
                     {
@@ -681,12 +594,7 @@ namespace PRG2x2_Project
             }
         }
 
-        private void btnModuleRead_Click(object sender, EventArgs e)
-        {
-            ShowModule();
-            txtModuleSearch.Text = "";
-        }
-
+        //DELETE
         private void btnModuleDelete_Click(object sender, EventArgs e)
         {
             if (ModuleResources)
@@ -697,7 +605,7 @@ namespace PRG2x2_Project
                 // Asks the user if he/she is sure.
                 DialogResult result = MessageBox.Show($"Are you sure you want to delete this record from Resources?\n\n" +
                     $"Module Code: \t{resource.Code}\n" +
-                    $"Resource:\n\n{resource.Coderesource}"                    
+                    $"Resource:\n\n{resource.Coderesource}"
                     , "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
                 // If yes, insert the record, refresh the datagridview, and select that newly inserted record.
@@ -728,26 +636,7 @@ namespace PRG2x2_Project
             }
         }
 
-        // This button allows us to upload an image to our picturebox.
-        private void btnStudentUploadFile_Click(object sender, EventArgs e)
-        {
-            // Create a OpenFileDialog so the user can browse their files.
-            OpenFileDialog fdl = new OpenFileDialog();
-            // Sets the initial place the openfiledialog starts searching for files.
-            fdl.InitialDirectory = @"C:\Users\jacqu\Pictures\";
-            fdl.Title = "Image Select";
-            // This filters it so only images of type jpeg, jpg, or png can be selected and seen.
-            fdl.Filter = "Image Files|*.jpg;*.jpeg;*.png;";
-            // If user enters a custom filename or path, it first checks if it exists.
-            fdl.CheckFileExists = true;
-            fdl.CheckPathExists = true;
-
-            if (fdl.ShowDialog() == DialogResult.OK)
-            {
-                ptbStudentImage.Image = Image.FromFile(fdl.FileName);
-            }
-        }
-
+        //SEARCH
         private void btnModuleSearch_Click(object sender, EventArgs e)
         {
             DataTable dt = handler.GetData(Tables.Module, handler.addCondition("Module Code", Operator.Like, txtModuleSearch.Text));
@@ -759,6 +648,274 @@ namespace PRG2x2_Project
             {
                 MessageBox.Show("No Modules found", "Search Results", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        //-------------------------------------------------------------------------------------------------------------------------------------------------
+
+        // Dynamically Updates the input values when selection changes.
+        private void dgvModuleOutput_SelectionChanged(object sender, EventArgs e)
+        {
+            // There is a period when changing selection, when there is no record selected, which would give an error, so we test it.
+            if (dgvModuleOutput.SelectedRows.Count > 0)
+            {
+                // We make use of different inputs depending on what table is currently displayed on the datagridview.
+                // The Modules or their details regarding students or resources.
+                // We make use of ModuleStudents and ModuleResources to determine that.
+                if (ModuleStudents)
+                {//////////////////////////////////////////////////////////////////////////////////////////
+                    //txtStudentNumber.Text = dgvStudentOutput.SelectedRows[0].Cells[0].Value.ToString();
+                    //txtStudentName.Text = dgvStudentOutput.SelectedRows[0].Cells[1].Value.ToString();
+                    //txtStudentSurname.Text = dgvStudentOutput.SelectedRows[0].Cells[2].Value.ToString();
+                    //dtpStudentDate.Value = DateTime.Parse(dgvStudentOutput.SelectedRows[0].Cells[3].Value.ToString());
+                    //cboStudentGender.Text = dgvStudentOutput.SelectedRows[0].Cells[4].Value.ToString();
+                    //txtStudentPhone.Text = dgvStudentOutput.SelectedRows[0].Cells[5].Value.ToString();
+                    //rtbStudentAddress.Text = dgvStudentOutput.SelectedRows[0].Cells[6].Value.ToString();
+
+                    // Convert the base 64 string to a stream and the stream to an image that can be displayed on the form.
+                    string imageBase = dgvStudentOutput.SelectedRows[0].Cells[7].Value.ToString();
+                    imageBase = imageBase.Substring(imageBase.IndexOf(",") + 1);
+                    byte[] bytes = Convert.FromBase64String(imageBase);
+                    using (MemoryStream ms = new MemoryStream(bytes))
+                    {
+                        ptbStudentImage.Image = Image.FromStream(ms);
+                    }
+                    lblModuleSearch.Text = "Student Number";
+                }
+                else if (ModuleResources)
+                {
+                    rtbModuleDescription.Text = dgvModuleOutput.SelectedRows[0].Cells[1].Value.ToString();
+                }
+                else
+                {
+                    txtModuleCode.Text = dgvModuleOutput.SelectedRows[0].Cells[0].Value.ToString();
+                    txtModuleName.Text = dgvModuleOutput.SelectedRows[0].Cells[1].Value.ToString();
+                    rtbModuleDescription.Text = dgvModuleOutput.SelectedRows[0].Cells[2].Value.ToString();
+                }
+            }
+        }
+
+        // Views Relationships when double clicking a field.
+        private void dgvModuleOutput_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // When double clicking a module, a form is going to display to ask which details the user wants to see.
+            ModuleDetailOption moduleFrm = new ModuleDetailOption();
+            moduleFrm.Show();
+            moduleFrm.GetForm(this);
+            this.Enabled = false;
+        }
+
+        //-----------------------------------------------------------------------------------------------------------------------------------------
+
+        //NAVIGATION
+        private void btnModuleFirst_Click(object sender, EventArgs e)
+        {
+            if (dgvModuleOutput.CurrentRow != null)
+            {
+                dgvModuleOutput.CurrentCell =
+                    dgvModuleOutput
+                    .Rows[0]
+                    .Cells[dgvModuleOutput.CurrentCell.ColumnIndex];
+            }
+        }
+        private void btnModulePrevious_Click(object sender, EventArgs e)
+        {
+            if (dgvModuleOutput.SelectedRows[0].Index > 0)
+            {
+                dgvModuleOutput.CurrentCell = dgvModuleOutput.Rows[dgvModuleOutput.SelectedRows[0].Index - 1].Cells[0];
+            }
+            else
+            {
+                btnModuleLast_Click(sender, e);
+            }
+        }
+
+        private void btnModuleNext_Click(object sender, EventArgs e)
+        {
+            if (dgvModuleOutput.SelectedRows[0].Index < dgvModuleOutput.Rows.Count - 1)
+            {
+                dgvModuleOutput.CurrentCell = dgvModuleOutput.Rows[dgvModuleOutput.SelectedRows[0].Index + 1].Cells[0];
+            }
+            else
+            {
+                btnModuleFirst_Click(sender, e);
+            }
+        }
+
+        private void btnModuleLast_Click(object sender, EventArgs e)
+        {
+            if (dgvModuleOutput.CurrentRow != null)
+            {
+                dgvModuleOutput.CurrentCell =
+                    dgvModuleOutput
+                    .Rows[dgvModuleOutput.Rows.Count - 1]
+                    .Cells[dgvModuleOutput.CurrentCell.ColumnIndex];
+            }
+        }
+
+//=================================================================================================================================================
+
+
+// Methods for changing what is displayed to the user, depending on what table is shown.
+// This is because multiple types of tables are shown on a single form.
+//=================================================================================================================================================
+        public void ShowStudent()
+        {
+            currentStudent = 0;
+            StudentModules = false;
+            ModuleStudents = false;
+            ModuleResources = false;
+            students = true;
+            modules = false;
+
+        tbcDetails.SelectTab(0);
+            dgvStudentOutput.DataSource = handler.GetData(Tables.Student);
+            if (dgvStudentOutput.Rows.Count > 0)
+            {
+                dgvStudentOutput.Rows[0].Selected = true;
+            }
+            pnlStudent.Show();
+            pnlStudentModules.Hide();
+            pnlStudentSearch.Show();
+
+            dgvStudentOutput.Columns[dgvStudentOutput.Columns.Count - 1].Visible = false;
+        }
+
+        public void ShowStudentModules()
+        {
+            StudentModules = true;
+            ModuleStudents = false;
+            ModuleResources = false;
+            students = false;
+            modules = false;
+            if (currentStudent == 0)
+            {
+                currentStudent = int.Parse(dgvStudentOutput.SelectedRows[0].Cells[0].Value.ToString());
+            }
+            Student student = new Student(currentStudent);
+            dgvStudentOutput.DataSource = handler.GetData(Tables.StudentModuleDetails, "", student);
+            if (dgvStudentOutput.Rows.Count > 0)
+            {
+                dgvStudentOutput.Rows[0].Selected = true;
+            }
+            DataTable dt = handler.GetData(Tables.Module);           
+
+            cboStudentModuleCode.DataSource = dt;
+            cboStudentModuleCode.DisplayMember = "Module Code";
+            cboStudentModuleCode.ValueMember = "Module Code";           
+            pnlStudentModules.Show();
+            pnlStudent.Hide();
+            pnlStudentSearch.Hide();
+        }
+
+        public void ShowModule()
+        {
+            currentModule = "";
+            StudentModules = false;
+            ModuleStudents = false;
+            ModuleResources = false;
+            students = false;
+            modules = true;
+
+            dgvModuleOutput.DataSource = handler.GetData(Tables.Module);
+            if (dgvModuleOutput.Rows.Count > 0)
+            {
+                dgvModuleOutput.Rows[0].Selected = true;
+            }
+            pnlModule.Show();
+            pnlModuleStudents.Hide();
+            pnlModuleResources.Hide();
+        }
+
+        public void ShowModuleDetails(bool student)
+        {
+            // When Details are shown it has to determine which details to show, Students or Resources.
+            // For this we make use of student.
+            StudentModules = false;
+            ModuleStudents = false;
+            ModuleResources = false;
+            students = false;
+            modules = false;
+
+            if (student)
+            {////////////////////////////////////////////////////////////////////DETAILS
+                ModuleStudents = true;
+                dgvModuleOutput.DataSource = handler.GetData(Tables.StudentModules, handler.addCondition("Module Code", Operator.Equals, txtModuleCode.Text));
+                pnlModuleStudents.Show();
+                pnlModule.Hide();
+            }
+            else
+            {/////////////////////////////////////////////////////////////////////DETAILS
+                ModuleResources = true;
+                if (currentModule == "") {
+                    currentModule = dgvModuleOutput.SelectedRows[0].Cells[0].Value.ToString();
+                }
+                dgvModuleOutput.DataSource = handler.GetData(Tables.Resource, handler.addCondition("Module Code", Operator.Equals, txtModuleCode.Text));
+                DataTable dt = handler.GetData(Tables.Module);                
+                pnlModuleResources.Show();
+                pnlModule.Hide();
+            }
+        }
+//=================================================================================================================================================
+
+        // Validates the input where needed.
+        public bool ValidateInput()
+        {
+            bool problems = false;
+
+            // Validate Student input.
+            if (students)
+            {
+                // Checks if there are blank values, else it checks for numbers.
+                if ((txtStudentName.Text == "") || (txtStudentSurname.Text == "") || (cboStudentGender.Text == "") || (txtStudentPhone.Text == "") || (rtbStudentAddress.Text == ""))
+                {
+                    problems = true;
+                    MessageBox.Show("Some values were not filled in.\nPlease make sure there are no blank values.",
+                        "Blank values", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return problems;
+                }
+
+                // We check if the name, surname, or gender contains numbers
+                List<string> numbers = new List<string>();
+                for (int i = 0; i < 10; i++)
+                {
+                    numbers.Add(i.ToString());
+                }
+
+                foreach (string item in numbers)
+                {
+                    if ((txtStudentSurname.Text.Contains(item)) || (txtStudentName.Text.Contains(item)) || (cboStudentGender.Text.Contains(item)))
+                    {
+                        problems = true;
+                        MessageBox.Show("Names, surnames, and genders cannot contain numbers.",
+                            "Text contains numbers", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return problems;
+                    }
+                }
+
+                // Checks if the phone number is the correct length
+                string newPhone = txtStudentPhone.Text.Replace("-", "").Replace(" ", "").Replace("+", "");
+                if (!((newPhone.Length == 11) || (newPhone.Length == 10)))
+                {
+                    problems = true;
+                    MessageBox.Show("The number is incorrect.\nMake sure it is 10 or 11 digits for example.\n+2778-261-6209 or 078 261 6209",
+                        "Phone number", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return problems;
+                }
+            }
+
+            if (modules)
+            {
+                // Checks if the Module code is the correct length.
+                if (txtModuleCode.Text.Length != 6)
+                {
+                    problems = true;
+                    MessageBox.Show("The Module Code is in the incorrect format.\nMake sure it is 6 digits and in the format:\nPRG1x1",
+                        "Phone number", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return problems;
+                }
+            }
+
+            return problems;
         }
     }
 }
