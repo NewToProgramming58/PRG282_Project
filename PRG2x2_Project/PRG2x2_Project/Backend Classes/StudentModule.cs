@@ -35,12 +35,12 @@ namespace PRG2x2_Project
                 $"VALUES ({StudentNumber}, '{ModuleCode}', '{Status}')";
         }
 
-        public string Join(int number, string code) 
+        public string Join(string code) 
         {
             return $"SELECT S.[Student Number] , S.[Name], S.[Surname], SM.[Status]  FROM StudentModules SM\n" +
                 $"INNER JOIN Student S\n" +
                 $"ON SM.[Student Number] = S.[Student Number]\n" +
-                $"WHERE S.[Student Number] = {number} AND SM.[Module Code] = '{code}'";
+                $"WHERE SM.[Module Code] = '{code}'";
         }
     }
 }

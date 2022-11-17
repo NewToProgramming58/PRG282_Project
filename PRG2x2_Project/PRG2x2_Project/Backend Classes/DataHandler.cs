@@ -148,7 +148,7 @@ namespace PRG2x2_Project
                 }
             }        
         }
-        public DataTable GetData(Tables table, string condition = "", dynamic tableObject = null, int number = -1, string code = "")
+        public DataTable GetData(Tables table, string condition = "", dynamic tableObject = null, string code = "")
         {
             string tableName = ((Tables)table).ToString();
             string qry;
@@ -158,7 +158,7 @@ namespace PRG2x2_Project
             }
             else if (table == Tables.StudentModules && number != -1 && code != "")
             {
-                qry = tableObject.Join(number, code);
+                qry = tableObject.Join(code);
             }
             else
             {
