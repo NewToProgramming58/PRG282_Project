@@ -211,6 +211,7 @@ namespace PRG2x2_Project
                     Con.Open();
                     command.ExecuteNonQuery();
                     Con.Close();
+                    qry = $"DELETE FROM {tableName}\n{condition}";
                     break;
 
                 case Tables.Module:
@@ -219,6 +220,7 @@ namespace PRG2x2_Project
                     Con.Open();
                     command.ExecuteNonQuery();
                     Con.Close();
+                    qry = $"DELETE FROM {tableName}\n{condition}";
                     break;
                 case Tables.Resource:
                     qry = tableObject.Delete();                   
@@ -228,6 +230,7 @@ namespace PRG2x2_Project
             Con.Open();
             try
             {
+                MessageBox.Show(qry);
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException ex)
