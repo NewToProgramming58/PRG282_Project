@@ -43,6 +43,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.pnlStudent = new System.Windows.Forms.Panel();
+            this.btnStudentUploadFile = new System.Windows.Forms.Button();
             this.ptbStudentImage = new System.Windows.Forms.PictureBox();
             this.rtbStudentAddress = new System.Windows.Forms.RichTextBox();
             this.cboStudentGender = new System.Windows.Forms.ComboBox();
@@ -74,6 +75,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tpgModules = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.pnlModuleResources = new System.Windows.Forms.Panel();
+            this.rtbModuleResource = new System.Windows.Forms.RichTextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.pnlModuleStudents = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
@@ -108,10 +112,9 @@
             this.pnlModuleSearch = new System.Windows.Forms.Panel();
             this.lblModuleSearch = new System.Windows.Forms.Label();
             this.btnModuleSearch = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtModuleSearch = new System.Windows.Forms.TextBox();
             this.rtbModuleTutorial = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnStudentUploadFile = new System.Windows.Forms.Button();
             this.tbcDetails.SuspendLayout();
             this.tpgStudents.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -124,6 +127,7 @@
             this.pnlStudentSearch.SuspendLayout();
             this.tpgModules.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.pnlModuleResources.SuspendLayout();
             this.pnlModuleStudents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlModule.SuspendLayout();
@@ -296,6 +300,16 @@
             this.pnlStudent.Name = "pnlStudent";
             this.pnlStudent.Size = new System.Drawing.Size(311, 335);
             this.pnlStudent.TabIndex = 15;
+            // 
+            // btnStudentUploadFile
+            // 
+            this.btnStudentUploadFile.Location = new System.Drawing.Point(206, 305);
+            this.btnStudentUploadFile.Name = "btnStudentUploadFile";
+            this.btnStudentUploadFile.Size = new System.Drawing.Size(26, 23);
+            this.btnStudentUploadFile.TabIndex = 50;
+            this.btnStudentUploadFile.Text = "...";
+            this.btnStudentUploadFile.UseVisualStyleBackColor = true;
+            this.btnStudentUploadFile.Click += new System.EventHandler(this.btnStudentUploadFile_Click);
             // 
             // ptbStudentImage
             // 
@@ -591,6 +605,7 @@
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.Control;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.pnlModuleResources);
             this.panel3.Controls.Add(this.pnlModuleStudents);
             this.panel3.Controls.Add(this.pnlModule);
             this.panel3.Controls.Add(this.panel5);
@@ -599,6 +614,32 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(841, 431);
             this.panel3.TabIndex = 2;
+            // 
+            // pnlModuleResources
+            // 
+            this.pnlModuleResources.Controls.Add(this.rtbModuleResource);
+            this.pnlModuleResources.Controls.Add(this.label11);
+            this.pnlModuleResources.Location = new System.Drawing.Point(529, 0);
+            this.pnlModuleResources.Name = "pnlModuleResources";
+            this.pnlModuleResources.Size = new System.Drawing.Size(308, 338);
+            this.pnlModuleResources.TabIndex = 52;
+            // 
+            // rtbModuleResource
+            // 
+            this.rtbModuleResource.Location = new System.Drawing.Point(97, 39);
+            this.rtbModuleResource.Name = "rtbModuleResource";
+            this.rtbModuleResource.Size = new System.Drawing.Size(190, 82);
+            this.rtbModuleResource.TabIndex = 2;
+            this.rtbModuleResource.Text = "";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(33, 41);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(56, 13);
+            this.label11.TabIndex = 1;
+            this.label11.Text = "Resource:";
             // 
             // pnlModuleStudents
             // 
@@ -912,7 +953,7 @@
             this.pnlModuleSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlModuleSearch.Controls.Add(this.lblModuleSearch);
             this.pnlModuleSearch.Controls.Add(this.btnModuleSearch);
-            this.pnlModuleSearch.Controls.Add(this.textBox2);
+            this.pnlModuleSearch.Controls.Add(this.txtModuleSearch);
             this.pnlModuleSearch.Location = new System.Drawing.Point(557, 0);
             this.pnlModuleSearch.Name = "pnlModuleSearch";
             this.pnlModuleSearch.Size = new System.Drawing.Size(284, 71);
@@ -935,13 +976,14 @@
             this.btnModuleSearch.TabIndex = 14;
             this.btnModuleSearch.Text = "Search";
             this.btnModuleSearch.UseVisualStyleBackColor = true;
+            this.btnModuleSearch.Click += new System.EventHandler(this.btnModuleSearch_Click);
             // 
-            // textBox2
+            // txtModuleSearch
             // 
-            this.textBox2.Location = new System.Drawing.Point(117, 5);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(156, 20);
-            this.textBox2.TabIndex = 34;
+            this.txtModuleSearch.Location = new System.Drawing.Point(117, 5);
+            this.txtModuleSearch.Name = "txtModuleSearch";
+            this.txtModuleSearch.Size = new System.Drawing.Size(156, 20);
+            this.txtModuleSearch.TabIndex = 34;
             // 
             // rtbModuleTutorial
             // 
@@ -961,16 +1003,6 @@
             this.label2.Size = new System.Drawing.Size(156, 26);
             this.label2.TabIndex = 0;
             this.label2.Text = "Module Details";
-            // 
-            // btnStudentUploadFile
-            // 
-            this.btnStudentUploadFile.Location = new System.Drawing.Point(206, 305);
-            this.btnStudentUploadFile.Name = "btnStudentUploadFile";
-            this.btnStudentUploadFile.Size = new System.Drawing.Size(26, 23);
-            this.btnStudentUploadFile.TabIndex = 50;
-            this.btnStudentUploadFile.Text = "...";
-            this.btnStudentUploadFile.UseVisualStyleBackColor = true;
-            this.btnStudentUploadFile.Click += new System.EventHandler(this.btnStudentUploadFile_Click);
             // 
             // Details
             // 
@@ -1002,6 +1034,8 @@
             this.pnlStudentSearch.PerformLayout();
             this.tpgModules.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            this.pnlModuleResources.ResumeLayout(false);
+            this.pnlModuleResources.PerformLayout();
             this.pnlModuleStudents.ResumeLayout(false);
             this.pnlModuleStudents.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -1074,7 +1108,7 @@
         private System.Windows.Forms.Panel pnlModuleSearch;
         private System.Windows.Forms.Label lblModuleSearch;
         private System.Windows.Forms.Button btnModuleSearch;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtModuleSearch;
         private System.Windows.Forms.Panel pnlModuleStudents;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.RichTextBox richTextBox1;
@@ -1102,5 +1136,8 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button btnStudentUploadFile;
+        private System.Windows.Forms.Panel pnlModuleResources;
+        private System.Windows.Forms.RichTextBox rtbModuleResource;
+        private System.Windows.Forms.Label label11;
     }
 }

@@ -18,7 +18,6 @@ namespace PRG2x2_Project
         public bool StudentModules = false;
         public bool ModuleStudents = false;
         public bool ModuleResources = false;
-        ModuleDetailOption moduleFrm = new ModuleDetailOption();
         int currentStudent = 0;
 
         DataHandler handler = new DataHandler();
@@ -26,7 +25,6 @@ namespace PRG2x2_Project
         public Details()
         {
             InitializeComponent();
-            moduleFrm.Hide();
         }
 
         private void Details_FormClosed(object sender, FormClosedEventArgs e)
@@ -45,11 +43,29 @@ namespace PRG2x2_Project
             ShowStudent();
         }
 
+        private void tbcDetails_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tbcDetails.SelectedIndex == 0)
+            {
+                ShowStudent();
+            }
+            else
+            {
+                ShowModule();
+            }
+        }
+
+// Operations on Student page
+//==================================================================================================================================================
+        
+        //REFRESH
         private void btnStudentRead_Click(object sender, EventArgs e)
         {
             ShowStudent();
+            txtStudentSearch.Text = "";
         }
 
+        //INSERT
         private void btnStudentInsert_Click(object sender, EventArgs e)
         {
             if (StudentModules)
@@ -135,6 +151,7 @@ namespace PRG2x2_Project
             }
         }
 
+        //UPDATE
         private void btnStudentUpdate_Click(object sender, EventArgs e)
         {
             if (StudentModules)
@@ -223,6 +240,7 @@ namespace PRG2x2_Project
             }
         }
 
+        //DELETE
         private void btnStudentDelete_Click(object sender, EventArgs e)
         {
             if (StudentModules)
@@ -262,46 +280,23 @@ namespace PRG2x2_Project
             }
         }
 
+        //SEARCH
         private void btnStudentSearch_Click(object sender, EventArgs e)
         {
-            if (StudentModules)
-            {////////////////////////////////////////////////////////////////////////////////////////////////
-                DataTable dt = handler.GetData(Tables.StudentModuleDetails, handler.addCondition("Module Code", Operator.Like, txtStudentSearch.Text));
-                if (dt.Rows.Count > 0)
-                {
-                    dgvStudentOutput.DataSource = dt;
-                }
-                else
-                {
-                    MessageBox.Show("No modules found", "Search Results", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+            DataTable dt = handler.GetData(Tables.Student, handler.addCondition("Student Number", Operator.Like, int.Parse(txtStudentSearch.Text)));
+            if (dt.Rows.Count > 0)
+            {
+                dgvStudentOutput.DataSource = dt;
             }
             else
             {
-                DataTable dt = handler.GetData(Tables.Student, handler.addCondition("Student Number", Operator.Like, int.Parse(txtStudentSearch.Text)));
-                if (dt.Rows.Count > 0)
-                {
-                    dgvStudentOutput.DataSource = dt;
-                }
-                else
-                {
-                    MessageBox.Show("No students found", "Search Results", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                MessageBox.Show("No students found", "Search Results", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
-        private void tbcDetails_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (tbcDetails.SelectedIndex == 0)
-            {
-                ShowStudent();
-            }
-            else
-            {
-                ShowModule();
-            }
-        }
-
+        //------------------------------------------------------------------------------------------------------------------------------------------
+        
+        // Dynamically Updates the input values when selection changes.
         private void dgvStudentOutput_SelectionChanged(object sender, EventArgs e)
         {
             // There is a period when changing selection, when there is no record selected, which would give an error, so we test it.
@@ -338,6 +333,7 @@ namespace PRG2x2_Project
             }
         }
 
+        // Views Relationships when double clicking a field.
         private void dgvStudentOutput_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             // We check if a student's module details are already displayed, so that the user can't double click it again.
@@ -347,6 +343,58 @@ namespace PRG2x2_Project
             }
         }
 
+        //-------------------------------------------------------------------------------------------------------------------------------------------
+        
+        //NAVIGATION
+        private void btnStudentLast_Click(object sender, EventArgs e)
+        {
+            if (dgvStudentOutput.CurrentRow != null)
+            {
+                dgvStudentOutput.CurrentCell =
+                    dgvStudentOutput
+                    .Rows[dgvStudentOutput.Rows.Count - 2]
+                    .Cells[dgvStudentOutput.CurrentCell.ColumnIndex];
+            }
+        }
+
+        private void btnStudentFirst_Click(object sender, EventArgs e)
+        {
+            if (dgvStudentOutput.CurrentRow != null)
+            {
+                dgvStudentOutput.CurrentCell =
+                    dgvStudentOutput
+                    .Rows[0]
+                    .Cells[dgvStudentOutput.CurrentCell.ColumnIndex];
+            }
+        }
+
+        private void btnStudentPrevious_Click(object sender, EventArgs e)
+        {
+            if (dgvStudentOutput.SelectedRows[0].Index > 0)
+            {
+                dgvStudentOutput.CurrentCell = dgvStudentOutput.Rows[dgvStudentOutput.SelectedRows[0].Index - 1].Cells[0];
+            }
+            else
+            {
+                btnStudentLast_Click(sender, e);
+            }
+        }
+
+        private void btnStudentNext_Click(object sender, EventArgs e)
+        {
+            if (dgvStudentOutput.SelectedRows[0].Index < dgvStudentOutput.Rows.Count - 2)
+            {
+                dgvStudentOutput.CurrentCell = dgvStudentOutput.Rows[dgvStudentOutput.SelectedRows[0].Index + 1].Cells[0];
+            }
+            else
+            {
+                btnStudentFirst_Click(sender, e);
+            }
+        }
+
+//==================================================================================================================================================
+
+        // Dynamically Updates the input values when selection changes.
         private void dgvModuleOutput_SelectionChanged(object sender, EventArgs e)
         {
             // There is a period when changing selection, when there is no record selected, which would give an error, so we test it.
@@ -388,16 +436,19 @@ namespace PRG2x2_Project
             }
         }
 
+        // Views Relationships when double clicking a field.
         private void dgvModuleOutput_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             // When double clicking a module, a form is going to display to ask which details the user wants to see.
+            ModuleDetailOption moduleFrm = new ModuleDetailOption();
             moduleFrm.Show();
             moduleFrm.GetForm(this);
             this.Enabled = false;
         }
 
-        // Methods for changing what is displayed to the user, depending on what table is shown.
-        // This is because multiple types of tables are shown on a single form.
+// Methods for changing what is displayed to the user, depending on what table is shown.
+// This is because multiple types of tables are shown on a single form.
+//===========================================================================================================================================
         public void ShowStudent()
         {
             currentStudent = 0;
@@ -445,9 +496,9 @@ namespace PRG2x2_Project
             {
                 dgvModuleOutput.Rows[0].Selected = true;
             }
-            //Panels///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             pnlModule.Show();
             pnlModuleStudents.Hide();
+            pnlModuleResources.Hide();
         }
 
         public void ShowModuleDetails(bool student)
@@ -463,55 +514,11 @@ namespace PRG2x2_Project
             else
             {/////////////////////////////////////////////////////////////////////DETAILS
                 dgvModuleOutput.DataSource = handler.GetData(Tables.Resource, handler.addCondition("Module Code", Operator.Equals, txtModuleCode.Text));
-                pnlModuleStudents.Show();//////////////////////////////////////////////
+                pnlModuleResources.Show();
                 pnlModule.Hide();
             }
         }
-        private void btnStudentLast_Click(object sender, EventArgs e)
-        {
-            if (dgvStudentOutput.CurrentRow != null)
-            {
-                dgvStudentOutput.CurrentCell =
-                    dgvStudentOutput
-                    .Rows[dgvStudentOutput.Rows.Count - 2]
-                    .Cells[dgvStudentOutput.CurrentCell.ColumnIndex];
-            }
-        }
-
-        private void btnStudentFirst_Click(object sender, EventArgs e)
-        {
-            if (dgvStudentOutput.CurrentRow != null)
-            {
-                dgvStudentOutput.CurrentCell =
-                    dgvStudentOutput
-                    .Rows[0]
-                    .Cells[dgvStudentOutput.CurrentCell.ColumnIndex];
-            }
-        }
-
-        private void btnStudentPrevious_Click(object sender, EventArgs e)
-        {
-            if (dgvStudentOutput.SelectedRows[0].Index > 0)
-            {
-                dgvStudentOutput.CurrentCell = dgvStudentOutput.Rows[dgvStudentOutput.SelectedRows[0].Index - 1].Cells[0];
-            }
-            else
-            {
-                btnStudentLast_Click(sender, e);
-            }
-        }
-
-        private void btnStudentNext_Click(object sender, EventArgs e)
-        {
-            if (dgvStudentOutput.SelectedRows[0].Index < dgvStudentOutput.Rows.Count - 2)
-            {
-                dgvStudentOutput.CurrentCell = dgvStudentOutput.Rows[dgvStudentOutput.SelectedRows[0].Index + 1].Cells[0];
-            }
-            else
-            {
-                btnStudentFirst_Click(sender, e);
-            }
-        }
+//===========================================================================================================================================
 
         private void Details_Activated(object sender, EventArgs e)
         {
@@ -604,6 +611,7 @@ namespace PRG2x2_Project
         private void btnModuleRead_Click(object sender, EventArgs e)
         {
             ShowModule();
+            txtModuleSearch.Text = "";
         }
 
         private void btnModuleDelete_Click(object sender, EventArgs e)
@@ -659,6 +667,19 @@ namespace PRG2x2_Project
             if (fdl.ShowDialog() == DialogResult.OK)
             {
                 ptbStudentImage.Image = Image.FromFile(fdl.FileName);
+            }
+        }
+
+        private void btnModuleSearch_Click(object sender, EventArgs e)
+        {
+            DataTable dt = handler.GetData(Tables.Module, handler.addCondition("Module Code", Operator.Like, txtModuleSearch.Text));
+            if (dt.Rows.Count > 0)
+            {
+                dgvModuleOutput.DataSource = dt;
+            }
+            else
+            {
+                MessageBox.Show("No Modules found", "Search Results", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }
