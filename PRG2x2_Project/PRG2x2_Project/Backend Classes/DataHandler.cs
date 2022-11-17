@@ -156,7 +156,7 @@ namespace PRG2x2_Project
             {
                 qry = tableObject.Join();
             }
-            else if (table == Tables.StudentModules && number != -1 && code != "")
+            else if (table == Tables.StudentModules && code != "")
             {
                 qry = tableObject.Join(code);
             }

@@ -845,10 +845,11 @@ namespace PRG2x2_Project
                 if (currentModule == "")
                 {
                     currentModule = dgvModuleOutput.SelectedRows[0].Cells[0].Value.ToString();
+                    dgvModuleOutput.DataSource = handler.GetData(table: Tables.StudentModules, code: currentModule);
                 }
-                dgvModuleOutput.DataSource = handler.GetData(table: Tables.StudentModules, code: currentModule);
                 pnlModuleStudents.Show();
                 pnlModule.Hide();
+                pnlModuleResources.Hide();
             }
             else
             {/////////////////////////////////////////////////////////////////////DETAILS
@@ -860,6 +861,7 @@ namespace PRG2x2_Project
                 DataTable dt = handler.GetData(Tables.Module);                
                 pnlModuleResources.Show();
                 pnlModule.Hide();
+                pnlModuleStudents.Hide();
             }
         }
 //=================================================================================================================================================
