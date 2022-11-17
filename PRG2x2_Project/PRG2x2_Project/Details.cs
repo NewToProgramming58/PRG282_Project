@@ -104,12 +104,12 @@ namespace PRG2x2_Project
                     {
                         handler.Insert(sm);
                         ShowStudentModules();
-                        dgvStudentOutput.Rows[dgvStudentOutput.Rows.Count - 2].Selected = true;
+                        dgvStudentOutput.Rows[dgvStudentOutput.Rows.Count - 1].Selected = true;
                         if (dgvStudentOutput.CurrentRow != null)
                         {
                             dgvStudentOutput.CurrentCell =
                             dgvStudentOutput
-                            .Rows[dgvStudentOutput.Rows.Count - 2]
+                            .Rows[dgvStudentOutput.Rows.Count - 1]
                             .Cells[dgvStudentOutput.CurrentCell.ColumnIndex];
                         }
                     }
@@ -153,12 +153,12 @@ namespace PRG2x2_Project
                 {
                     handler.Insert(st);
                     ShowStudent();
-                    dgvStudentOutput.Rows[dgvStudentOutput.Rows.Count - 2].Selected = true;
+                    dgvStudentOutput.Rows[dgvStudentOutput.Rows.Count - 1].Selected = true;
                     if (dgvStudentOutput.CurrentRow != null)
                     {
                         dgvStudentOutput.CurrentCell =
                             dgvStudentOutput
-                            .Rows[dgvStudentOutput.Rows.Count - 2]
+                            .Rows[dgvStudentOutput.Rows.Count - 1]
                             .Cells[dgvStudentOutput.CurrentCell.ColumnIndex];
                     }
                 }
