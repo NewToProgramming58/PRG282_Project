@@ -107,10 +107,11 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.pnlModuleSearch = new System.Windows.Forms.Panel();
             this.lblModuleSearch = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnModuleSearch = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.rtbModuleTutorial = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnStudentUploadFile = new System.Windows.Forms.Button();
             this.tbcDetails.SuspendLayout();
             this.tpgStudents.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -274,6 +275,7 @@
             // 
             // pnlStudent
             // 
+            this.pnlStudent.Controls.Add(this.btnStudentUploadFile);
             this.pnlStudent.Controls.Add(this.ptbStudentImage);
             this.pnlStudent.Controls.Add(this.rtbStudentAddress);
             this.pnlStudent.Controls.Add(this.cboStudentGender);
@@ -909,7 +911,7 @@
             this.pnlModuleSearch.BackColor = System.Drawing.Color.PeachPuff;
             this.pnlModuleSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlModuleSearch.Controls.Add(this.lblModuleSearch);
-            this.pnlModuleSearch.Controls.Add(this.button1);
+            this.pnlModuleSearch.Controls.Add(this.btnModuleSearch);
             this.pnlModuleSearch.Controls.Add(this.textBox2);
             this.pnlModuleSearch.Location = new System.Drawing.Point(557, 0);
             this.pnlModuleSearch.Name = "pnlModuleSearch";
@@ -925,14 +927,14 @@
             this.lblModuleSearch.TabIndex = 34;
             this.lblModuleSearch.Text = "Module Code:";
             // 
-            // button1
+            // btnModuleSearch
             // 
-            this.button1.Location = new System.Drawing.Point(96, 36);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(91, 23);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "Search";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnModuleSearch.Location = new System.Drawing.Point(96, 36);
+            this.btnModuleSearch.Name = "btnModuleSearch";
+            this.btnModuleSearch.Size = new System.Drawing.Size(91, 23);
+            this.btnModuleSearch.TabIndex = 14;
+            this.btnModuleSearch.Text = "Search";
+            this.btnModuleSearch.UseVisualStyleBackColor = true;
             // 
             // textBox2
             // 
@@ -959,6 +961,16 @@
             this.label2.Size = new System.Drawing.Size(156, 26);
             this.label2.TabIndex = 0;
             this.label2.Text = "Module Details";
+            // 
+            // btnStudentUploadFile
+            // 
+            this.btnStudentUploadFile.Location = new System.Drawing.Point(206, 305);
+            this.btnStudentUploadFile.Name = "btnStudentUploadFile";
+            this.btnStudentUploadFile.Size = new System.Drawing.Size(26, 23);
+            this.btnStudentUploadFile.TabIndex = 50;
+            this.btnStudentUploadFile.Text = "...";
+            this.btnStudentUploadFile.UseVisualStyleBackColor = true;
+            this.btnStudentUploadFile.Click += new System.EventHandler(this.btnStudentUploadFile_Click);
             // 
             // Details
             // 
@@ -1061,7 +1073,7 @@
         private System.Windows.Forms.TextBox txtModuleCode;
         private System.Windows.Forms.Panel pnlModuleSearch;
         private System.Windows.Forms.Label lblModuleSearch;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnModuleSearch;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Panel pnlModuleStudents;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -1089,5 +1101,6 @@
         private System.Windows.Forms.ComboBox cboStudentModuleStatus;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button btnStudentUploadFile;
     }
 }

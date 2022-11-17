@@ -641,5 +641,25 @@ namespace PRG2x2_Project
                 }
             }
         }
+
+        // This button allows us to upload an image to our picturebox.
+        private void btnStudentUploadFile_Click(object sender, EventArgs e)
+        {
+            // Create a OpenFileDialog so the user can browse their files.
+            OpenFileDialog fdl = new OpenFileDialog();
+            // Sets the initial place the openfiledialog starts searching for files.
+            fdl.InitialDirectory = @"C:\Users\jacqu\Pictures\";
+            fdl.Title = "Image Select";
+            // This filters it so only images of type jpeg, jpg, or png can be selected and seen.
+            fdl.Filter = "Image Files|*.jpg;*.jpeg;*.png;";
+            // If user enters a custom filename or path, it first checks if it exists.
+            fdl.CheckFileExists = true;
+            fdl.CheckPathExists = true;
+
+            if (fdl.ShowDialog() == DialogResult.OK)
+            {
+                ptbStudentImage.Image = Image.FromFile(fdl.FileName);
+            }
+        }
     }
 }
