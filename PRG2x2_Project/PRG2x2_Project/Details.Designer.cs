@@ -708,7 +708,6 @@
             this.txtModuleStudentNumber.BackColor = System.Drawing.SystemColors.Window;
             this.txtModuleStudentNumber.Location = new System.Drawing.Point(115, 68);
             this.txtModuleStudentNumber.Name = "txtModuleStudentNumber";
-            this.txtModuleStudentNumber.ReadOnly = true;
             this.txtModuleStudentNumber.Size = new System.Drawing.Size(184, 20);
             this.txtModuleStudentNumber.TabIndex = 37;
             // 

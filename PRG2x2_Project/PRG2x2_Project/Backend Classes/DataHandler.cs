@@ -262,8 +262,11 @@ namespace PRG2x2_Project
         {
             switch (e.Number) 
             {
+                case 547:
+                    MessageBox.Show($"The Student number you inserted does not exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    break;
                 case 2627:
-                    MessageBox.Show($"This record already exits, try updating it", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    MessageBox.Show($"This record already exits, try updating it", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     break;
             }
         }
