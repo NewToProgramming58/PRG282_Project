@@ -299,7 +299,7 @@ namespace PRG2x2_Project
                 // If yes, insert the record, refresh the datagridview, and select that newly inserted record.
                 if (result == DialogResult.Yes)
                 {
-                    handler.Delete(Tables.Student, $"WHERE [Student Number] = {int.Parse(txtStudentNumber.Text)}");///////////////////////////////////////////////
+                    handler.Delete(Tables.Student, $"WHERE [Student Number] = {int.Parse(txtStudentNumber.Text)}");
                     ShowStudent();
                 }
             }
@@ -573,7 +573,7 @@ namespace PRG2x2_Project
                 StudentModule studentModule = new StudentModule(int.Parse(dgvModuleOutput.SelectedRows[0].Cells[0].Value.ToString()), currentModule, cboModuleStudentStatus.Text);
                 // We have to make sure no duplicate modules are entered so we create a list and see if our newly added trecord is already in the list.
                 DialogResult changeResult = DialogResult.No;
-                if (cboStudentModuleCode.Text != dgvModuleOutput.SelectedRows[0].Cells[0].Value.ToString())
+                if (txtModuleStudentNumber.Text != dgvModuleOutput.SelectedRows[0].Cells[0].Value.ToString())
                 {
                     changeResult = MessageBox.Show($"You changed the Student Number when wanting to update.\n" +
                         $"Instead of updating the Student Number try to insert a new field.\n" +
