@@ -495,6 +495,32 @@ namespace PRG2x2_Project
                     //}
                 }
             }
+            else if (ModuleStudents)
+            {
+                StudentModule sm = new StudentModule(int.Parse(txtModuleStudentNumber.Text), currentModule, cboModuleStudentStatus.Text);
+
+                // Asks the user if he/she is sure.
+                DialogResult result = MessageBox.Show($"Are you sure you want to insert this record into Module: {sm.ModuleCode}?\n\n" +
+                    $"Student number: \t{sm.StudentNumber}\n" +
+                    $"Status: \t{sm.Status}"
+                    , "Insert", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                // If yes, insert the record, refresh the datagridview, and select that newly inserted record.
+                if (result == DialogResult.Yes)
+                {
+                    handler.Insert(sm);
+                    ShowModuleDetails(true);
+                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    //dgvModuleOutput.Rows[dgvModuleOutput.Rows.Count - 2].Selected = true;
+                    //if (dgvModuleOutput.CurrentRow != null)
+                    //{
+                    //    dgvModuleOutput.CurrentCell =
+                    //        dgvModuleOutput
+                    //        .Rows[dgvModuleOutput.Rows.Count - 2]
+                    //        .Cells[dgvModuleOutput.CurrentCell.ColumnIndex];
+                    //}
+                }
+            }
             else
             {
                 // Reads the values.
@@ -830,8 +856,8 @@ namespace PRG2x2_Project
                 if (currentModule == "")
                 {
                     currentModule = dgvModuleOutput.SelectedRows[0].Cells[0].Value.ToString();
-                    dgvModuleOutput.DataSource = handler.GetData(table: Tables.StudentModules, code: currentModule, tableObject: new StudentModule(currentModule));
                 }
+                dgvModuleOutput.DataSource = handler.GetData(table: Tables.StudentModules, code: currentModule, tableObject: new StudentModule(currentModule));
                 pnlModuleStudents.Show();
                 pnlModule.Hide();
                 pnlModuleResources.Hide();

@@ -607,6 +607,7 @@
             this.panel3.Controls.Add(this.btnModulePrevious);
             this.panel3.Controls.Add(this.btnModuleNext);
             this.panel3.Controls.Add(this.btnModuleFirst);
+            this.panel3.Controls.Add(this.pnlModuleResources);
             this.panel3.Controls.Add(this.pnlModuleStudents);
             this.panel3.Controls.Add(this.pnlModule);
             this.panel3.Controls.Add(this.panel5);
@@ -660,7 +661,7 @@
             // 
             this.pnlModuleResources.Controls.Add(this.rtbModuleResource);
             this.pnlModuleResources.Controls.Add(this.label11);
-            this.pnlModuleResources.Location = new System.Drawing.Point(1, 0);
+            this.pnlModuleResources.Location = new System.Drawing.Point(526, 3);
             this.pnlModuleResources.Name = "pnlModuleResources";
             this.pnlModuleResources.Size = new System.Drawing.Size(310, 335);
             this.pnlModuleResources.TabIndex = 52;
@@ -688,7 +689,6 @@
             this.pnlModuleStudents.Controls.Add(this.label13);
             this.pnlModuleStudents.Controls.Add(this.label26);
             this.pnlModuleStudents.Controls.Add(this.txtModuleStudentNumber);
-            this.pnlModuleStudents.Controls.Add(this.pnlModuleResources);
             this.pnlModuleStudents.Location = new System.Drawing.Point(526, 3);
             this.pnlModuleStudents.Name = "pnlModuleStudents";
             this.pnlModuleStudents.Size = new System.Drawing.Size(311, 335);
@@ -708,7 +708,6 @@
             this.txtModuleStudentNumber.BackColor = System.Drawing.SystemColors.Window;
             this.txtModuleStudentNumber.Location = new System.Drawing.Point(115, 68);
             this.txtModuleStudentNumber.Name = "txtModuleStudentNumber";
-            this.txtModuleStudentNumber.ReadOnly = true;
             this.txtModuleStudentNumber.Size = new System.Drawing.Size(184, 20);
             this.txtModuleStudentNumber.TabIndex = 37;
             // 
