@@ -184,12 +184,13 @@ namespace PRG2x2_Project
                         $"Instead of updating the Module Code try to insert a new field.\n" +
                         $"Would you still like to change the status from {dgvStudentOutput.SelectedRows[0].Cells[3].Value} To {cboStudentModuleStatus.Text}?",
                         "Update problem", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                }
 
-                if (changeResult == DialogResult.Yes)
-                {
-                    handler.Update(sm);
-                    ShowStudentModules();
+                    if (changeResult == DialogResult.Yes)
+                    {
+                        handler.Update(sm);
+                        ShowStudentModules();
+                    }
+
                     return;
                 }
 
@@ -567,19 +568,19 @@ namespace PRG2x2_Project
                 DialogResult changeResult = DialogResult.No;
                 if (cboStudentModuleCode.Text != dgvModuleOutput.SelectedRows[0].Cells[0].Value.ToString())
                 {
-                    changeResult = MessageBox.Show($"You changed the Module code when wanting to update.\n" +
-                        $"Instead of updating the student number try to insert a new field.\n" +
-                        $"Would you still like to change the status from {dgvModuleOutput.SelectedRows[0].Cells[0].Value} To {txtModuleStudentNumber.Text}?",
+                    changeResult = MessageBox.Show($"You changed the Student Number when wanting to update.\n" +
+                        $"Instead of updating the Student Number try to insert a new field.\n" +
+                        $"Would you still like to change the status from {dgvModuleOutput.SelectedRows[0].Cells[3].Value} To {cboModuleStudentStatus.Text}?",
                         "Update problem", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                }
 
-                if (changeResult == DialogResult.Yes)
-                {
-                    handler.Update(studentModule);
-                    ShowModuleDetails(true);
+                    if (changeResult == DialogResult.Yes)
+                    {
+                        handler.Update(studentModule);
+                        ShowModuleDetails(true);
+                    }
+
                     return;
                 }
-                // Reads the values.
                 
                 // Asks the user if he/she is sure.
                 DialogResult result = MessageBox.Show($"Are you sure you want to update this record drom Student Modules?\n\n" +
@@ -818,12 +819,15 @@ namespace PRG2x2_Project
             students = true;
             modules = false;
 
-        tbcDetails.SelectTab(0);
+            tbcDetails.SelectTab(0);
             dgvStudentOutput.DataSource = handler.GetData(Tables.Student);
             if (dgvStudentOutput.Rows.Count > 0)
             {
                 dgvStudentOutput.Rows[0].Selected = true;
             }
+
+            lblStudentFor.Visible = false;
+
             pnlStudent.Show();
             pnlStudentModules.Hide();
             pnlStudentSearch.Show();
@@ -852,7 +856,12 @@ namespace PRG2x2_Project
 
             cboStudentModuleCode.DataSource = dt;
             cboStudentModuleCode.DisplayMember = "Module Code";
-            cboStudentModuleCode.ValueMember = "Module Code";           
+            cboStudentModuleCode.ValueMember = "Module Code";
+
+            lblStudentFor.Visible = true;
+            lblStudentFor.Text = "";
+            lblStudentFor.Text = $"For Student: {currentStudent}";
+
             pnlStudentModules.Show();
             pnlStudent.Hide();
             pnlStudentSearch.Hide();
@@ -872,6 +881,10 @@ namespace PRG2x2_Project
             {
                 dgvModuleOutput.Rows[0].Selected = true;
             }
+
+            lblModuleFor.Visible = false;
+
+            pnlModuleSearch.Show();
             pnlModule.Show();
             pnlModuleStudents.Hide();
             pnlModuleResources.Hide();
@@ -888,29 +901,32 @@ namespace PRG2x2_Project
             modules = false;
 
             if (student)
-            {////////////////////////////////////////////////////////////////////DETAILS
+            {
                 ModuleStudents = true;
                 if (currentModule == "")
                 {
                     currentModule = dgvModuleOutput.SelectedRows[0].Cells[0].Value.ToString();
                 }
                 dgvModuleOutput.DataSource = handler.GetData(table: Tables.StudentModules, code: currentModule, tableObject: new StudentModule(currentModule));
-                pnlModuleStudents.Show();
-                pnlModule.Hide();
-                pnlModuleResources.Hide();
             }
             else
-            {/////////////////////////////////////////////////////////////////////DETAILS
+            {
                 ModuleResources = true;
                 if (currentModule == "") {
                     currentModule = dgvModuleOutput.SelectedRows[0].Cells[0].Value.ToString();
                 }
                 dgvModuleOutput.DataSource = handler.GetData(Tables.Resource, handler.addCondition("Module Code", Operator.Equals, txtModuleCode.Text));
                 DataTable dt = handler.GetData(Tables.Module);                
-                pnlModuleResources.Show();
-                pnlModule.Hide();
-                pnlModuleStudents.Hide();
             }
+
+            pnlModuleSearch.Hide();
+            pnlModuleResources.Show();
+            pnlModule.Hide();
+            pnlModuleStudents.Hide();
+
+            lblModuleFor.Visible = true;
+            lblStudentFor.Text = "";
+            lblModuleFor.Text = $"For Module: {currentModule}";
         }
 //=================================================================================================================================================
 
