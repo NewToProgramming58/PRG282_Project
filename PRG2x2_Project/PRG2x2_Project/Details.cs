@@ -483,15 +483,6 @@ namespace PRG2x2_Project
                 {
                     handler.Insert(resource);
                     ShowModuleDetails(false);
-                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    //dgvModuleOutput.Rows[dgvModuleOutput.Rows.Count - 2].Selected = true;
-                    //if (dgvModuleOutput.CurrentRow != null)
-                    //{
-                    //    dgvModuleOutput.CurrentCell =
-                    //        dgvModuleOutput
-                    //        .Rows[dgvModuleOutput.Rows.Count - 2]
-                    //        .Cells[dgvModuleOutput.CurrentCell.ColumnIndex];
-                    //}
                 }
             }
             else if (ModuleStudents)
@@ -509,15 +500,6 @@ namespace PRG2x2_Project
                 {
                     handler.Insert(sm);
                     ShowModuleDetails(true);
-                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    //dgvModuleOutput.Rows[dgvModuleOutput.Rows.Count - 2].Selected = true;
-                    //if (dgvModuleOutput.CurrentRow != null)
-                    //{
-                    //    dgvModuleOutput.CurrentCell =
-                    //        dgvModuleOutput
-                    //        .Rows[dgvModuleOutput.Rows.Count - 2]
-                    //        .Cells[dgvModuleOutput.CurrentCell.ColumnIndex];
-                    //}
                 }
             }
             else
@@ -537,15 +519,6 @@ namespace PRG2x2_Project
                 {
                     handler.Insert(module);
                     ShowModule();
-                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    //dgvModuleOutput.Rows[dgvModuleOutput.Rows.Count - 2].Selected = true;
-                    //if (dgvModuleOutput.CurrentRow != null)
-                    //{
-                    //    dgvModuleOutput.CurrentCell =
-                    //        dgvModuleOutput
-                    //        .Rows[dgvModuleOutput.Rows.Count - 2]
-                    //        .Cells[dgvModuleOutput.CurrentCell.ColumnIndex];
-                    //}
                 }
             }
         }
@@ -586,6 +559,53 @@ namespace PRG2x2_Project
                             .Cells[dgvModuleOutput.CurrentCell.ColumnIndex];
                     }
                 }
+            }
+            else if (ModuleStudents)
+            {
+                StudentModule studentModule = new StudentModule(int.Parse(dgvModuleOutput.SelectedRows[0].Cells[0].Value.ToString()), currentModule, cboModuleStudentStatus.Text);
+                // We have to make sure no duplicate modules are entered so we create a list and see if our newly added trecord is already in the list.
+                DialogResult changeResult = DialogResult.No;
+                if (cboStudentModuleCode.Text != dgvModuleOutput.SelectedRows[0].Cells[0].Value.ToString())
+                {
+                    changeResult = MessageBox.Show($"You changed the Module code when wanting to update.\n" +
+                        $"Instead of updating the student number try to insert a new field.\n" +
+                        $"Would you still like to change the status from {dgvModuleOutput.SelectedRows[0].Cells[0].Value} To {txtModuleStudentNumber.Text}?",
+                        "Update problem", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                }
+
+                if (changeResult == DialogResult.Yes)
+                {
+                    handler.Update(studentModule);
+                    ShowModuleDetails(true);
+                    return;
+                }
+                // Reads the values.
+                
+                // Asks the user if he/she is sure.
+                DialogResult result = MessageBox.Show($"Are you sure you want to update this record drom Student Modules?\n\n" +
+                $"Student Number: \t{studentModule.StudentNumber}\n" +
+                $"Module Code: \t{currentModule}\n" +
+                $"Status: \t\t{dgvModuleOutput.SelectedRows[0].Cells[3].Value} TO {studentModule.Status}",
+                "Update", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                // If yes, insert the record, refresh the datagridview, and select that newly inserted record.
+                if (result == DialogResult.Yes)
+                {
+                    handler.Update(studentModule);
+
+                    int index = dgvModuleOutput.SelectedRows[0].Index;
+
+                    ShowModuleDetails(true);
+                    dgvModuleOutput.Rows[index].Selected = true;
+                    if (dgvModuleOutput.CurrentRow != null)
+                    {
+                        dgvModuleOutput.CurrentCell =
+                            dgvModuleOutput
+                            .Rows[index]
+                            .Cells[dgvModuleOutput.CurrentCell.ColumnIndex];
+                    }
+                }
+
             }
             else
             {
