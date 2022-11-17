@@ -33,7 +33,8 @@ CREATE TABLE StudentModules(
 	[Student Number] INT,
 	[Module Code] NVARCHAR(6),
 	[Status] NVARCHAR(20),
+	CONSTRAINT CK_number_code PRIMARY KEY ([Module Code], [Student Number]),
 	CONSTRAINT [FK_StudentNumberModule] FOREIGN KEY ([Student Number]) 
-		REFERENCES [Student] ([Student Number]),
+		REFERENCES [Student] ([Student Number])
 )
 --DBD281,INF281,IOT281,LPR281,MAT281,PMM281,PRG281,PRG282,SAD281,STA281,WPR281,DBD281,INF281,IOT281,LPR281,MAT281,PMM281,PRG281,PRG282,SAD281,STA181,WPR181
