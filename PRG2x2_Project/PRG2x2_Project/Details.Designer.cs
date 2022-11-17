@@ -107,6 +107,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cboModuleStudentStatus = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.lblModuleFor = new System.Windows.Forms.Label();
+            this.lblStudentFor = new System.Windows.Forms.Label();
             this.tbcDetails.SuspendLayout();
             this.tpgStudents.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -519,6 +521,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.panel1.Controls.Add(this.lblStudentFor);
             this.panel1.Controls.Add(this.pnlStudentSearch);
             this.panel1.Controls.Add(this.rtbStudentTutorial);
             this.panel1.Controls.Add(this.label1);
@@ -844,6 +847,7 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.SystemColors.Control;
+            this.panel4.Controls.Add(this.lblModuleFor);
             this.panel4.Controls.Add(this.pnlModuleSearch);
             this.panel4.Controls.Add(this.rtbModuleTutorial);
             this.panel4.Controls.Add(this.label2);
@@ -930,6 +934,30 @@
             this.label13.Size = new System.Drawing.Size(40, 13);
             this.label13.TabIndex = 41;
             this.label13.Text = "Status:";
+            // 
+            // lblModuleFor
+            // 
+            this.lblModuleFor.AutoSize = true;
+            this.lblModuleFor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblModuleFor.ForeColor = System.Drawing.Color.Coral;
+            this.lblModuleFor.Location = new System.Drawing.Point(20, 47);
+            this.lblModuleFor.Name = "lblModuleFor";
+            this.lblModuleFor.Size = new System.Drawing.Size(97, 20);
+            this.lblModuleFor.TabIndex = 17;
+            this.lblModuleFor.Text = "For Module: ";
+            this.lblModuleFor.Visible = false;
+            // 
+            // lblStudentFor
+            // 
+            this.lblStudentFor.AutoSize = true;
+            this.lblStudentFor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStudentFor.ForeColor = System.Drawing.Color.Coral;
+            this.lblStudentFor.Location = new System.Drawing.Point(20, 47);
+            this.lblStudentFor.Name = "lblStudentFor";
+            this.lblStudentFor.Size = new System.Drawing.Size(102, 20);
+            this.lblStudentFor.TabIndex = 18;
+            this.lblStudentFor.Text = "For Student: ";
+            this.lblStudentFor.Visible = false;
             // 
             // Details
             // 
@@ -1056,5 +1084,7 @@
         private System.Windows.Forms.Button btnModuleFirst;
         private System.Windows.Forms.ComboBox cboModuleStudentStatus;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label lblStudentFor;
+        private System.Windows.Forms.Label lblModuleFor;
     }
 }
