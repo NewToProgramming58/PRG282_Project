@@ -18,6 +18,8 @@ namespace PRG2x2_Project
         public bool StudentModules = false;
         public bool ModuleStudents = false;
         public bool ModuleResources = false;
+        public bool students = false;
+        public bool modules = false;
         int currentStudent = 0;
         string currentModule = "";
 
@@ -69,6 +71,11 @@ namespace PRG2x2_Project
         //INSERT
         private void btnStudentInsert_Click(object sender, EventArgs e)
         {
+            if (ValidateInput())
+            {
+                return;
+            }
+
             if (StudentModules)
             {
                 // We have to make sure no duplicate modules are entered so we create a list and see if our newly added trecord is already in the list.
@@ -161,6 +168,11 @@ namespace PRG2x2_Project
         //UPDATE
         private void btnStudentUpdate_Click(object sender, EventArgs e)
         {
+            if (ValidateInput())
+            {
+                return;
+            }
+
             if (StudentModules)
             {
                 int index = dgvStudentOutput.SelectedRows[0].Index;
@@ -365,7 +377,7 @@ namespace PRG2x2_Project
             {
                 dgvStudentOutput.CurrentCell =
                     dgvStudentOutput
-                    .Rows[dgvStudentOutput.Rows.Count - 2]
+                    .Rows[dgvStudentOutput.Rows.Count - 1]
                     .Cells[dgvStudentOutput.CurrentCell.ColumnIndex];
             }
         }
@@ -395,7 +407,7 @@ namespace PRG2x2_Project
 
         private void btnStudentNext_Click(object sender, EventArgs e)
         {
-            if (dgvStudentOutput.SelectedRows[0].Index < dgvStudentOutput.Rows.Count - 2)
+            if (dgvStudentOutput.SelectedRows[0].Index < dgvStudentOutput.Rows.Count - 1)
             {
                 dgvStudentOutput.CurrentCell = dgvStudentOutput.Rows[dgvStudentOutput.SelectedRows[0].Index + 1].Cells[0];
             }
@@ -418,13 +430,13 @@ namespace PRG2x2_Project
                 // We make use of ModuleStudents and ModuleResources to determine that.
                 if (ModuleStudents)
                 {//////////////////////////////////////////////////////////////////////////////////////////
-                    txtStudentNumber.Text = dgvStudentOutput.SelectedRows[0].Cells[0].Value.ToString();
-                    txtStudentName.Text = dgvStudentOutput.SelectedRows[0].Cells[1].Value.ToString();
-                    txtStudentSurname.Text = dgvStudentOutput.SelectedRows[0].Cells[2].Value.ToString();
-                    dtpStudentDate.Value = DateTime.Parse(dgvStudentOutput.SelectedRows[0].Cells[3].Value.ToString());
-                    cboStudentGender.Text = dgvStudentOutput.SelectedRows[0].Cells[4].Value.ToString();
-                    txtStudentPhone.Text = dgvStudentOutput.SelectedRows[0].Cells[5].Value.ToString();
-                    rtbStudentAddress.Text = dgvStudentOutput.SelectedRows[0].Cells[6].Value.ToString();
+                    //txtStudentNumber.Text = dgvStudentOutput.SelectedRows[0].Cells[0].Value.ToString();
+                    //txtStudentName.Text = dgvStudentOutput.SelectedRows[0].Cells[1].Value.ToString();
+                    //txtStudentSurname.Text = dgvStudentOutput.SelectedRows[0].Cells[2].Value.ToString();
+                    //dtpStudentDate.Value = DateTime.Parse(dgvStudentOutput.SelectedRows[0].Cells[3].Value.ToString());
+                    //cboStudentGender.Text = dgvStudentOutput.SelectedRows[0].Cells[4].Value.ToString();
+                    //txtStudentPhone.Text = dgvStudentOutput.SelectedRows[0].Cells[5].Value.ToString();
+                    //rtbStudentAddress.Text = dgvStudentOutput.SelectedRows[0].Cells[6].Value.ToString();
 
                     // Convert the base 64 string to a stream and the stream to an image that can be displayed on the form.
                     string imageBase = dgvStudentOutput.SelectedRows[0].Cells[7].Value.ToString();
@@ -466,10 +478,12 @@ namespace PRG2x2_Project
         {
             currentStudent = 0;
             StudentModules = false;
-            ModuleResources = false;
             ModuleStudents = false;
+            ModuleResources = false;
+            students = true;
+            modules = false;
 
-            tbcDetails.SelectTab(0);
+        tbcDetails.SelectTab(0);
             dgvStudentOutput.DataSource = handler.GetData(Tables.Student);
             if (dgvStudentOutput.Rows.Count > 0)
             {
@@ -485,6 +499,10 @@ namespace PRG2x2_Project
         public void ShowStudentModules()
         {
             StudentModules = true;
+            ModuleStudents = false;
+            ModuleResources = false;
+            students = false;
+            modules = false;
             if (currentStudent == 0)
             {
                 currentStudent = int.Parse(dgvStudentOutput.SelectedRows[0].Cells[0].Value.ToString());
@@ -508,9 +526,11 @@ namespace PRG2x2_Project
         public void ShowModule()
         {
             currentModule = "";
+            StudentModules = false;
             ModuleStudents = false;
             ModuleResources = false;
-            StudentModules = false;
+            students = false;
+            modules = true;
 
             dgvModuleOutput.DataSource = handler.GetData(Tables.Module);
             if (dgvModuleOutput.Rows.Count > 0)
@@ -526,9 +546,11 @@ namespace PRG2x2_Project
         {
             // When Details are shown it has to determine which details to show, Students or Resources.
             // For this we make use of student.
+            StudentModules = false;
             ModuleStudents = false;
             ModuleResources = false;
-            StudentModules = false;
+            students = false;
+            modules = false;
 
             if (student)
             {////////////////////////////////////////////////////////////////////DETAILS
@@ -561,6 +583,11 @@ namespace PRG2x2_Project
 
         private void btnModuleInsert_Click(object sender, EventArgs e)
         {
+            if (ValidateInput())
+            {
+                return;
+            }
+
             if (ModuleResources)
             {
                 // Reads the values.
@@ -620,6 +647,11 @@ namespace PRG2x2_Project
 
         private void btnModuleUpdate_Click(object sender, EventArgs e)
         {
+            if (ValidateInput())
+            {
+                return;
+            }
+
             if (ModuleResources)
             {
                 // Reads the values.
@@ -758,6 +790,113 @@ namespace PRG2x2_Project
             else
             {
                 MessageBox.Show("No Modules found", "Search Results", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        // Validates the input where needed.
+        public bool ValidateInput()
+        {
+            bool problems = false;
+
+            // Validate Student input.
+            if (students)
+            {
+                // Checks if there are blank values, else it checks for numbers.
+                if ((txtStudentName.Text == "") || (txtStudentSurname.Text == "") || (cboStudentGender.Text == "") || (txtStudentPhone.Text == "") || (rtbStudentAddress.Text == ""))
+                {
+                    problems = true;
+                    MessageBox.Show("Some values were not filled in.\nPlease make sure there are no blank values.",
+                        "Blank values", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return problems;
+                }
+
+                // We check if the name, surname, or gender contains numbers
+                List<string> numbers = new List<string>();
+                for (int i = 0; i < 10; i++)
+                {
+                    numbers.Add(i.ToString());
+                }
+
+                foreach (string item in numbers)
+                {
+                    if ((txtStudentSurname.Text.Contains(item)) || (txtStudentName.Text.Contains(item)) || (cboStudentGender.Text.Contains(item)))
+                    {
+                        problems = true;
+                        MessageBox.Show("Names, surnames, and genders cannot contain numbers.",
+                            "Text contains numbers", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return problems;
+                    }
+                }
+
+                // Checks if the phone number is the correct length
+                string newPhone = txtStudentPhone.Text.Replace("-", "").Replace(" ", "").Replace("+", "");
+                if (!((newPhone.Length == 11) || (newPhone.Length == 10)))
+                {
+                    problems = true;
+                    MessageBox.Show("The number is incorrect.\nMake sure it is 10 or 11 digits for example.\n+2778-261-6209 or 078 261 6209",
+                        "Phone number", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return problems;
+                }
+            }
+
+            if (modules)
+            {
+                // Checks if the Module code is the correct length.
+                if (txtModuleCode.Text.Length != 6)
+                {
+                    problems = true;
+                    MessageBox.Show("The Module Code is in the incorrect format.\nMake sure it is 6 digits and in the format:\nPRG1x1",
+                        "Phone number", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return problems;
+                }
+            }
+
+            return problems;
+        }
+
+        private void btnModuleFirst_Click(object sender, EventArgs e)
+        {
+            if (dgvModuleOutput.CurrentRow != null)
+            {
+                dgvModuleOutput.CurrentCell =
+                    dgvModuleOutput
+                    .Rows[0]
+                    .Cells[dgvModuleOutput.CurrentCell.ColumnIndex];
+            }
+        }
+
+        private void btnModulePrevious_Click(object sender, EventArgs e)
+        {
+            if (dgvModuleOutput.SelectedRows[0].Index > 0)
+            {
+                dgvModuleOutput.CurrentCell = dgvModuleOutput.Rows[dgvModuleOutput.SelectedRows[0].Index - 1].Cells[0];
+            }
+            else
+            {
+                btnModuleLast_Click(sender, e);
+            }
+        }
+
+        private void btnModuleNext_Click(object sender, EventArgs e)
+        {
+            if (dgvModuleOutput.SelectedRows[0].Index < dgvModuleOutput.Rows.Count - 1)
+            {
+                dgvModuleOutput.CurrentCell = dgvModuleOutput.Rows[dgvModuleOutput.SelectedRows[0].Index + 1].Cells[0];
+            }
+            else
+            {
+                btnModuleFirst_Click(sender, e);
+            }
+        }
+
+        private void btnModuleLast_Click(object sender, EventArgs e)
+        {
+            if (dgvModuleOutput.CurrentRow != null)
+            {
+                dgvModuleOutput.CurrentCell =
+                    dgvModuleOutput
+                    .Rows[dgvModuleOutput.Rows.Count - 1]
+                    .Cells[dgvModuleOutput.CurrentCell.ColumnIndex];
             }
         }
     }

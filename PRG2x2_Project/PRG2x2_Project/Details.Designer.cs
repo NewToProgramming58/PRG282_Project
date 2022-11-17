@@ -75,10 +75,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tpgModules = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.pnlModuleStudents = new System.Windows.Forms.Panel();
             this.pnlModuleResources = new System.Windows.Forms.Panel();
             this.rtbModuleResource = new System.Windows.Forms.RichTextBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.pnlModuleStudents = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -115,6 +115,10 @@
             this.txtModuleSearch = new System.Windows.Forms.TextBox();
             this.rtbModuleTutorial = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnModuleLast = new System.Windows.Forms.Button();
+            this.btnModulePrevious = new System.Windows.Forms.Button();
+            this.btnModuleNext = new System.Windows.Forms.Button();
+            this.btnModuleFirst = new System.Windows.Forms.Button();
             this.tbcDetails.SuspendLayout();
             this.tpgStudents.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -127,8 +131,8 @@
             this.pnlStudentSearch.SuspendLayout();
             this.tpgModules.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.pnlModuleStudents.SuspendLayout();
             this.pnlModuleResources.SuspendLayout();
+            this.pnlModuleStudents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlModule.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -609,6 +613,10 @@
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.Control;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.btnModuleLast);
+            this.panel3.Controls.Add(this.btnModulePrevious);
+            this.panel3.Controls.Add(this.btnModuleNext);
+            this.panel3.Controls.Add(this.btnModuleFirst);
             this.panel3.Controls.Add(this.pnlModuleResources);
             this.panel3.Controls.Add(this.pnlModuleStudents);
             this.panel3.Controls.Add(this.pnlModule);
@@ -619,34 +627,11 @@
             this.panel3.Size = new System.Drawing.Size(841, 431);
             this.panel3.TabIndex = 2;
             // 
-            // pnlModuleStudents
-            // 
-            this.pnlModuleStudents.Controls.Add(this.pictureBox1);
-            this.pnlModuleStudents.Controls.Add(this.richTextBox1);
-            this.pnlModuleStudents.Controls.Add(this.comboBox1);
-            this.pnlModuleStudents.Controls.Add(this.dateTimePicker1);
-            this.pnlModuleStudents.Controls.Add(this.label16);
-            this.pnlModuleStudents.Controls.Add(this.label20);
-            this.pnlModuleStudents.Controls.Add(this.label21);
-            this.pnlModuleStudents.Controls.Add(this.label22);
-            this.pnlModuleStudents.Controls.Add(this.label23);
-            this.pnlModuleStudents.Controls.Add(this.label24);
-            this.pnlModuleStudents.Controls.Add(this.label25);
-            this.pnlModuleStudents.Controls.Add(this.label26);
-            this.pnlModuleStudents.Controls.Add(this.textBox1);
-            this.pnlModuleStudents.Controls.Add(this.textBox3);
-            this.pnlModuleStudents.Controls.Add(this.textBox4);
-            this.pnlModuleStudents.Controls.Add(this.textBox5);
-            this.pnlModuleStudents.Location = new System.Drawing.Point(526, 0);
-            this.pnlModuleStudents.Name = "pnlModuleStudents";
-            this.pnlModuleStudents.Size = new System.Drawing.Size(311, 335);
-            this.pnlModuleStudents.TabIndex = 16;
-            // 
             // pnlModuleResources
             // 
             this.pnlModuleResources.Controls.Add(this.rtbModuleResource);
             this.pnlModuleResources.Controls.Add(this.label11);
-            this.pnlModuleResources.Location = new System.Drawing.Point(523, 0);
+            this.pnlModuleResources.Location = new System.Drawing.Point(526, 3);
             this.pnlModuleResources.Name = "pnlModuleResources";
             this.pnlModuleResources.Size = new System.Drawing.Size(317, 351);
             this.pnlModuleResources.TabIndex = 52;
@@ -667,6 +652,29 @@
             this.label11.Size = new System.Drawing.Size(56, 13);
             this.label11.TabIndex = 1;
             this.label11.Text = "Resource:";
+            // 
+            // pnlModuleStudents
+            // 
+            this.pnlModuleStudents.Controls.Add(this.pictureBox1);
+            this.pnlModuleStudents.Controls.Add(this.richTextBox1);
+            this.pnlModuleStudents.Controls.Add(this.comboBox1);
+            this.pnlModuleStudents.Controls.Add(this.dateTimePicker1);
+            this.pnlModuleStudents.Controls.Add(this.label16);
+            this.pnlModuleStudents.Controls.Add(this.label20);
+            this.pnlModuleStudents.Controls.Add(this.label21);
+            this.pnlModuleStudents.Controls.Add(this.label22);
+            this.pnlModuleStudents.Controls.Add(this.label23);
+            this.pnlModuleStudents.Controls.Add(this.label24);
+            this.pnlModuleStudents.Controls.Add(this.label25);
+            this.pnlModuleStudents.Controls.Add(this.label26);
+            this.pnlModuleStudents.Controls.Add(this.textBox1);
+            this.pnlModuleStudents.Controls.Add(this.textBox3);
+            this.pnlModuleStudents.Controls.Add(this.textBox4);
+            this.pnlModuleStudents.Controls.Add(this.textBox5);
+            this.pnlModuleStudents.Location = new System.Drawing.Point(526, 3);
+            this.pnlModuleStudents.Name = "pnlModuleStudents";
+            this.pnlModuleStudents.Size = new System.Drawing.Size(311, 335);
+            this.pnlModuleStudents.TabIndex = 16;
             // 
             // pictureBox1
             // 
@@ -869,7 +877,6 @@
             // 
             this.txtModuleCode.Location = new System.Drawing.Point(127, 33);
             this.txtModuleCode.Name = "txtModuleCode";
-            this.txtModuleCode.ReadOnly = true;
             this.txtModuleCode.Size = new System.Drawing.Size(172, 20);
             this.txtModuleCode.TabIndex = 0;
             // 
@@ -938,7 +945,7 @@
             this.dgvModuleOutput.Name = "dgvModuleOutput";
             this.dgvModuleOutput.ReadOnly = true;
             this.dgvModuleOutput.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvModuleOutput.Size = new System.Drawing.Size(525, 432);
+            this.dgvModuleOutput.Size = new System.Drawing.Size(525, 403);
             this.dgvModuleOutput.TabIndex = 18;
             this.dgvModuleOutput.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvModuleOutput_CellDoubleClick);
             this.dgvModuleOutput.SelectionChanged += new System.EventHandler(this.dgvModuleOutput_SelectionChanged);
@@ -994,11 +1001,11 @@
             // 
             // rtbModuleTutorial
             // 
-            this.rtbModuleTutorial.Location = new System.Drawing.Point(200, 6);
+            this.rtbModuleTutorial.Location = new System.Drawing.Point(200, 0);
             this.rtbModuleTutorial.Name = "rtbModuleTutorial";
-            this.rtbModuleTutorial.Size = new System.Drawing.Size(338, 54);
+            this.rtbModuleTutorial.Size = new System.Drawing.Size(338, 71);
             this.rtbModuleTutorial.TabIndex = 1;
-            this.rtbModuleTutorial.Text = "";
+            this.rtbModuleTutorial.Text = resources.GetString("rtbModuleTutorial.Text");
             // 
             // label2
             // 
@@ -1010,6 +1017,46 @@
             this.label2.Size = new System.Drawing.Size(156, 26);
             this.label2.TabIndex = 0;
             this.label2.Text = "Module Details";
+            // 
+            // btnModuleLast
+            // 
+            this.btnModuleLast.Location = new System.Drawing.Point(338, 404);
+            this.btnModuleLast.Name = "btnModuleLast";
+            this.btnModuleLast.Size = new System.Drawing.Size(75, 23);
+            this.btnModuleLast.TabIndex = 58;
+            this.btnModuleLast.Text = ">>";
+            this.btnModuleLast.UseVisualStyleBackColor = true;
+            this.btnModuleLast.Click += new System.EventHandler(this.btnModuleLast_Click);
+            // 
+            // btnModulePrevious
+            // 
+            this.btnModulePrevious.Location = new System.Drawing.Point(176, 404);
+            this.btnModulePrevious.Name = "btnModulePrevious";
+            this.btnModulePrevious.Size = new System.Drawing.Size(75, 23);
+            this.btnModulePrevious.TabIndex = 57;
+            this.btnModulePrevious.Text = "<";
+            this.btnModulePrevious.UseVisualStyleBackColor = true;
+            this.btnModulePrevious.Click += new System.EventHandler(this.btnModulePrevious_Click);
+            // 
+            // btnModuleNext
+            // 
+            this.btnModuleNext.Location = new System.Drawing.Point(257, 404);
+            this.btnModuleNext.Name = "btnModuleNext";
+            this.btnModuleNext.Size = new System.Drawing.Size(75, 23);
+            this.btnModuleNext.TabIndex = 56;
+            this.btnModuleNext.Text = ">";
+            this.btnModuleNext.UseVisualStyleBackColor = true;
+            this.btnModuleNext.Click += new System.EventHandler(this.btnModuleNext_Click);
+            // 
+            // btnModuleFirst
+            // 
+            this.btnModuleFirst.Location = new System.Drawing.Point(95, 404);
+            this.btnModuleFirst.Name = "btnModuleFirst";
+            this.btnModuleFirst.Size = new System.Drawing.Size(75, 23);
+            this.btnModuleFirst.TabIndex = 55;
+            this.btnModuleFirst.Text = "<<";
+            this.btnModuleFirst.UseVisualStyleBackColor = true;
+            this.btnModuleFirst.Click += new System.EventHandler(this.btnModuleFirst_Click);
             // 
             // Details
             // 
@@ -1040,10 +1087,10 @@
             this.pnlStudentSearch.PerformLayout();
             this.tpgModules.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            this.pnlModuleStudents.ResumeLayout(false);
-            this.pnlModuleStudents.PerformLayout();
             this.pnlModuleResources.ResumeLayout(false);
             this.pnlModuleResources.PerformLayout();
+            this.pnlModuleStudents.ResumeLayout(false);
+            this.pnlModuleStudents.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnlModule.ResumeLayout(false);
             this.pnlModule.PerformLayout();
@@ -1145,5 +1192,9 @@
         private System.Windows.Forms.Panel pnlModuleResources;
         private System.Windows.Forms.RichTextBox rtbModuleResource;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button btnModuleLast;
+        private System.Windows.Forms.Button btnModulePrevious;
+        private System.Windows.Forms.Button btnModuleNext;
+        private System.Windows.Forms.Button btnModuleFirst;
     }
 }
