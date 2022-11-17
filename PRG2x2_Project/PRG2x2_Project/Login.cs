@@ -62,22 +62,19 @@ namespace PRG2x2_Project
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            // Date does not work//////////////////////////////////////////////////////////////////////////////////////////////////
-            DataHandler handler = new DataHandler();
-            MessageBox.Show("Inserted");
-            //User user = users.FirstOrDefault(x => x.Username == txbUsername.Text);
-            //if (user == null)
-            //{
-            //    FileHandler fileHandler = new FileHandler();
-            //    user = new User(txbUsername.Text, txbPassword.Text);
-            //    users.Add(user);
-            //    fileHandler.addUser(user);
-            //    MessageBox.Show($"Registered {user.Username}, Welcome");
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Username already exists");
-            //}
+            User user = users.FirstOrDefault(x => x.Username == txbUsername.Text);
+            if (user == null)
+            {
+                FileHandler fileHandler = new FileHandler();
+                user = new User(txbUsername.Text, txbPassword.Text);
+                users.Add(user);
+                fileHandler.addUser(user);
+                MessageBox.Show($"Registered {user.Username}, Welcome");
+            }
+            else
+            {
+                MessageBox.Show("Username already exists");
+            }
         }
     }
 }
