@@ -23,6 +23,11 @@ namespace PRG2x2_Project
             Status = status;
         }
 
+        public StudentModule(string moduleCode)
+        {
+            ModuleCode = moduleCode;
+        }
+
         public string Update()
         {
             return $"UPDATE StudentModules\n" +

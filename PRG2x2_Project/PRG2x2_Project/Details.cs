@@ -662,24 +662,9 @@ namespace PRG2x2_Project
                 // The Modules or their details regarding students or resources.
                 // We make use of ModuleStudents and ModuleResources to determine that.
                 if (ModuleStudents)
-                {//////////////////////////////////////////////////////////////////////////////////////////
-                    //txtStudentNumber.Text = dgvStudentOutput.SelectedRows[0].Cells[0].Value.ToString();
-                    //txtStudentName.Text = dgvStudentOutput.SelectedRows[0].Cells[1].Value.ToString();
-                    //txtStudentSurname.Text = dgvStudentOutput.SelectedRows[0].Cells[2].Value.ToString();
-                    //dtpStudentDate.Value = DateTime.Parse(dgvStudentOutput.SelectedRows[0].Cells[3].Value.ToString());
-                    //cboStudentGender.Text = dgvStudentOutput.SelectedRows[0].Cells[4].Value.ToString();
-                    //txtStudentPhone.Text = dgvStudentOutput.SelectedRows[0].Cells[5].Value.ToString();
-                    //rtbStudentAddress.Text = dgvStudentOutput.SelectedRows[0].Cells[6].Value.ToString();
-
-                    // Convert the base 64 string to a stream and the stream to an image that can be displayed on the form.
-                    string imageBase = dgvStudentOutput.SelectedRows[0].Cells[7].Value.ToString();
-                    imageBase = imageBase.Substring(imageBase.IndexOf(",") + 1);
-                    byte[] bytes = Convert.FromBase64String(imageBase);
-                    using (MemoryStream ms = new MemoryStream(bytes))
-                    {
-                        ptbStudentImage.Image = Image.FromStream(ms);
-                    }
-                    lblModuleSearch.Text = "Student Number";
+                {
+                    txtModuleStudentNumber.Text = dgvModuleOutput.SelectedRows[0].Cells[0].Value.ToString();
+                    cboModuleStudentStatus.Text = dgvModuleOutput.SelectedRows[0].Cells[3].Value.ToString();
                 }
                 else if (ModuleResources)
                 {
@@ -845,7 +830,7 @@ namespace PRG2x2_Project
                 if (currentModule == "")
                 {
                     currentModule = dgvModuleOutput.SelectedRows[0].Cells[0].Value.ToString();
-                    dgvModuleOutput.DataSource = handler.GetData(table: Tables.StudentModules, code: currentModule);
+                    dgvModuleOutput.DataSource = handler.GetData(table: Tables.StudentModules, code: currentModule, tableObject: new StudentModule(currentModule));
                 }
                 pnlModuleStudents.Show();
                 pnlModule.Hide();
