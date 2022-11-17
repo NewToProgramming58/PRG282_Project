@@ -115,7 +115,7 @@ namespace PRG2x2_Project
                     // Open connection, run creation query and close.
                     masterConnection.Open();
                     cmd.ExecuteNonQuery();
-                    masterConnection.Close();
+                    
 
                     this.Con = new SqlConnection($@"Server=localhost\SQLExpress;Integrated Security=True;Trusted_Connection=True;Database={dbName}");
 
@@ -135,11 +135,16 @@ namespace PRG2x2_Project
                     {
                         _.ExecuteNonQuery();
                     }
-                    this.Con.Close();
+                    
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
+                }
+                finally 
+                {
+                    masterConnection.Close();
+                    this.Con.Close();
                 }
             }        
         }
@@ -174,8 +179,18 @@ namespace PRG2x2_Project
             }
             SqlCommand cmd = new SqlCommand(qry, Con);
             Con.Open();
-            cmd.ExecuteNonQuery();
-            Con.Close();
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                HandleExeption(ex);
+            }
+            finally
+            {
+                Con.Close();
+            }
         }
 
         public void Delete(Tables table, string condition, dynamic tableObject = null)
@@ -207,8 +222,18 @@ namespace PRG2x2_Project
             }     
             SqlCommand cmd = new SqlCommand(qry, this.Con);
             Con.Open();
-            cmd.ExecuteNonQuery();
-            Con.Close();           
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                HandleExeption(ex);
+            }
+            finally 
+            {
+                Con.Close();
+            }            
         }
 
         public void Insert(dynamic tableObject)
@@ -216,10 +241,18 @@ namespace PRG2x2_Project
             string qry = tableObject.Insert();
             SqlCommand cmd = new SqlCommand(qry, Con);
             Con.Open();
-
-            cmd.ExecuteNonQuery();
-         
-            Con.Close();
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                HandleExeption(ex);
+            }
+            finally 
+            {
+                Con.Close();
+            }            
         }
         private void HandleExeption(SqlException e) 
         {
@@ -230,5 +263,5 @@ namespace PRG2x2_Project
                     break;
             }
         }
-    }   
+    }   //rtbModuleResource.Text = dgvModuleOutput.SelectedRows[0].Cells[1].Value.ToString();
 }
