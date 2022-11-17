@@ -697,11 +697,14 @@ namespace PRG2x2_Project
         // Views Relationships when double clicking a field.
         private void dgvModuleOutput_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            // When double clicking a module, a form is going to display to ask which details the user wants to see.
-            ModuleDetailOption moduleFrm = new ModuleDetailOption();
-            moduleFrm.Show();
-            moduleFrm.GetForm(this);
-            this.Enabled = false;
+            if (modules)
+            {
+                // When double clicking a module, a form is going to display to ask which details the user wants to see.
+                ModuleDetailOption moduleFrm = new ModuleDetailOption();
+                moduleFrm.Show();
+                moduleFrm.GetForm(this);
+                this.Enabled = false;
+            }
         }
 
         //-----------------------------------------------------------------------------------------------------------------------------------------
