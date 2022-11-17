@@ -190,18 +190,17 @@ namespace PRG2x2_Project
                 {
                     handler.Update(sm);
                     ShowStudentModules();
+                    return;
                 }
-                else
-                {
-                    DialogResult result = MessageBox.Show($"Are you sure you want to update this record from StudentModules?\n\n" +
-                        $"Status: {dgvStudentOutput.SelectedRows[0].Cells[3].Value} To {cboStudentModuleStatus.Text}",
-                        "Update problem", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
-                    if (result == DialogResult.Yes)
-                    {
-                        handler.Update(sm);
-                        ShowStudentModules();
-                    }
+                DialogResult result = MessageBox.Show($"Are you sure you want to update this record from StudentModules?\n\n" +
+                    $"Status: {dgvStudentOutput.SelectedRows[0].Cells[3].Value} To {cboStudentModuleStatus.Text}",
+                    "Update", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                if (result == DialogResult.Yes)
+                {
+                    handler.Update(sm);
+                    ShowStudentModules();
                 }
 
                 dgvStudentOutput.Rows[index].Selected = true;
