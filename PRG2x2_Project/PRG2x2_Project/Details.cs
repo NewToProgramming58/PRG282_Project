@@ -502,7 +502,7 @@ namespace PRG2x2_Project
                 // Asks the user if he/she is sure.
                 DialogResult result = MessageBox.Show($"Are you sure you want to insert this record into Module: {sm.ModuleCode}?\n\n" +
                     $"Student number: \t{sm.StudentNumber}\n" +
-                    $"Status: \t{sm.Status}"
+                    $"Status: \t\t{sm.Status}"
                     , "Insert", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
                 // If yes, insert the record, refresh the datagridview, and select that newly inserted record.
@@ -639,6 +639,24 @@ namespace PRG2x2_Project
                 {
                     handler.Delete(Tables.Resource, "", resource);
                     ShowModuleDetails(false);
+                }
+            }
+            else if (ModuleStudents)
+            {
+                // Reads the values.
+                StudentModule sm = new StudentModule(int.Parse(txtModuleStudentNumber.Text), currentModule, cboModuleStudentStatus.Text);
+
+                // Asks the user if he/she is sure.
+                DialogResult result = MessageBox.Show($"Are you sure you want to insert this record into Module: {sm.ModuleCode}?\n\n" +
+                    $"Student number: \t{sm.StudentNumber}\n" +
+                    $"Status: \t\t{sm.Status}"
+                    , "Insert", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                // If yes, insert the record, refresh the datagridview, and select that newly inserted record.
+                if (result == DialogResult.Yes)
+                {
+                    handler.Delete(Tables.StudentModules, handler.addCondition("Student Number", Operator.Equals, int.Parse(txtModuleStudentNumber.Text)), sm);
+                    ShowModuleDetails(true);
                 }
             }
             else
