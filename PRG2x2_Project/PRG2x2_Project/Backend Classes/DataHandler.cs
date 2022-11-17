@@ -263,5 +263,5 @@ namespace PRG2x2_Project
                     break;
             }
         }
-    }   //rtbModuleResource.Text = dgvModuleOutput.SelectedRows[0].Cells[1].Value.ToString();
+    }   
 }
