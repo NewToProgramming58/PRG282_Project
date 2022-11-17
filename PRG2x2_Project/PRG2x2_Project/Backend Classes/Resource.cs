@@ -22,13 +22,18 @@ namespace PRG2x2_Project
         public string Update(string resource)
         {
             return $"UPDATE Resource\n" +
-                $"SET [Module Code] = '{Code}', [Resource] = '{Coderesource}''\n" +
-                $"WHERE [Resource] = '{resource}]";
+                $"SET [Module Code] = '{Code}', [Resource] = '{Coderesource}'\n" +
+                $"WHERE [Resource] = '{resource}'";
         }
         public string Insert()
         {
             return $"INSERT INTO Resource\n" +
-                $"VALUES ('{Code}', '{coderesource}')'";
+                $"VALUES ('{Code}', '{coderesource}')";
+        }
+        public string Delete()
+        {            
+            return $"DELETE FROM Resource\n" +
+                $"WHERE [Module Code] = '{Code}' AND [Resource] = '{Coderesource}'";
         }
     }
 }

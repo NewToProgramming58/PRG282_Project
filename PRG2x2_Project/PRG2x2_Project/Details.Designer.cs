@@ -75,10 +75,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tpgModules = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.pnlModuleStudents = new System.Windows.Forms.Panel();
             this.pnlModuleResources = new System.Windows.Forms.Panel();
             this.rtbModuleResource = new System.Windows.Forms.RichTextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.pnlModuleStudents = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -127,8 +127,8 @@
             this.pnlStudentSearch.SuspendLayout();
             this.tpgModules.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.pnlModuleResources.SuspendLayout();
             this.pnlModuleStudents.SuspendLayout();
+            this.pnlModuleResources.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlModule.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -240,6 +240,7 @@
             // 
             // cboStudentModuleCode
             // 
+            this.cboStudentModuleCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboStudentModuleCode.FormattingEnabled = true;
             this.cboStudentModuleCode.Location = new System.Drawing.Point(142, 41);
             this.cboStudentModuleCode.Name = "cboStudentModuleCode";
@@ -249,6 +250,7 @@
             // 
             // cboStudentModuleStatus
             // 
+            this.cboStudentModuleStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboStudentModuleStatus.FormattingEnabled = true;
             this.cboStudentModuleStatus.Items.AddRange(new object[] {
             "Pass",
@@ -510,6 +512,8 @@
             // 
             // dgvStudentOutput
             // 
+            this.dgvStudentOutput.AllowUserToAddRows = false;
+            this.dgvStudentOutput.AllowUserToDeleteRows = false;
             this.dgvStudentOutput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvStudentOutput.Location = new System.Drawing.Point(-1, -2);
             this.dgvStudentOutput.MultiSelect = false;
@@ -615,32 +619,6 @@
             this.panel3.Size = new System.Drawing.Size(841, 431);
             this.panel3.TabIndex = 2;
             // 
-            // pnlModuleResources
-            // 
-            this.pnlModuleResources.Controls.Add(this.rtbModuleResource);
-            this.pnlModuleResources.Controls.Add(this.label11);
-            this.pnlModuleResources.Location = new System.Drawing.Point(529, 0);
-            this.pnlModuleResources.Name = "pnlModuleResources";
-            this.pnlModuleResources.Size = new System.Drawing.Size(308, 338);
-            this.pnlModuleResources.TabIndex = 52;
-            // 
-            // rtbModuleResource
-            // 
-            this.rtbModuleResource.Location = new System.Drawing.Point(97, 39);
-            this.rtbModuleResource.Name = "rtbModuleResource";
-            this.rtbModuleResource.Size = new System.Drawing.Size(190, 82);
-            this.rtbModuleResource.TabIndex = 2;
-            this.rtbModuleResource.Text = "";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(33, 41);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(56, 13);
-            this.label11.TabIndex = 1;
-            this.label11.Text = "Resource:";
-            // 
             // pnlModuleStudents
             // 
             this.pnlModuleStudents.Controls.Add(this.pictureBox1);
@@ -664,6 +642,32 @@
             this.pnlModuleStudents.Size = new System.Drawing.Size(311, 335);
             this.pnlModuleStudents.TabIndex = 16;
             // 
+            // pnlModuleResources
+            // 
+            this.pnlModuleResources.Controls.Add(this.rtbModuleResource);
+            this.pnlModuleResources.Controls.Add(this.label11);
+            this.pnlModuleResources.Location = new System.Drawing.Point(523, 0);
+            this.pnlModuleResources.Name = "pnlModuleResources";
+            this.pnlModuleResources.Size = new System.Drawing.Size(317, 351);
+            this.pnlModuleResources.TabIndex = 52;
+            // 
+            // rtbModuleResource
+            // 
+            this.rtbModuleResource.Location = new System.Drawing.Point(28, 35);
+            this.rtbModuleResource.Name = "rtbModuleResource";
+            this.rtbModuleResource.Size = new System.Drawing.Size(274, 224);
+            this.rtbModuleResource.TabIndex = 2;
+            this.rtbModuleResource.Text = "";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(30, 19);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(56, 13);
+            this.label11.TabIndex = 1;
+            this.label11.Text = "Resource:";
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Location = new System.Drawing.Point(114, 244);
@@ -684,6 +688,7 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "Male",
@@ -693,7 +698,6 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(68, 21);
             this.comboBox1.TabIndex = 47;
-            this.comboBox1.Text = "Male";
             // 
             // dateTimePicker1
             // 
@@ -925,6 +929,9 @@
             // 
             // dgvModuleOutput
             // 
+            this.dgvModuleOutput.AllowUserToAddRows = false;
+            this.dgvModuleOutput.AllowUserToDeleteRows = false;
+            this.dgvModuleOutput.AllowUserToOrderColumns = true;
             this.dgvModuleOutput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvModuleOutput.Location = new System.Drawing.Point(-1, -2);
             this.dgvModuleOutput.MultiSelect = false;
@@ -1015,7 +1022,6 @@
             this.Name = "Details";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Details";
-            this.Activated += new System.EventHandler(this.Details_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Details_FormClosed);
             this.Shown += new System.EventHandler(this.Details_Shown);
             this.tbcDetails.ResumeLayout(false);
@@ -1034,10 +1040,10 @@
             this.pnlStudentSearch.PerformLayout();
             this.tpgModules.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            this.pnlModuleResources.ResumeLayout(false);
-            this.pnlModuleResources.PerformLayout();
             this.pnlModuleStudents.ResumeLayout(false);
             this.pnlModuleStudents.PerformLayout();
+            this.pnlModuleResources.ResumeLayout(false);
+            this.pnlModuleResources.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnlModule.ResumeLayout(false);
             this.pnlModule.PerformLayout();

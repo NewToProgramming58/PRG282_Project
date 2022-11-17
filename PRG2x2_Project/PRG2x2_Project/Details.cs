@@ -19,6 +19,7 @@ namespace PRG2x2_Project
         public bool ModuleStudents = false;
         public bool ModuleResources = false;
         int currentStudent = 0;
+        string currentModule = "";
 
         DataHandler handler = new DataHandler();
         private Login frm;
@@ -437,7 +438,7 @@ namespace PRG2x2_Project
                 }
                 else if (ModuleResources)
                 {
-
+                    rtbModuleDescription.Text = dgvModuleOutput.SelectedRows[0].Cells[1].Value.ToString();
                 }
                 else
                 {
@@ -458,9 +459,9 @@ namespace PRG2x2_Project
             this.Enabled = false;
         }
 
-// Methods for changing what is displayed to the user, depending on what table is shown.
-// This is because multiple types of tables are shown on a single form.
-//===========================================================================================================================================
+        // Methods for changing what is displayed to the user, depending on what table is shown.
+        // This is because multiple types of tables are shown on a single form.
+        //===========================================================================================================================================
         public void ShowStudent()
         {
             currentStudent = 0;
@@ -494,7 +495,9 @@ namespace PRG2x2_Project
             {
                 dgvStudentOutput.Rows[0].Selected = true;
             }
-            cboStudentModuleCode.DataSource = handler.GetData(Tables.Module);
+            DataTable dt = handler.GetData(Tables.Module);           
+
+            cboStudentModuleCode.DataSource = dt;
             cboStudentModuleCode.DisplayMember = "Module Code";
             cboStudentModuleCode.ValueMember = "Module Code";           
             pnlStudentModules.Show();
@@ -504,6 +507,7 @@ namespace PRG2x2_Project
 
         public void ShowModule()
         {
+            currentModule = "";
             ModuleStudents = false;
             ModuleResources = false;
             StudentModules = false;
@@ -522,25 +526,30 @@ namespace PRG2x2_Project
         {
             // When Details are shown it has to determine which details to show, Students or Resources.
             // For this we make use of student.
+            ModuleStudents = false;
+            ModuleResources = false;
+            StudentModules = false;
+
             if (student)
             {////////////////////////////////////////////////////////////////////DETAILS
+                ModuleStudents = true;
                 dgvModuleOutput.DataSource = handler.GetData(Tables.StudentModules, handler.addCondition("Module Code", Operator.Equals, txtModuleCode.Text));
                 pnlModuleStudents.Show();
                 pnlModule.Hide();
             }
             else
             {/////////////////////////////////////////////////////////////////////DETAILS
+                ModuleResources = true;
+                if (currentModule == "") {
+                    currentModule = dgvModuleOutput.SelectedRows[0].Cells[0].Value.ToString();
+                }
                 dgvModuleOutput.DataSource = handler.GetData(Tables.Resource, handler.addCondition("Module Code", Operator.Equals, txtModuleCode.Text));
+                DataTable dt = handler.GetData(Tables.Module);                
                 pnlModuleResources.Show();
                 pnlModule.Hide();
             }
         }
 //===========================================================================================================================================
-
-        private void Details_Activated(object sender, EventArgs e)
-        {
-
-        }
         private void cboStudentModuleCode_TextChanged(object sender, EventArgs e)
         {
             DataTable dt = handler.GetData(Tables.Module, handler.addCondition("Module Code", Operator.Equals, cboStudentModuleCode.Text));
@@ -554,7 +563,30 @@ namespace PRG2x2_Project
         {
             if (ModuleResources)
             {
-                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                // Reads the values.
+                Resource resource = new Resource(rtbModuleResource.Text,currentModule);
+
+                // Asks the user if he/she is sure.
+                DialogResult result = MessageBox.Show($"Are you sure you want to insert this record into Resources?\n\n" +
+                    $"Module Code: \t{resource.Code}\n" +
+                    $"Resource: \n\n{resource.Coderesource}"
+                    , "Insert", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                // If yes, insert the record, refresh the datagridview, and select that newly inserted record.
+                if (result == DialogResult.Yes)
+                {
+                    handler.Insert(resource);
+                    ShowModuleDetails(false);
+                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    //dgvModuleOutput.Rows[dgvModuleOutput.Rows.Count - 2].Selected = true;
+                    //if (dgvModuleOutput.CurrentRow != null)
+                    //{
+                    //    dgvModuleOutput.CurrentCell =
+                    //        dgvModuleOutput
+                    //        .Rows[dgvModuleOutput.Rows.Count - 2]
+                    //        .Cells[dgvModuleOutput.CurrentCell.ColumnIndex];
+                    //}
+                }
             }
             else
             {
@@ -590,7 +622,32 @@ namespace PRG2x2_Project
         {
             if (ModuleResources)
             {
-                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                // Reads the values.
+                Resource resource = new Resource(rtbModuleResource.Text, currentModule);
+                //dgvModuleOutput.SelectedRows[0].Cells[0].Value.ToString()
+                // Asks the user if he/she is sure.
+                DialogResult result = MessageBox.Show($"Are you sure you want to update this record from Modules?\n\n" +
+                $"Module Code: \t{resource.Code}\n" +
+                $"Resource: \n\n{dgvModuleOutput.SelectedRows[0].Cells[1].Value}\n\nTO\n\n{resource.Coderesource}",             
+                "Update", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                // If yes, insert the record, refresh the datagridview, and select that newly inserted record.
+                if (result == DialogResult.Yes)
+                {
+                    handler.Update(resource, dgvModuleOutput.SelectedRows[0].Cells[1].Value.ToString());
+
+                    int index = dgvModuleOutput.SelectedRows[0].Index;
+
+                    ShowModuleDetails(false);
+                    dgvModuleOutput.Rows[index].Selected = true;
+                    if (dgvModuleOutput.CurrentRow != null)
+                    {
+                        dgvModuleOutput.CurrentCell =
+                            dgvModuleOutput
+                            .Rows[index]
+                            .Cells[dgvModuleOutput.CurrentCell.ColumnIndex];
+                    }
+                }
             }
             else
             {
@@ -598,26 +655,28 @@ namespace PRG2x2_Project
                 Module module = new Module(dgvModuleOutput.SelectedRows[0].Cells[0].Value.ToString(), txtModuleName.Text, rtbModuleDescription.Text);
 
                 // Asks the user if he/she is sure.
-                DialogResult result = MessageBox.Show($"Are you sure you want to insert this record into Students?\n\n" +
-                    $"Module Code: \t{dgvModuleOutput.SelectedRows[0].Cells[0].Value}\n\n" +
-                    $"Name: \t\t{module.Name}\n\n" +
-                    $"Description: \n{module.Description}"
-                    , "Insert", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                DialogResult result = MessageBox.Show($"Are you sure you want to update this record from Modules?\n\n" +
+                $"Module Code: \t{dgvModuleOutput.SelectedRows[0].Cells[0].Value} TO {module.Code}\n" +
+                $"Name: \t{dgvModuleOutput.SelectedRows[0].Cells[1].Value} TO {module.Name}\n\n" +
+                $"Description: \n{dgvModuleOutput.SelectedRows[0].Cells[2].Value}\n\nTO\n\n{module.Description}",            
+                "Update", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
                 // If yes, insert the record, refresh the datagridview, and select that newly inserted record.
                 if (result == DialogResult.Yes)
                 {
                     handler.Update(module);
-                    ShowModule();
-                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    //dgvModuleOutput.Rows[dgvModuleOutput.Rows.Count - 2].Selected = true;
-                    //if (dgvModuleOutput.CurrentRow != null)
-                    //{
-                    //    dgvModuleOutput.CurrentCell =
-                    //        dgvModuleOutput
-                    //        .Rows[dgvModuleOutput.Rows.Count - 2]
-                    //        .Cells[dgvModuleOutput.CurrentCell.ColumnIndex];
-                    //}
+
+                    int index = dgvModuleOutput.SelectedRows[0].Index;
+                    
+                    ShowModule();                   
+                    dgvModuleOutput.Rows[index].Selected = true;
+                    if (dgvModuleOutput.CurrentRow != null)
+                    {
+                        dgvModuleOutput.CurrentCell =
+                            dgvModuleOutput
+                            .Rows[index]
+                            .Cells[dgvModuleOutput.CurrentCell.ColumnIndex];
+                    }
                 }
             }
         }
@@ -632,7 +691,21 @@ namespace PRG2x2_Project
         {
             if (ModuleResources)
             {
-                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                // Reads the values.
+                Resource resource = new Resource(dgvModuleOutput.SelectedRows[0].Cells[1].Value.ToString(), currentModule);
+
+                // Asks the user if he/she is sure.
+                DialogResult result = MessageBox.Show($"Are you sure you want to delete this record from Resources?\n\n" +
+                    $"Module Code: \t{resource.Code}\n" +
+                    $"Resource:\n\n{resource.Coderesource}"                    
+                    , "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                // If yes, insert the record, refresh the datagridview, and select that newly inserted record.
+                if (result == DialogResult.Yes)
+                {
+                    handler.Delete(Tables.Resource, "", resource);
+                    ShowModuleDetails(false);
+                }
             }
             else
             {
@@ -640,26 +713,17 @@ namespace PRG2x2_Project
                 Module module = new Module(dgvModuleOutput.SelectedRows[0].Cells[0].Value.ToString(), txtModuleName.Text, rtbModuleDescription.Text);
 
                 // Asks the user if he/she is sure.
-                DialogResult result = MessageBox.Show($"Are you sure you want to insert this record into Students?\n\n" +
+                DialogResult result = MessageBox.Show($"Are you sure you want to delete this record into Modules?\n\n" +
                     $"Module Code: \t{module.Code}\n\n" +
                     $"Name: \t\t{module.Name}\n\n" +
                     $"Description: \n{module.Description}"
-                    , "Insert", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    , "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
                 // If yes, insert the record, refresh the datagridview, and select that newly inserted record.
                 if (result == DialogResult.Yes)
                 {
                     handler.Delete(Tables.Module, handler.addCondition("Module Code", Operator.Equals, module.Code));
                     ShowModule();
-                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    //dgvModuleOutput.Rows[dgvModuleOutput.Rows.Count - 2].Selected = true;
-                    //if (dgvModuleOutput.CurrentRow != null)
-                    //{
-                    //    dgvModuleOutput.CurrentCell =
-                    //        dgvModuleOutput
-                    //        .Rows[dgvModuleOutput.Rows.Count - 2]
-                    //        .Cells[dgvModuleOutput.CurrentCell.ColumnIndex];
-                    //}
                 }
             }
         }
