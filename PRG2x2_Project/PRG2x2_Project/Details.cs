@@ -110,9 +110,15 @@ namespace PRG2x2_Project
             else
             {
                 // Converts our image to a format that can be used in SQL server.
-                ptbStudentImage.Image.Save(@"image.png", ImageFormat.Png);
-                byte[] imageArray = System.IO.File.ReadAllBytes(@"image");
-                string base64ImageRepresentation = Convert.ToBase64String(imageArray);
+                string base64ImageRepresentation;
+                using (var ms = new MemoryStream())
+                {
+                    using (var bitmap = new Bitmap(ptbStudentImage.Image))
+                    {
+                        bitmap.Save(ms, ImageFormat.Jpeg);
+                        base64ImageRepresentation = Convert.ToBase64String(ms.GetBuffer()); //Get Base64
+                    }
+                }
 
                 // Reads the values.
                 Student st = new Student(
@@ -197,9 +203,15 @@ namespace PRG2x2_Project
             else
             {
                 // Converts our image to a format that can be used in SQL server.
-                ptbStudentImage.Image.Save(@"image.png", ImageFormat.Png);
-                byte[] imageArray = System.IO.File.ReadAllBytes(@"image");
-                string base64ImageRepresentation = Convert.ToBase64String(imageArray);
+                string base64ImageRepresentation;
+                using (var ms = new MemoryStream())
+                {
+                    using (var bitmap = new Bitmap(ptbStudentImage.Image))
+                    {
+                        bitmap.Save(ms, ImageFormat.Jpeg);
+                        base64ImageRepresentation = Convert.ToBase64String(ms.GetBuffer()); //Get Base64
+                    }
+                }
 
                 // Reads the values.
                 Student st = new Student(int.Parse(txtStudentNumber.Text),
@@ -465,6 +477,8 @@ namespace PRG2x2_Project
             pnlStudent.Show();
             pnlStudentModules.Hide();
             pnlStudentSearch.Show();
+
+            dgvStudentOutput.Columns[dgvStudentOutput.Columns.Count - 1].Visible = false;
         }
 
         public void ShowStudentModules()
@@ -480,6 +494,9 @@ namespace PRG2x2_Project
             {
                 dgvStudentOutput.Rows[0].Selected = true;
             }
+            cboStudentModuleCode.DataSource = handler.GetData(Tables.Module);
+            cboStudentModuleCode.DisplayMember = "Module Code";
+            cboStudentModuleCode.ValueMember = "Module Code";           
             pnlStudentModules.Show();
             pnlStudent.Hide();
             pnlStudentSearch.Hide();
@@ -523,9 +540,6 @@ namespace PRG2x2_Project
         private void Details_Activated(object sender, EventArgs e)
         {
 
-            cboStudentModuleCode.DataSource = handler.GetData(Tables.Module);
-            cboStudentModuleCode.DisplayMember = "Module Code";
-            cboStudentModuleCode.ValueMember = "Module Code";
         }
         private void cboStudentModuleCode_TextChanged(object sender, EventArgs e)
         {

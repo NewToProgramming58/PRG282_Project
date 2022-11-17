@@ -216,15 +216,5 @@ namespace PRG2x2_Project
             cmd.ExecuteNonQuery();
             Con.Close();
         }
-
-        internal DataTable getModules()
-        {
-            string qry = $"SELECT [Module Code] FROM Module";
-            
-            SqlDataAdapter dataAdapter = new SqlDataAdapter(qry, this.Con);
-            DataTable dt = new DataTable();
-            dataAdapter.Fill(dt);
-            return dt;
-        }
     }
 }
