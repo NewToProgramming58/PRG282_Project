@@ -67,6 +67,7 @@
             this.btnStudentRead = new System.Windows.Forms.Button();
             this.dgvStudentOutput = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblStudentFor = new System.Windows.Forms.Label();
             this.pnlStudentSearch = new System.Windows.Forms.Panel();
             this.lblStudentSearch = new System.Windows.Forms.Label();
             this.btnStudentSearch = new System.Windows.Forms.Button();
@@ -83,6 +84,8 @@
             this.rtbModuleResource = new System.Windows.Forms.RichTextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.pnlModuleStudents = new System.Windows.Forms.Panel();
+            this.cboModuleStudentStatus = new System.Windows.Forms.ComboBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.txtModuleStudentNumber = new System.Windows.Forms.TextBox();
             this.pnlModule = new System.Windows.Forms.Panel();
@@ -99,16 +102,13 @@
             this.btnModuleRead = new System.Windows.Forms.Button();
             this.dgvModuleOutput = new System.Windows.Forms.DataGridView();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.lblModuleFor = new System.Windows.Forms.Label();
             this.pnlModuleSearch = new System.Windows.Forms.Panel();
             this.lblModuleSearch = new System.Windows.Forms.Label();
             this.btnModuleSearch = new System.Windows.Forms.Button();
             this.txtModuleSearch = new System.Windows.Forms.TextBox();
             this.rtbModuleTutorial = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.cboModuleStudentStatus = new System.Windows.Forms.ComboBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.lblModuleFor = new System.Windows.Forms.Label();
-            this.lblStudentFor = new System.Windows.Forms.Label();
             this.tbcDetails.SuspendLayout();
             this.tpgStudents.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -530,6 +530,18 @@
             this.panel1.Size = new System.Drawing.Size(841, 71);
             this.panel1.TabIndex = 0;
             // 
+            // lblStudentFor
+            // 
+            this.lblStudentFor.AutoSize = true;
+            this.lblStudentFor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStudentFor.ForeColor = System.Drawing.Color.Coral;
+            this.lblStudentFor.Location = new System.Drawing.Point(20, 47);
+            this.lblStudentFor.Name = "lblStudentFor";
+            this.lblStudentFor.Size = new System.Drawing.Size(102, 20);
+            this.lblStudentFor.TabIndex = 18;
+            this.lblStudentFor.Text = "For Student: ";
+            this.lblStudentFor.Visible = false;
+            // 
             // pnlStudentSearch
             // 
             this.pnlStudentSearch.BackColor = System.Drawing.Color.PeachPuff;
@@ -694,6 +706,28 @@
             this.pnlModuleStudents.Size = new System.Drawing.Size(311, 335);
             this.pnlModuleStudents.TabIndex = 16;
             // 
+            // cboModuleStudentStatus
+            // 
+            this.cboModuleStudentStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboModuleStudentStatus.FormattingEnabled = true;
+            this.cboModuleStudentStatus.Items.AddRange(new object[] {
+            "Pass",
+            "Ongoing",
+            "Fail"});
+            this.cboModuleStudentStatus.Location = new System.Drawing.Point(115, 97);
+            this.cboModuleStudentStatus.Name = "cboModuleStudentStatus";
+            this.cboModuleStudentStatus.Size = new System.Drawing.Size(91, 21);
+            this.cboModuleStudentStatus.TabIndex = 42;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(68, 100);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(40, 13);
+            this.label13.TabIndex = 41;
+            this.label13.Text = "Status:";
+            // 
             // label26
             // 
             this.label26.AutoSize = true;
@@ -855,6 +889,18 @@
             this.panel4.Size = new System.Drawing.Size(841, 71);
             this.panel4.TabIndex = 1;
             // 
+            // lblModuleFor
+            // 
+            this.lblModuleFor.AutoSize = true;
+            this.lblModuleFor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblModuleFor.ForeColor = System.Drawing.Color.Coral;
+            this.lblModuleFor.Location = new System.Drawing.Point(20, 47);
+            this.lblModuleFor.Name = "lblModuleFor";
+            this.lblModuleFor.Size = new System.Drawing.Size(97, 20);
+            this.lblModuleFor.TabIndex = 17;
+            this.lblModuleFor.Text = "For Module: ";
+            this.lblModuleFor.Visible = false;
+            // 
             // pnlModuleSearch
             // 
             this.pnlModuleSearch.BackColor = System.Drawing.Color.PeachPuff;
@@ -895,7 +941,7 @@
             // 
             // rtbModuleTutorial
             // 
-            this.rtbModuleTutorial.Location = new System.Drawing.Point(200, 0);
+            this.rtbModuleTutorial.Location = new System.Drawing.Point(213, 0);
             this.rtbModuleTutorial.Name = "rtbModuleTutorial";
             this.rtbModuleTutorial.Size = new System.Drawing.Size(338, 71);
             this.rtbModuleTutorial.TabIndex = 1;
@@ -911,52 +957,6 @@
             this.label2.Size = new System.Drawing.Size(156, 26);
             this.label2.TabIndex = 0;
             this.label2.Text = "Module Details";
-            // 
-            // cboModuleStudentStatus
-            // 
-            this.cboModuleStudentStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboModuleStudentStatus.FormattingEnabled = true;
-            this.cboModuleStudentStatus.Items.AddRange(new object[] {
-            "Pass",
-            "Ongoing",
-            "Fail"});
-            this.cboModuleStudentStatus.Location = new System.Drawing.Point(115, 97);
-            this.cboModuleStudentStatus.Name = "cboModuleStudentStatus";
-            this.cboModuleStudentStatus.Size = new System.Drawing.Size(91, 21);
-            this.cboModuleStudentStatus.TabIndex = 42;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(68, 100);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(40, 13);
-            this.label13.TabIndex = 41;
-            this.label13.Text = "Status:";
-            // 
-            // lblModuleFor
-            // 
-            this.lblModuleFor.AutoSize = true;
-            this.lblModuleFor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblModuleFor.ForeColor = System.Drawing.Color.Coral;
-            this.lblModuleFor.Location = new System.Drawing.Point(20, 47);
-            this.lblModuleFor.Name = "lblModuleFor";
-            this.lblModuleFor.Size = new System.Drawing.Size(97, 20);
-            this.lblModuleFor.TabIndex = 17;
-            this.lblModuleFor.Text = "For Module: ";
-            this.lblModuleFor.Visible = false;
-            // 
-            // lblStudentFor
-            // 
-            this.lblStudentFor.AutoSize = true;
-            this.lblStudentFor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStudentFor.ForeColor = System.Drawing.Color.Coral;
-            this.lblStudentFor.Location = new System.Drawing.Point(20, 47);
-            this.lblStudentFor.Name = "lblStudentFor";
-            this.lblStudentFor.Size = new System.Drawing.Size(102, 20);
-            this.lblStudentFor.TabIndex = 18;
-            this.lblStudentFor.Text = "For Student: ";
-            this.lblStudentFor.Visible = false;
             // 
             // Details
             // 

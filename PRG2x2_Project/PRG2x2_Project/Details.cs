@@ -561,10 +561,27 @@ namespace PRG2x2_Project
                     }
                 }
             }
-            else if (ModuleStudents) 
+            else if (ModuleStudents)
             {
-                // Reads the values.
                 StudentModule studentModule = new StudentModule(int.Parse(dgvModuleOutput.SelectedRows[0].Cells[0].Value.ToString()), currentModule, cboModuleStudentStatus.Text);
+                // We have to make sure no duplicate modules are entered so we create a list and see if our newly added trecord is already in the list.
+                DialogResult changeResult = DialogResult.No;
+                if (cboStudentModuleCode.Text != dgvModuleOutput.SelectedRows[0].Cells[0].Value.ToString())
+                {
+                    changeResult = MessageBox.Show($"You changed the Module code when wanting to update.\n" +
+                        $"Instead of updating the student number try to insert a new field.\n" +
+                        $"Would you still like to change the status from {dgvModuleOutput.SelectedRows[0].Cells[0].Value} To {txtModuleStudentNumber.Text}?",
+                        "Update problem", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                }
+
+                if (changeResult == DialogResult.Yes)
+                {
+                    handler.Update(studentModule);
+                    ShowModuleDetails(true);
+                    return;
+                }
+                // Reads the values.
+                
                 // Asks the user if he/she is sure.
                 DialogResult result = MessageBox.Show($"Are you sure you want to update this record drom Student Modules?\n\n" +
                 $"Student Number: \t{studentModule.StudentNumber}\n" +
@@ -589,6 +606,7 @@ namespace PRG2x2_Project
                             .Cells[dgvModuleOutput.CurrentCell.ColumnIndex];
                     }
                 }
+
             }
             else
             {
