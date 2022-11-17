@@ -230,7 +230,6 @@ namespace PRG2x2_Project
             Con.Open();
             try
             {
-                MessageBox.Show(qry);
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException ex)
@@ -275,4 +274,3 @@ namespace PRG2x2_Project
         }
     }   
 }
-//handler.GetData(table: Tables.StudentModules, number: 5, code: "");
