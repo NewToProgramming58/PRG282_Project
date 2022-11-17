@@ -683,7 +683,7 @@ namespace PRG2x2_Project
                 }
                 else if (ModuleResources)
                 {
-                    rtbModuleDescription.Text = dgvModuleOutput.SelectedRows[0].Cells[1].Value.ToString();
+                    rtbModuleResource.Text = dgvModuleOutput.SelectedRows[0].Cells[1].Value.ToString();
                 }
                 else
                 {
