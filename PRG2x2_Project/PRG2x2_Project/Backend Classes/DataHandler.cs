@@ -178,11 +178,12 @@ namespace PRG2x2_Project
             Con.Close();
         }
 
-        public void Delete(Tables table, string condition)
+        public void Delete(Tables table, string condition, dynamic tableObject = null)
         {
             string tableName = ((Tables)table).ToString();
             string qry;
             SqlCommand command;
+            qry = $"DELETE FROM {tableName}\n{condition}";
             switch (table) 
             { 
                 case Tables.Student:
@@ -200,12 +201,14 @@ namespace PRG2x2_Project
                     command.ExecuteNonQuery();
                     Con.Close();
                     break;
-            }
-            qry = $"DELETE FROM {tableName}\n{condition}";
+                case Tables.Resource:
+                    qry = tableObject.Delete();                   
+                    break;
+            }     
             SqlCommand cmd = new SqlCommand(qry, this.Con);
             Con.Open();
             cmd.ExecuteNonQuery();
-            Con.Close();
+            Con.Close();           
         }
 
         public void Insert(dynamic tableObject)
@@ -213,7 +216,9 @@ namespace PRG2x2_Project
             string qry = tableObject.Insert();
             SqlCommand cmd = new SqlCommand(qry, Con);
             Con.Open();
+
             cmd.ExecuteNonQuery();
+         
             Con.Close();
         }
     }
